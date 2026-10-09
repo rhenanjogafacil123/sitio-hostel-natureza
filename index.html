@@ -1224,6 +1224,75 @@
     </div>
   </aside>
 
+  <!-- ==================== MODAL DE PÓS-PEDIDO & AVALIAÇÃO NO GOOGLE ==================== -->
+  <div id="order-success-modal" class="hidden fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-md rounded-3xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl p-6 sm:p-7 text-center space-y-5 animate-in fade-in zoom-in duration-300">
+      
+      <!-- Botão Fechar -->
+      <button type="button" onclick="closeOrderSuccessModal()" class="absolute top-4 right-4 grid size-8 place-items-center rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-500 hover:text-slate-900 dark:text-slate-300 transition">
+        <i data-lucide="x" class="size-4"></i>
+      </button>
+
+      <!-- Ícone Animado de Sucesso -->
+      <div class="mx-auto size-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 grid place-items-center shadow-inner">
+        <i data-lucide="check-circle-2" class="size-9 animate-bounce"></i>
+      </div>
+
+      <!-- Título e Mensagem -->
+      <div class="space-y-1.5">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 px-3 py-0.5 text-[10px] font-black uppercase text-emerald-700 dark:text-emerald-300">
+          ✓ Pedido Aberto no WhatsApp!
+        </span>
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+          Pedido Enviado com Sucesso!
+        </h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-xs mx-auto">
+          Sua mensagem foi enviada ao WhatsApp da nossa cozinha para preparo imediato.
+        </p>
+      </div>
+
+      <!-- Card Especial de Avaliação no Google -->
+      <div class="rounded-2xl border-2 border-amber-300/80 dark:border-amber-500/30 bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-yellow-50/30 dark:from-amber-950/30 dark:via-[#07242c] dark:to-[#071f25] p-4.5 text-center space-y-3 shadow-sm">
+        
+        <div class="flex items-center justify-center gap-1.5 text-amber-500">
+          <i data-lucide="star" class="size-5 fill-amber-400"></i>
+          <i data-lucide="star" class="size-5 fill-amber-400"></i>
+          <i data-lucide="star" class="size-5 fill-amber-400"></i>
+          <i data-lucide="star" class="size-5 fill-amber-400"></i>
+          <i data-lucide="star" class="size-5 fill-amber-400"></i>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-black text-slate-900 dark:text-white">
+            Sua opinião vale ouro para nós!
+          </h4>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+            Enquanto preparamos tudo quentinho, poderia nos deixar uma <strong>avaliação de 5 estrelas no Google Maps</strong>? Leva só 20 segundos e fortalece o nosso trabalho local aqui em Campo Grande!
+          </p>
+        </div>
+
+        <!-- Botão Principal: Avaliar no Google Maps -->
+        <a 
+          href="https://maps.google.com/?q=Av.+Alhambra,+783+-+Campo+Grande,+Rio+de+Janeiro+-+RJ" 
+          target="_blank" 
+          rel="noreferrer"
+          onclick="handleGoogleReviewClick()" 
+          class="w-full flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs py-3.5 px-4 shadow-lg shadow-amber-500/30 active:scale-98 transition"
+        >
+          <i data-lucide="star" class="size-4 fill-white"></i>
+          <span>Avaliar no Google Maps (5★)</span>
+        </a>
+
+      </div>
+
+      <!-- Botão Secundário: Voltar ao Cardápio -->
+      <button type="button" onclick="closeOrderSuccessModal()" class="w-full rounded-full border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 transition">
+        Voltar ao Cardápio
+      </button>
+
+    </div>
+  </div>
+
   <!-- Simulador de Versão Celular Exclusivamente no Desktop (Não afeta celulares reais) -->
   <div id="desktop-simulator-pill" class="fixed bottom-4 left-4 z-40 hidden lg:flex items-center gap-1.5 p-1 rounded-full bg-slate-900/90 text-white backdrop-blur-md shadow-xl border border-white/20 text-xs">
     <span class="px-2 text-[10px] text-slate-400 font-bold uppercase">Teste PC:</span>
@@ -2613,6 +2682,7 @@
       }
       msg += `💰 *TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
       msg += `─────────────────────────\n`;
+      msg += `⭐ _Gostou do atendimento? Avalie o Sítio no Google Maps: https://maps.google.com/?q=Av.+Alhambra,+783+-+Campo+Grande,+Rio+de+Janeiro+-+RJ_\n`;
       msg += `_Pedido gerado pelo Cardápio Oficial Online do Sítio Hostel Natureza._`;
 
       const url = `https://api.whatsapp.com/send?phone=5521967581148&text=${encodeURIComponent(msg)}`;
@@ -2624,6 +2694,34 @@
       closeCartDrawer();
       checkRepeatOrderBanner();
       showToast("✅ Pedido enviado com sucesso para o WhatsApp!");
+
+      // Abre imediatamente o Modal de Avaliação no Google Maps
+      setTimeout(() => {
+        openOrderSuccessModal();
+      }, 350);
+    }
+
+    function openOrderSuccessModal() {
+      const modal = document.getElementById('order-success-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    }
+
+    function closeOrderSuccessModal() {
+      const modal = document.getElementById('order-success-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function handleGoogleReviewClick() {
+      localStorage.setItem('sitio_has_reviewed_google', 'true');
+      showToast("⭐ Muito obrigado pelo seu apoio e avaliação no Google Maps!");
+      setTimeout(() => {
+        closeOrderSuccessModal();
+      }, 1500);
     }
 
     const btnMenu = document.getElementById('btn-menu-mobile');
