@@ -527,15 +527,18 @@
 
 
 
-  <!-- ==================== MODAL DE DETALHES DO PRODUTO ==================== -->
+  <!-- ==================== TOAST NOTIFICATION FLUTUANTE (FEEDBACK MULTI-PEDIDOS) ==================== -->
+  <div id="toast-container" class="fixed top-5 inset-x-0 z-[100] flex flex-col items-center pointer-events-none px-4 space-y-2"></div>
+
+  <!-- ==================== MODAL DE DETALHES DO PRODUTO (PADRÃO BORA DE BATATA) ==================== -->
   <div id="product-modal" class="hidden fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/75 backdrop-blur-sm">
-    <div class="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl border border-slate-200 dark:border-white/20 bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div class="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl border border-slate-200 dark:border-white/20 bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
       
       <!-- Topo Modal com Imagem do Prato -->
-      <div class="relative h-44 sm:h-48 w-full bg-slate-100 dark:bg-[#05181c] overflow-hidden shrink-0">
+      <div class="relative h-48 sm:h-52 w-full bg-slate-100 dark:bg-[#05181c] overflow-hidden shrink-0">
         <img id="modal-product-img" src="" alt="Prato" class="h-full w-full object-cover">
-        <button type="button" onclick="closeProductModal()" class="absolute top-3 right-3 grid size-8 sm:size-9 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/90">
-          <i data-lucide="x" class="size-4.5 sm:size-5"></i>
+        <button type="button" onclick="closeProductModal()" class="absolute top-3 right-3 grid size-9 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/90 transition">
+          <i data-lucide="x" class="size-5"></i>
         </button>
         <span id="modal-product-badge" class="absolute bottom-3 left-4 rounded-full bg-[#0088cc] text-white px-3 py-1 text-[10px] font-extrabold uppercase shadow"></span>
       </div>
@@ -543,40 +546,67 @@
       <!-- Conteúdo do Modal com Scroll -->
       <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1">
         <div>
-          <h3 id="modal-product-title" class="text-base sm:text-xl font-extrabold text-slate-900 dark:text-white"></h3>
+          <h3 id="modal-product-title" class="text-base sm:text-xl font-black text-slate-900 dark:text-white"></h3>
           <p id="modal-product-desc" class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
         </div>
 
         <div class="border-t border-slate-200 dark:border-white/10 pt-3 flex items-center justify-between">
-          <span class="text-xs text-slate-500 dark:text-slate-400">Preço Unitário:</span>
-          <span id="modal-product-unit-price" class="text-base font-extrabold text-[#0088cc]"></span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-bold">Preço Unitário:</span>
+          <span id="modal-product-unit-price" class="text-base font-black text-[#0088cc]"></span>
+        </div>
+
+        <!-- Seção: O que você quer retirar? (Opcional - Padrão Bora de Batata) -->
+        <div class="space-y-2 border-t border-slate-200 dark:border-white/10 pt-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
+              <i data-lucide="scissors" class="size-3.5 text-amber-500"></i> O que deseja retirar?
+            </span>
+            <span class="text-[10px] text-slate-400 font-semibold">Opcional</span>
+          </div>
+          <div class="flex flex-wrap gap-2" id="modal-removal-chips">
+            <button type="button" onclick="toggleRemovalChip(this, 'Sem cebola')" class="removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-400 transition">
+              Sem cebola
+            </button>
+            <button type="button" onclick="toggleRemovalChip(this, 'Sem cheiro-verde')" class="removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-400 transition">
+              Sem cheiro-verde
+            </button>
+            <button type="button" onclick="toggleRemovalChip(this, 'Molho à parte')" class="removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-amber-400 transition">
+              Molho à parte
+            </button>
+            <button type="button" onclick="toggleRemovalChip(this, 'Farofa à parte')" class="removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-amber-400 transition">
+              Farofa à parte
+            </button>
+            <button type="button" onclick="toggleRemovalChip(this, 'Carne bem passada')" class="removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-[#0088cc] transition">
+              Carne bem passada
+            </button>
+          </div>
         </div>
 
         <!-- Campo Observações do Item -->
         <div>
           <label class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1 flex items-center gap-1.5">
             <i data-lucide="message-square" class="size-3.5 text-[#0088cc]"></i>
-            <span>Observação para a cozinha:</span>
+            <span>Instrução especial para a cozinha:</span>
           </label>
-          <textarea id="modal-item-notes" rows="2" placeholder="Ex.: Sem cebola, salada à parte, ponto da carne..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 p-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] resize-none"></textarea>
+          <textarea id="modal-item-notes" rows="2" placeholder="Ex.: Sem pimenta, salada sem tempero, embalagem separada..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 p-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] resize-none"></textarea>
         </div>
 
         <!-- Seletor de Quantidade -->
         <div class="flex items-center justify-between rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-2.5 sm:p-3">
           <span class="text-xs font-bold text-slate-700 dark:text-slate-200">Quantidade:</span>
           <div class="flex items-center gap-3">
-            <button type="button" onclick="adjustModalQty(-1)" class="grid size-8 place-items-center rounded-lg border border-slate-200 dark:border-white/20 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100">
+            <button type="button" onclick="adjustModalQty(-1)" class="grid size-8 place-items-center rounded-lg border border-slate-200 dark:border-white/20 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95">
               <i data-lucide="minus" class="size-4"></i>
             </button>
-            <span id="modal-qty" class="w-6 text-center text-sm font-extrabold text-slate-900 dark:text-white">1</span>
-            <button type="button" onclick="adjustModalQty(1)" class="grid size-8 place-items-center rounded-lg border border-slate-200 dark:border-white/20 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100">
+            <span id="modal-qty" class="w-6 text-center text-sm font-black text-slate-900 dark:text-white">1</span>
+            <button type="button" onclick="adjustModalQty(1)" class="grid size-8 place-items-center rounded-lg border border-slate-200 dark:border-white/20 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95">
               <i data-lucide="plus" class="size-4"></i>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Rodapé do Modal -->
+      <!-- Rodapé do Modal (Fecha e Permite Continuar Pedindo sem Interrupção) -->
       <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-3.5 sm:p-4 shrink-0">
         <button type="button" onclick="confirmModalAddToCart()" class="w-full flex items-center justify-between rounded-full bg-[#0088cc] hover:bg-[#0077b6] px-5 py-3.5 text-sm font-extrabold text-white shadow-lg transition active:scale-95">
           <span>Adicionar ao Pedido</span>
@@ -589,87 +619,145 @@
 
 
 
-  <!-- ==================== CARRINHO / DRAWER LATERAL ==================== -->
+  <!-- ==================== CARRINHO / DRAWER LATERAL (PADRÃO BORA DE BATATA) ==================== -->
   <div id="cart-drawer-overlay" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
   <aside id="cart-drawer" class="fixed inset-y-0 right-0 z-[70] w-full max-w-md translate-x-full bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl transition-transform duration-300 flex flex-col justify-between border-l border-slate-200 dark:border-white/15">
     
     <!-- Topo do Carrinho -->
     <div class="border-b border-slate-200 dark:border-white/10 px-5 py-3.5 sm:px-6 sm:py-4 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <div class="grid size-9 place-items-center rounded-xl bg-[#0088cc] text-white font-extrabold">
+        <div class="grid size-9 place-items-center rounded-xl bg-[#0088cc] text-white font-extrabold shadow-sm">
           <i data-lucide="shopping-bag" class="size-4.5"></i>
         </div>
         <div>
           <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">Meu Pedido</h3>
-          <span class="text-[10px] text-[#0088cc] font-bold">Sítio Hostel Natureza</span>
+          <span class="text-[10px] text-[#0088cc] font-bold" id="cart-items-counter-subtitle">Confira antes de enviar</span>
         </div>
       </div>
-      <button type="button" onclick="toggleCartDrawer()" class="rounded-xl border border-slate-200 dark:border-white/15 p-2 text-slate-500 hover:bg-slate-100">
+      <button type="button" onclick="toggleCartDrawer()" class="rounded-xl border border-slate-200 dark:border-white/15 p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10 transition">
         <i data-lucide="x" class="size-4.5"></i>
       </button>
     </div>
 
-    <!-- Lista de Itens no Carrinho -->
-    <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3" id="cart-items-container">
+    <!-- Lista de Itens no Carrinho (Com edição de quantidade e remoção) -->
+    <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3" id="cart-items-container">
       <!-- Inserido dinamicamente via JS -->
     </div>
 
-    <!-- Rodapé Checkout do Carrinho -->
-    <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-4 sm:p-6 space-y-3 overflow-y-auto max-h-[50vh]">
+    <!-- Rodapé Checkout do Carrinho (5 Etapas Padrão Bora de Batata) -->
+    <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-4 sm:p-5 space-y-4 overflow-y-auto max-h-[58vh]">
       
-      <!-- Modalidade Oficial: Delivery ou Retirada no Local -->
+      <!-- 1. Forma de Recebimento -->
       <div>
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Como deseja receber?</label>
+        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5 mb-1.5">
+          <i data-lucide="bike" class="size-3.5 text-[#0088cc]"></i> 1. Como deseja receber? *
+        </span>
         <div class="grid grid-cols-2 gap-2">
-          <button type="button" id="btn-mode-delivery" onclick="setOrderMode('delivery')" class="rounded-xl border border-[#0088cc] bg-sky-50 text-[#0088cc] py-2 text-xs font-extrabold">
-            🛵 Entrega / Delivery
+          <button type="button" id="btn-mode-delivery" onclick="setOrderMode('delivery')" class="flex items-center justify-center gap-2 rounded-2xl border-2 border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-[#0088cc] dark:text-[#38bdf8] py-2.5 px-3 text-xs font-extrabold transition shadow-sm">
+            <i data-lucide="bike" class="size-4"></i>
+            <span>Delivery</span>
           </button>
-          <button type="button" id="btn-mode-retirada" onclick="setOrderMode('retirada')" class="rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2 text-xs font-bold text-slate-500 dark:text-slate-400">
-            🛍️ Retirar no Balcão
+          <button type="button" id="btn-mode-retirada" onclick="setOrderMode('retirada')" class="flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 px-3 text-xs font-bold text-slate-600 dark:text-slate-400 transition hover:border-[#0088cc]">
+            <i data-lucide="store" class="size-4"></i>
+            <span>Retirada</span>
           </button>
         </div>
       </div>
 
-      <!-- Nome do Cliente -->
+      <!-- 2. Dados do Cliente -->
+      <div class="space-y-2.5">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+          <i data-lucide="user" class="size-3.5 text-[#0088cc]"></i> 2. Dados do Cliente *
+        </span>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Seu Nome *</label>
+          <input type="text" id="cart-customer-name" placeholder="Ex.: Lucas Mendes" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] transition">
+        </div>
+
+        <!-- Se Delivery: Endereço + Complemento -->
+        <div id="cart-delivery-fields" class="space-y-2.5">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Endereço de Entrega *</label>
+            <input type="text" id="cart-customer-location" placeholder="Rua, número e bairro (Campo Grande RJ)" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] transition">
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Complemento / Ponto de Referência *</label>
+            <input type="text" id="cart-customer-complement" placeholder="Ex.: Apto 204, portão azul, próx. à padaria..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] transition">
+          </div>
+
+          <div class="p-2.5 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/70 dark:bg-sky-950/20 text-[11px] text-sky-800 dark:text-sky-300 flex items-center justify-between">
+            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="size-3.5 text-[#0088cc]"></i> Taxa de Entrega (Campo Grande)</span>
+            <span class="font-extrabold text-[#0088cc] dark:text-[#38bdf8]">R$ 8,00</span>
+          </div>
+        </div>
+
+        <!-- Se Retirada: Info Local -->
+        <div id="cart-pickup-fields" class="hidden p-3 rounded-xl border border-emerald-200 dark:border-emerald-800/40 bg-emerald-50/70 dark:bg-emerald-950/20 text-[11px] text-emerald-800 dark:text-emerald-300 space-y-1">
+          <div class="font-extrabold flex items-center gap-1.5"><i data-lucide="store" class="size-3.5"></i> Retirada no Balcão do Sítio:</div>
+          <div>Av. Alhambra, 783 - Campo Grande, RJ</div>
+          <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">Sem taxa de entrega.</div>
+        </div>
+      </div>
+
+      <!-- 3. Forma de Pagamento (Grid 4 Botões - Padrão Bora de Batata) -->
       <div>
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Seu Nome *</label>
-        <input type="text" id="cart-customer-name" placeholder="Ex.: Lucas Mendes" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc]">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+          <i data-lucide="credit-card" class="size-3.5 text-[#0088cc]"></i> 3. Forma de Pagamento *
+        </span>
+        
+        <div class="grid grid-cols-2 gap-2 mt-1.5" id="payment-options-grid">
+          <button type="button" onclick="selectPaymentMethod('Pix')" class="pay-method-btn active flex items-center justify-center gap-2 rounded-2xl border-2 border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-[#0088cc] dark:text-[#38bdf8] py-2.5 px-3 text-xs font-extrabold transition shadow-sm" data-pay="Pix">
+            <i data-lucide="qr-code" class="size-4"></i>
+            <span>PIX</span>
+          </button>
+          <button type="button" onclick="selectPaymentMethod('Dinheiro')" class="pay-method-btn flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 py-2.5 px-3 text-xs font-bold transition hover:border-[#0088cc]" data-pay="Dinheiro">
+            <i data-lucide="banknote" class="size-4"></i>
+            <span>Dinheiro</span>
+          </button>
+          <button type="button" onclick="selectPaymentMethod('Cartão de Crédito')" class="pay-method-btn flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 py-2.5 px-3 text-xs font-bold transition hover:border-[#0088cc]" data-pay="Cartão de Crédito">
+            <i data-lucide="credit-card" class="size-4"></i>
+            <span>Crédito</span>
+          </button>
+          <button type="button" onclick="selectPaymentMethod('Cartão de Débito')" class="pay-method-btn flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 py-2.5 px-3 text-xs font-bold transition hover:border-[#0088cc]" data-pay="Cartão de Débito">
+            <i data-lucide="credit-card" class="size-4"></i>
+            <span>Débito</span>
+          </button>
+        </div>
+
+        <!-- Seletor de Troco para Dinheiro (com cálculo dinâmico ao vivo) -->
+        <div id="troco-wrapper" class="hidden mt-2.5 p-3 rounded-2xl border border-amber-200 dark:border-amber-800/40 bg-amber-50/60 dark:bg-amber-950/20 space-y-2">
+          <label class="block text-xs font-bold text-slate-800 dark:text-white">Vai pagar com quanto em dinheiro? *</label>
+          <input type="text" id="cart-troco-input" oninput="calculateChange()" placeholder="Ex.: 50,00 ou 100,00" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-2 text-xs text-slate-900 dark:text-white outline-none focus:border-[#0088cc]">
+          <div id="troco-result-text" class="text-[11px] font-extrabold text-emerald-700 dark:text-emerald-400">
+            Informe o valor para calcular o troco.
+          </div>
+        </div>
       </div>
 
-      <!-- Endereço para Entrega ou Retirada -->
-      <div id="cart-location-field">
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-location">Endereço Completo para Entrega *</label>
-        <input type="text" id="cart-customer-location" placeholder="Ex.: Rua, número, bairro e ponto de referência" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc]">
-      </div>
-
-      <!-- Forma de Pagamento Oficial -->
+      <!-- 4. Observações Gerais -->
       <div>
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Forma de Pagamento</label>
-        <select id="cart-payment-method" onchange="toggleTrocoField(this.value)" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0a2e36] px-3 py-2 text-xs text-slate-900 dark:text-white outline-none focus:border-[#0088cc]">
-          <option value="Pix">Pix Automático (Chave oficial)</option>
-          <option value="Cartão de Crédito">Cartão de Crédito na Maquininha</option>
-          <option value="Cartão de Débito">Cartão de Débito na Maquininha</option>
-          <option value="Vale Refeição / Alimentação">Vale Refeição/Alimentação (Alelo, VR, Pluxee)</option>
-          <option value="Dinheiro">Dinheiro</option>
-        </select>
+        <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1 flex items-center gap-1.5">
+          <i data-lucide="message-square" class="size-3 text-[#0088cc]"></i> Observações Gerais (Opcional)
+        </label>
+        <input type="text" id="cart-notes" placeholder="Ex.: Tocar campainha, talheres descartáveis..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc]">
       </div>
 
-      <!-- Troco para quanto? -->
-      <div id="troco-wrapper" class="hidden">
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Precisa de troco para quanto?</label>
-        <input type="text" id="cart-troco" placeholder="Ex.: Troco para R$ 50,00 ou Não preciso" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc]">
-      </div>
-
-      <!-- Observações Gerais -->
-      <div>
-        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Observações do Pedido</label>
-        <input type="text" id="cart-notes" placeholder="Ex.: Enviar talheres descartáveis, tocar campainha..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc]">
-      </div>
-
-      <!-- Total -->
-      <div class="border-t border-slate-200 dark:border-white/10 pt-2.5 flex items-center justify-between">
-        <span class="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300">Total a Pagar:</span>
-        <span id="cart-total-price" class="text-base sm:text-lg font-extrabold text-[#0088cc]">R$ 0,00</span>
+      <!-- 5. Resumo de Valores -->
+      <div class="border-t border-slate-200 dark:border-white/10 pt-3 space-y-1.5 text-xs">
+        <div class="flex justify-between text-slate-500 dark:text-slate-400 font-semibold">
+          <span>Subtotal dos Itens:</span>
+          <span id="cart-subtotal-val" class="font-bold text-slate-800 dark:text-slate-200">R$ 0,00</span>
+        </div>
+        <div class="flex justify-between text-slate-500 dark:text-slate-400 font-semibold">
+          <span>Taxa de Entrega:</span>
+          <span id="cart-delivery-fee-val" class="font-bold text-[#0088cc]">R$ 8,00</span>
+        </div>
+        <div class="flex justify-between items-center text-sm sm:text-base font-black text-slate-900 dark:text-white border-t border-dashed border-slate-200 dark:border-white/10 pt-2">
+          <span>Total a Pagar:</span>
+          <span id="cart-total-price" class="text-lg font-black text-[#0088cc] dark:text-[#38bdf8]">R$ 0,00</span>
+        </div>
       </div>
 
       <!-- Botão Enviar Pedido no WhatsApp -->
@@ -1252,10 +1340,12 @@
                   </div>
                 </div>
 
-                <button type="button" onclick="event.stopPropagation(); openProductModal(${it.id})" class="inline-flex items-center gap-1.5 rounded-full bg-[#0088cc] hover:bg-[#0077b6] px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-extrabold text-white shadow-sm transition active:scale-95">
-                  <i data-lucide="plus" class="size-3.5"></i>
-                  <span>Pedir</span>
-                </button>
+                <div class="flex items-center gap-1.5" onclick="event.stopPropagation()">
+                  <button type="button" onclick="quickAddToCart(${it.id}, event)" title="Adicionar rápido ao pedido" class="quick-add-btn inline-flex items-center gap-1 rounded-full bg-[#0088cc] hover:bg-[#0077b6] px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-extrabold text-white shadow-sm transition active:scale-95">
+                    <i data-lucide="plus" class="size-3.5"></i>
+                    <span>Pedir</span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -1288,6 +1378,10 @@
       filterCategory('todos');
     }
 
+    let selectedPaymentMethod = 'Pix';
+    let selectedRemovals = [];
+    const DELIVERY_FEE = 8.0;
+
     function openProductModal(itemId) {
       let product = null;
       for (const cat of MENU_DATA) {
@@ -1298,6 +1392,12 @@
 
       activeModalProduct = product;
       modalQuantity = 1;
+      selectedRemovals = [];
+
+      // Reseta chips de retirada
+      document.querySelectorAll('.removal-chip').forEach(btn => {
+        btn.className = "removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-400 transition";
+      });
 
       document.getElementById('modal-product-img').src = product.image_url || 'assets/hero-bg.jpg';
       document.getElementById('modal-product-title').textContent = product.name;
@@ -1315,6 +1415,18 @@
     function closeProductModal() {
       document.getElementById('product-modal').classList.add('hidden');
       activeModalProduct = null;
+      selectedRemovals = [];
+    }
+
+    function toggleRemovalChip(btn, text) {
+      const idx = selectedRemovals.indexOf(text);
+      if (idx >= 0) {
+        selectedRemovals.splice(idx, 1);
+        btn.className = "removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-400 transition";
+      } else {
+        selectedRemovals.push(text);
+        btn.className = "removal-chip active px-3 py-1.5 rounded-full border border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-xs font-bold text-rose-600 dark:text-rose-300 transition shadow-sm";
+      }
     }
 
     function adjustModalQty(delta) {
@@ -1330,9 +1442,14 @@
       document.getElementById('modal-total-btn').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
     }
 
+    // Adiciona ao carrinho fechando o modal SEM abrir o drawer (Permite continuar pedindo continuamente)
     function confirmModalAddToCart() {
       if (!activeModalProduct) return;
       const notes = document.getElementById('modal-item-notes').value.trim();
+
+      let detailsList = [...selectedRemovals];
+      if (notes) detailsList.push(notes);
+      const fullNotes = detailsList.join(' • ');
 
       const cartItem = {
         cartId: Date.now() + Math.random(),
@@ -1341,13 +1458,56 @@
         price: activeModalProduct.price,
         image_url: activeModalProduct.image_url,
         qty: modalQuantity,
-        notes: notes
+        notes: fullNotes
       };
 
       cart.push(cartItem);
+      const addedName = activeModalProduct.name;
+      const addedQty = modalQuantity;
       closeProductModal();
       updateCartUI();
-      openCartDrawer();
+      showToast(`✅ ${addedQty}x ${addedName} adicionado ao pedido!`);
+    }
+
+    // Adição rápida com 1 clique diretamente no card (Padrão Bora de Batata)
+    function quickAddToCart(itemId, event) {
+      if (event) event.stopPropagation();
+      let product = null;
+      for (const cat of MENU_DATA) {
+        const found = cat.items.find(i => i.id === itemId);
+        if (found) { product = found; break; }
+      }
+      if (!product) return;
+
+      const cartItem = {
+        cartId: Date.now() + Math.random(),
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image_url: product.image_url,
+        qty: 1,
+        notes: ''
+      };
+
+      cart.push(cartItem);
+      updateCartUI();
+      showToast(`✅ 1x ${product.name} adicionado ao pedido!`);
+
+      // Feedback visual momentâneo no botão
+      if (event && event.currentTarget) {
+        const btn = event.currentTarget;
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<i data-lucide="check" class="size-3.5 text-white"></i> <span>✓ Adicionado</span>`;
+        btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        btn.classList.remove('bg-[#0088cc]', 'hover:bg-[#0077b6]');
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+          btn.classList.add('bg-[#0088cc]', 'hover:bg-[#0077b6]');
+          lucide.createIcons();
+        }, 1200);
+      }
     }
 
     function changeCartItemQty(cartId, delta) {
@@ -1368,33 +1528,42 @@
     function updateCartUI() {
       const container = document.getElementById('cart-items-container');
       const badge = document.getElementById('cart-badge');
+      const subtotalEl = document.getElementById('cart-subtotal-val');
+      const deliveryEl = document.getElementById('cart-delivery-fee-val');
       const totalEl = document.getElementById('cart-total-price');
       const floatBar = document.getElementById('mobile-floating-cart-bar');
       const floatQty = document.getElementById('mobile-float-qty');
       const floatTotal = document.getElementById('mobile-float-total');
+      const subtitleEl = document.getElementById('cart-items-counter-subtitle');
 
       const totalQty = cart.reduce((acc, curr) => acc + curr.qty, 0);
       const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      const total = subtotal + deliveryFee;
 
       if (totalQty > 0) {
         badge.textContent = totalQty;
         badge.classList.remove('hidden');
+        if (subtitleEl) subtitleEl.textContent = `${totalQty} item(ns) selecionado(s)`;
         if (floatBar) {
           floatBar.classList.remove('hidden');
           floatQty.textContent = totalQty;
-          floatTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+          floatTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
         }
       } else {
         badge.classList.add('hidden');
+        if (subtitleEl) subtitleEl.textContent = "Confira antes de enviar";
         if (floatBar) floatBar.classList.add('hidden');
       }
 
-      totalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+      if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+      if (deliveryEl) deliveryEl.textContent = orderMode === 'delivery' ? `R$ ${DELIVERY_FEE.toFixed(2).replace('.', ',')}` : "Grátis (Balcão)";
+      if (totalEl) totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 
       if (cart.length === 0) {
         container.innerHTML = `
           <div class="py-14 text-center text-slate-400">
-            <i data-lucide="shopping-bag" class="size-10 mx-auto mb-2 opacity-30 text-[#0088cc]"></i>
+            <i data-lucide="shopping-bag" class="size-12 mx-auto mb-2 opacity-30 text-[#0088cc]"></i>
             <p class="text-sm font-bold text-slate-800 dark:text-white">Seu pedido está vazio</p>
             <p class="text-xs mt-1 text-slate-500">Navegue pelo cardápio e adicione pratos, petiscos e bebidas.</p>
           </div>
@@ -1404,14 +1573,14 @@
       }
 
       container.innerHTML = cart.map(it => `
-        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3 flex items-start justify-between gap-3 shadow-sm">
+        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3 flex items-start justify-between gap-3 shadow-sm hover:shadow-md transition">
           <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05181c] border border-slate-200 dark:border-white/10">
             <img src="${it.image_url || 'assets/hero-bg.jpg'}" alt="${it.name}" class="h-full w-full object-cover">
           </div>
 
           <div class="min-w-0 flex-1">
-            <h4 class="text-xs font-extrabold text-slate-900 dark:text-white truncate">${it.name}</h4>
-            <div class="text-[11px] font-bold text-[#0088cc] mt-0.5">
+            <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">${it.name}</h4>
+            <div class="text-[11px] font-black text-[#0088cc] mt-0.5">
               R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}
             </div>
             ${it.notes ? `
@@ -1421,15 +1590,15 @@
             ` : ''}
           </div>
 
-          <div class="flex items-center gap-1 shrink-0 pt-0.5">
-            <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-white hover:bg-slate-100">
+          <div class="flex items-center gap-1.5 shrink-0 pt-0.5">
+            <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
               <i data-lucide="minus" class="size-3"></i>
             </button>
-            <span class="w-5 text-center text-xs font-extrabold text-slate-900 dark:text-white">${it.qty}</span>
-            <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-white hover:bg-slate-100">
+            <span class="w-5 text-center text-xs font-black text-slate-900 dark:text-white">${it.qty}</span>
+            <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
               <i data-lucide="plus" class="size-3"></i>
             </button>
-            <button type="button" onclick="removeCartItem(${it.cartId})" class="ml-1 text-slate-400 hover:text-rose-500 p-1">
+            <button type="button" onclick="removeCartItem(${it.cartId})" class="ml-1 text-slate-400 hover:text-rose-500 p-1 transition" title="Remover item">
               <i data-lucide="trash-2" class="size-3.5"></i>
             </button>
           </div>
@@ -1437,6 +1606,7 @@
       `).join('');
 
       lucide.createIcons();
+      calculateChange();
     }
 
     function toggleCartDrawer() {
@@ -1465,72 +1635,162 @@
       orderMode = mode;
       const btnDelivery = document.getElementById('btn-mode-delivery');
       const btnRetirada = document.getElementById('btn-mode-retirada');
-      const lblLocation = document.getElementById('lbl-location');
-      const inputLoc = document.getElementById('cart-customer-location');
+      const deliveryFields = document.getElementById('cart-delivery-fields');
+      const pickupFields = document.getElementById('cart-pickup-fields');
 
       if (mode === 'delivery') {
-        btnDelivery.className = "rounded-xl border border-[#0088cc] bg-sky-50 text-[#0088cc] py-2 text-xs font-extrabold";
-        btnRetirada.className = "rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2 text-xs font-bold text-slate-500 dark:text-slate-400";
-        lblLocation.textContent = "Endereço Completo para Entrega *";
-        inputLoc.placeholder = "Ex.: Rua, número, bairro e ponto de referência";
+        btnDelivery.className = "flex items-center justify-center gap-2 rounded-2xl border-2 border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-[#0088cc] dark:text-[#38bdf8] py-2.5 px-3 text-xs font-extrabold transition shadow-sm";
+        btnRetirada.className = "flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 px-3 text-xs font-bold text-slate-600 dark:text-slate-400 transition hover:border-[#0088cc]";
+        deliveryFields.classList.remove('hidden');
+        pickupFields.classList.add('hidden');
       } else {
-        btnRetirada.className = "rounded-xl border border-[#0088cc] bg-sky-50 text-[#0088cc] py-2 text-xs font-extrabold";
-        btnDelivery.className = "rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2 text-xs font-bold text-slate-500 dark:text-slate-400";
-        lblLocation.textContent = "Retirada no Local *";
-        inputLoc.placeholder = "Retirar no balcão: Av. Alhambra, 783";
+        btnRetirada.className = "flex items-center justify-center gap-2 rounded-2xl border-2 border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-[#0088cc] dark:text-[#38bdf8] py-2.5 px-3 text-xs font-extrabold transition shadow-sm";
+        btnDelivery.className = "flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 px-3 text-xs font-bold text-slate-600 dark:text-slate-400 transition hover:border-[#0088cc]";
+        deliveryFields.classList.add('hidden');
+        pickupFields.classList.remove('hidden');
       }
+      updateCartUI();
     }
 
-    function toggleTrocoField(val) {
+    function selectPaymentMethod(method) {
+      selectedPaymentMethod = method;
+      document.querySelectorAll('.pay-method-btn').forEach(btn => {
+        const isTarget = btn.getAttribute('data-pay') === method;
+        if (isTarget) {
+          btn.className = "pay-method-btn active flex items-center justify-center gap-2 rounded-2xl border-2 border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-[#0088cc] dark:text-[#38bdf8] py-2.5 px-3 text-xs font-extrabold transition shadow-sm";
+        } else {
+          btn.className = "pay-method-btn flex items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 py-2.5 px-3 text-xs font-bold transition hover:border-[#0088cc]";
+        }
+      });
+
       const trocoWrap = document.getElementById('troco-wrapper');
-      if (val === 'Dinheiro') {
+      if (method === 'Dinheiro') {
         trocoWrap.classList.remove('hidden');
+        calculateChange();
       } else {
         trocoWrap.classList.add('hidden');
       }
     }
 
+    function calculateChange() {
+      const input = document.getElementById('cart-troco-input');
+      const resultEl = document.getElementById('troco-result-text');
+      if (!input || !resultEl) return;
+
+      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      const total = subtotal + deliveryFee;
+
+      const valStr = input.value.replace(/[^\d.,]/g, '').replace(',', '.');
+      const cashVal = parseFloat(valStr);
+
+      if (isNaN(cashVal) || !valStr.trim()) {
+        resultEl.textContent = "Informe com quanto vai pagar para calcular o troco.";
+        resultEl.className = "text-[11px] font-bold text-slate-500 dark:text-slate-400";
+        return;
+      }
+
+      const change = cashVal - total;
+      if (change < 0) {
+        resultEl.textContent = `Atenção: valor menor que o total (faltam R$ ${Math.abs(change).toFixed(2).replace('.', ',')})`;
+        resultEl.className = "text-[11px] font-extrabold text-rose-600 dark:text-rose-400";
+      } else if (change === 0) {
+        resultEl.textContent = "Valor exato! Não precisa de troco.";
+        resultEl.className = "text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400";
+      } else {
+        resultEl.textContent = `Troco a devolver: R$ ${change.toFixed(2).replace('.', ',')}`;
+        resultEl.className = "text-[11px] font-extrabold text-emerald-600 dark:text-emerald-400";
+      }
+    }
+
+    // Toast de notificação flutuante para múltiplos pedidos sem interrupção
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto flex items-center gap-2.5 rounded-full bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-900 px-5 py-3 shadow-2xl border border-white/20 text-xs sm:text-sm font-extrabold transition-all duration-300 transform -translate-y-4 opacity-0';
+      toast.innerHTML = `<i data-lucide="check-circle-2" class="size-4 text-emerald-400 dark:text-emerald-600 shrink-0"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      requestAnimationFrame(() => {
+        toast.classList.remove('-translate-y-4', 'opacity-0');
+      });
+      setTimeout(() => {
+        toast.classList.add('-translate-y-4', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 2400);
+    }
+
+    // Finalizar Pedido com validação rigorosa (Padrão Bora de Batata)
     function checkoutOrderWhatsApp() {
       if (cart.length === 0) {
-        alert("Adicione pelo menos um item ao pedido!");
+        alert("Seu pedido está vazio! Adicione pelo menos um item do cardápio.");
         return;
       }
       const name = document.getElementById('cart-customer-name').value.trim();
       if (!name) {
-        alert("Por favor, informe seu nome!");
+        alert("Por favor, informe seu nome completo antes de finalizar!");
         document.getElementById('cart-customer-name').focus();
         return;
       }
-      const location = document.getElementById('cart-customer-location').value.trim();
-      if (!location) {
-        alert(orderMode === 'delivery' ? "Por favor, informe seu endereço de entrega!" : "Por favor, confirme a retirada no balcão!");
-        document.getElementById('cart-customer-location').focus();
-        return;
+
+      let location = "";
+      let complement = "";
+      if (orderMode === 'delivery') {
+        location = document.getElementById('cart-customer-location').value.trim();
+        if (!location) {
+          alert("Por favor, informe seu endereço de entrega em Campo Grande!");
+          document.getElementById('cart-customer-location').focus();
+          return;
+        }
+        complement = document.getElementById('cart-customer-complement').value.trim();
+        if (!complement) {
+          alert("Por favor, informe um complemento ou ponto de referência (ex.: número do apto, cor do portão, etc.)!");
+          document.getElementById('cart-customer-complement').focus();
+          return;
+        }
+      } else {
+        location = "Retirada no Balcão (Av. Alhambra, 783 - Campo Grande RJ)";
       }
-      const payment = document.getElementById('cart-payment-method').value;
-      const troco = document.getElementById('cart-troco').value.trim();
-      const notes = document.getElementById('cart-notes').value.trim();
+
       const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      const total = subtotal + deliveryFee;
+
+      let trocoText = "";
+      if (selectedPaymentMethod === 'Dinheiro') {
+        const trocoInput = document.getElementById('cart-troco-input').value.trim();
+        const parsedCash = parseFloat(trocoInput.replace(/[^\d.,]/g, '').replace(',', '.'));
+        if (isNaN(parsedCash) || parsedCash < total) {
+          alert(`Para pagamento em dinheiro, informe um valor de pelo menos R$ ${total.toFixed(2).replace('.', ',')} para calcularmos o troco.`);
+          document.getElementById('cart-troco-input').focus();
+          return;
+        }
+        const change = parsedCash - total;
+        trocoText = change > 0 ? ` (Paga c/ R$ ${parsedCash.toFixed(2).replace('.', ',')} • Troco: R$ ${change.toFixed(2).replace('.', ',')})` : " (Não precisa de troco)";
+      }
+
+      const notes = document.getElementById('cart-notes').value.trim();
+      const orderId = Math.floor(1000 + Math.random() * 9000);
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
       // Integração em tempo real com o Painel de Gestão (Bora de Batata)
       try {
-        const orderId = Math.floor(1000 + Math.random() * 9000);
-        const now = new Date();
-        const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-        const itemsList = cart.map(it => `${it.qty}x ${it.name} • R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}`);
+        const itemsList = cart.map(it => `${it.qty}x ${it.name}${it.notes ? ` [${it.notes}]` : ''} • R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}`);
         const existing = JSON.parse(localStorage.getItem('sitio_panel_orders') || 'null');
         const orderList = Array.isArray(existing) ? existing : [];
         const newOrder = {
           id: orderId,
           customer: name,
-          channel: orderMode === 'delivery' ? "Delivery" : "WhatsApp",
+          channel: orderMode === 'delivery' ? "Delivery" : "Balcão",
           items: itemsList,
-          payment: payment + (payment === 'Dinheiro' && troco ? ` (Troco: ${troco})` : ''),
-          price: `R$ ${subtotal.toFixed(2).replace('.', ',')}`,
+          payment: selectedPaymentMethod + trocoText,
+          price: `R$ ${total.toFixed(2).replace('.', ',')}`,
           minutes: 0,
           status: "recebido",
           phone: "(21) 96758-1148",
-          address: location,
+          address: orderMode === 'delivery' ? `${location} (${complement})` : location,
           neighborhood: "Campo Grande",
           notes: notes,
           createdAt: timeStr
@@ -1541,26 +1801,44 @@
         console.warn("Aviso ao sincronizar pedido com o painel:", err);
       }
 
-      let msg = `🍃 *NOVO PEDIDO — SÍTIO HOSTEL NATUREZA*\n\n`;
+      // Mensagem diagramada oficial para o WhatsApp
+      let msg = `🍃 *PEDIDO #${orderId} — SÍTIO HOSTEL NATUREZA*\n`;
+      msg += `─────────────────────────\n`;
       msg += `👤 *Cliente:* ${name}\n`;
-      msg += `📍 *${orderMode === 'delivery' ? 'Endereço de Entrega' : 'Retirada no Balcão'}:* ${location}\n`;
-      msg += `💳 *Pagamento:* ${payment}${payment === 'Dinheiro' && troco ? ` (Troco: ${troco})` : ''}\n`;
-      if (notes) {
-        msg += `📝 *Obs. Geral:* ${notes}\n`;
+      msg += `📦 *Forma de Recebimento:* ${orderMode === 'delivery' ? '🛵 Delivery' : '🏬 Retirada no Balcão'}\n`;
+      if (orderMode === 'delivery') {
+        msg += `📍 *Endereço:* ${location}\n`;
+        msg += `📌 *Complemento/Ref:* ${complement}\n`;
       }
-      msg += `\n🛒 *ITENS DO PEDIDO:*\n`;
+      msg += `💳 *Pagamento:* ${selectedPaymentMethod}${trocoText}\n`;
+      if (notes) {
+        msg += `📝 *Observação:* ${notes}\n`;
+      }
+      msg += `─────────────────────────\n`;
+      msg += `🛒 *ITENS DO PEDIDO:*\n`;
       cart.forEach(it => {
         msg += `• ${it.qty}x *${it.name}* — R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}\n`;
         if (it.notes) {
-          msg += `   └ *Obs:* _${it.notes}_\n`;
+          msg += `   └ _Obs:_ ${it.notes}\n`;
         }
       });
-
-      msg += `\n💰 *TOTAL DO PEDIDO:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n\n`;
+      msg += `─────────────────────────\n`;
+      msg += `💵 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+      if (orderMode === 'delivery') {
+        msg += `🛵 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+      }
+      msg += `💰 *TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+      msg += `─────────────────────────\n`;
       msg += `_Pedido gerado pelo Cardápio Oficial Online do Sítio Hostel Natureza._`;
 
       const url = `https://api.whatsapp.com/send?phone=5521967581148&text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
+
+      // Limpa o carrinho e fecha o drawer
+      cart = [];
+      updateCartUI();
+      closeCartDrawer();
+      showToast("✅ Pedido enviado com sucesso para o WhatsApp!");
     }
 
     const btnMenu = document.getElementById('btn-menu-mobile');
