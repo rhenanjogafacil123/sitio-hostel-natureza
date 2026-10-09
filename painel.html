@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard & Central de Gestão | Bora de Batata</title>
+  <title>Dashboard & Central de Gestão | Sítio Hostel Natureza</title>
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,24 +17,13 @@
       theme: {
         extend: {
           colors: {
-            orange: {
-              50: '#fff7ed',
-              100: '#ffedd5',
-              200: '#fed7aa',
-              300: '#fdba74',
-              400: '#fb923c',
-              500: '#f97316',
-              600: '#ea580c',
-              700: '#c2410c',
-              800: '#9a3412',
-              900: '#7c2d12',
-              950: '#431407',
-            },
             brand: {
-              primary: '#f97316',
-              primaryHover: '#ea580c',
               azure: '#0088cc',
+              azureHover: '#0077b6',
+              azureLight: '#38bdf8',
+              azureDark: '#0284c7',
               navy: '#0a2540',
+              navyDark: '#061826',
             }
           },
           fontFamily: {
@@ -50,7 +39,7 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+    ::-webkit-scrollbar-thumb:hover { background: #0088cc; }
     .scrollbar-none::-webkit-scrollbar { display: none; }
     .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -71,11 +60,11 @@
     }
   </style>
 </head>
-<body class="bg-[#f4f6fa] text-slate-950 font-sans antialiased selection:bg-orange-500 selection:text-white">
+<body class="bg-[#f4f6fa] text-slate-950 font-sans antialiased selection:bg-[#0088cc] selection:text-white">
 
   <!-- ==================== TOAST FEEDBACK NOTIFICATION ==================== -->
   <div id="toast-feedback" class="fixed top-5 right-5 z-[9999] hidden flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs font-bold transition-all duration-300 transform translate-y-0">
-    <div id="toast-icon" class="text-orange-400">
+    <div id="toast-icon" class="text-sky-400">
       <i data-lucide="check-circle-2" class="size-4"></i>
     </div>
     <span id="toast-message">Ação realizada com sucesso!</span>
@@ -89,12 +78,12 @@
       
       <!-- Brand Logo Header -->
       <a href="index.html" class="mb-6 flex items-center gap-3 px-2 group">
-        <div class="grid h-11 w-11 place-items-center rounded-2xl bg-orange-50 border border-orange-100 shadow-sm transition group-hover:scale-105">
-          <img src="assets/logo.png" alt="Bora de Batata" class="h-8 w-8 object-contain">
+        <div class="grid h-11 w-11 place-items-center rounded-2xl bg-sky-50 border border-sky-100 shadow-sm transition group-hover:scale-105">
+          <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="h-8 w-8 object-contain">
         </div>
         <div class="leading-none">
-          <div class="text-[16px] font-extrabold tracking-tight text-slate-950">Bora de Batata</div>
-          <div class="mt-1.5 text-[9px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Painel de gestão</div>
+          <div class="text-[16px] font-extrabold tracking-tight text-[#0a2540]">Sítio Hostel</div>
+          <div class="mt-1.5 text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Painel de gestão</div>
         </div>
       </a>
 
@@ -107,14 +96,14 @@
             Visão geral
           </div>
           <nav class="space-y-1">
-            <button type="button" onclick="switchTab('dashboard')" class="nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition bg-orange-50 text-orange-600" data-tab="dashboard">
+            <button type="button" onclick="switchTab('dashboard')" class="nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition bg-sky-50 text-[#0088cc]" data-tab="dashboard">
               <i data-lucide="layout-dashboard" class="h-[17px] w-[17px]"></i>
               <span class="flex-1">Dashboard</span>
             </button>
             <button type="button" onclick="switchTab('pedidos')" class="nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition text-slate-600 hover:bg-slate-50 hover:text-slate-950" data-tab="pedidos">
               <i data-lucide="clipboard-list" class="h-[17px] w-[17px]"></i>
               <span class="flex-1">Pedidos</span>
-              <span id="nav-badge-pedidos" class="rounded-full bg-red-500 px-2 py-0.5 text-[10px] font-extrabold text-white">
+              <span id="nav-badge-pedidos" class="rounded-full bg-[#0088cc] px-2 py-0.5 text-[10px] font-extrabold text-white">
                 12
               </span>
             </button>
@@ -178,12 +167,12 @@
       </div>
 
       <!-- Rodapé Sidebar: Card Estrutura Nova -->
-      <div class="mt-auto rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-amber-50 p-4">
-        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-orange-600">Estrutura nova</div>
+      <div class="mt-auto rounded-2xl border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-blue-50 p-4">
+        <div class="text-[11px] font-extrabold uppercase tracking-[0.12em] text-[#0088cc]">Estrutura nova</div>
         <div class="mt-1.5 text-xs leading-5 text-slate-500">
           Dashboard, pedidos, catálogo, equipe, financeiro e entregas estão disponíveis.
         </div>
-        <a href="index.html" class="mt-3 inline-flex items-center text-xs font-extrabold text-slate-800 hover:text-orange-600 transition">
+        <a href="index.html" class="mt-3 inline-flex items-center text-xs font-extrabold text-[#0a2540] hover:text-[#0088cc] transition">
           Ver cardápio <i data-lucide="chevron-right" class="ml-1 h-3.5 w-3.5"></i>
         </a>
       </div>
@@ -212,14 +201,14 @@
               id="global-panel-search"
               oninput="handleGlobalSearch(this.value)"
               placeholder="Buscar pedidos, clientes, produtos..."
-              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-11 pr-4 text-sm outline-none transition focus:border-orange-300 focus:bg-white focus:ring-4 focus:ring-orange-100 placeholder:text-slate-400"
+              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50/70 pl-11 pr-4 text-sm outline-none transition focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-100 placeholder:text-slate-400"
             />
           </div>
 
           <!-- Indicador Operacional -->
           <div class="hidden xl:flex items-center gap-2 text-xs font-semibold text-slate-400">
             <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Operação interna • Bora de Batata
+            Operação interna • Sítio Hostel Natureza
           </div>
 
           <!-- Ações da Direita (Notificações & Perfil) -->
@@ -246,7 +235,7 @@
                     <div class="text-xs font-extrabold text-slate-900">Notificações</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">3 itens precisam de atenção</div>
                   </div>
-                  <span class="rounded-full bg-orange-50 px-2 py-1 text-[9px] font-extrabold text-orange-600">Agora</span>
+                  <span class="rounded-full bg-sky-50 px-2 py-1 text-[9px] font-extrabold text-[#0088cc]">Agora</span>
                 </div>
                 <div class="divide-y divide-slate-100">
                   <button type="button" onclick="switchTab('pedidos'); toggleNotificationsPopover()" class="flex w-full gap-3 px-4 py-3 text-left transition hover:bg-slate-50">
@@ -260,7 +249,7 @@
                     <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span>
                     <span>
                       <span class="block text-xs font-extrabold text-slate-800">Produto pausado</span>
-                      <span class="mt-1 block text-[10px] leading-4 text-slate-400">Guaracamp está marcado como indisponível.</span>
+                      <span class="mt-1 block text-[10px] leading-4 text-slate-400">Item marcado como indisponível.</span>
                     </span>
                   </button>
                   <button type="button" onclick="switchTab('motoboy'); toggleNotificationsPopover()" class="flex w-full gap-3 px-4 py-3 text-left transition hover:bg-slate-50">
@@ -274,7 +263,7 @@
                 <button
                   type="button"
                   onclick="switchTab('pedidos'); toggleNotificationsPopover()"
-                  class="flex w-full items-center justify-center border-t border-slate-100 px-4 py-3 text-[10px] font-extrabold text-orange-600 hover:bg-orange-50 transition"
+                  class="flex w-full items-center justify-center border-t border-slate-100 px-4 py-3 text-[10px] font-extrabold text-[#0088cc] hover:bg-sky-50 transition"
                 >
                   Abrir central de pedidos
                 </button>
@@ -283,7 +272,7 @@
 
             <!-- Perfil do Administrador -->
             <div class="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 shadow-sm">
-              <div class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-orange-400 to-amber-300 text-xs font-extrabold text-white">
+              <div class="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[#0088cc] to-sky-400 text-xs font-extrabold text-white">
                 RL
               </div>
               <div class="hidden sm:block min-w-[100px] text-left leading-tight">
@@ -301,7 +290,7 @@
       <main class="mx-auto w-full max-w-[1680px] p-4 sm:p-6 2xl:p-8 flex-1">
 
         <!-- ========================================================================= -->
-        <!-- TAB 1: DASHBOARD (ADMIN)                                                  -->
+        <!-- TAB 1: DASHBOARD (ADMIN - BLUE THEME)                                     -->
         <!-- ========================================================================= -->
         <section id="tab-dashboard" class="panel-tab-content space-y-5">
           
@@ -309,35 +298,35 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-xs font-bold uppercase tracking-[0.16em] text-orange-500">Visão do negócio</p>
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0088cc]">Visão do negócio</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Painel ativo</span>
               </div>
               <h1 class="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-950">Dashboard</h1>
-              <p class="mt-1 text-sm text-slate-500">Acompanhe a operação da Bora de Batata em um só lugar.</p>
+              <p class="mt-1 text-sm text-slate-500">Acompanhe a operação em um só lugar com indicadores em tempo real.</p>
             </div>
-            <button type="button" onclick="switchTab('financeiro')" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold text-slate-600 shadow-sm transition hover:border-orange-200 hover:text-orange-600">
+            <button type="button" onclick="switchTab('financeiro')" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold text-slate-600 shadow-sm transition hover:border-sky-300 hover:text-[#0088cc]">
               Hoje • ver financeiro
             </button>
           </div>
 
-          <!-- Hero: Recuperação de Clientes (Destaque do Bora de Batata) -->
-          <div class="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 via-white to-amber-50 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)] overflow-hidden">
+          <!-- Hero: Recuperação de Clientes (Destaque Bora de Batata no Tema Azul) -->
+          <div class="rounded-2xl border border-sky-200 bg-gradient-to-br from-sky-50 via-white to-blue-50 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)] overflow-hidden">
             <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)]">
               
               <!-- Coluna Esquerda: Potencial & Métricas -->
               <div class="p-6 sm:p-7">
                 <div class="flex flex-wrap items-center gap-2">
-                  <span class="inline-flex items-center gap-2 rounded-full bg-orange-500 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white">
+                  <span class="inline-flex items-center gap-2 rounded-full bg-[#0088cc] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white">
                     <i data-lucide="users-round" class="h-3.5 w-3.5"></i> Recuperação de clientes
                   </span>
-                  <span class="rounded-full border border-orange-200 bg-white px-3 py-1.5 text-[10px] font-extrabold text-orange-700">Prioridade do dia</span>
+                  <span class="rounded-full border border-sky-200 bg-white px-3 py-1.5 text-[10px] font-extrabold text-[#0077b6]">Prioridade do dia</span>
                 </div>
 
                 <div class="mt-5 max-w-[620px]">
                   <p class="text-sm font-semibold text-slate-500">Dinheiro que pode estar parado na sua própria base</p>
                   <div class="mt-2 flex flex-wrap items-end gap-x-4 gap-y-2">
                     <h2 class="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">R$ 2.310</h2>
-                    <span class="pb-1 text-xs font-extrabold text-orange-600">potencial estimado de recuperação</span>
+                    <span class="pb-1 text-xs font-extrabold text-[#0088cc]">potencial estimado de recuperação</span>
                   </div>
                   <p class="mt-3 max-w-[560px] text-sm leading-6 text-slate-600">
                     17 clientes estão há mais de 30 dias sem comprar. Priorize quem já comprava com frequência e chame com base no último pedido.
@@ -362,7 +351,7 @@
                 <button
                   type="button"
                   onclick="switchTab('clientes')"
-                  class="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-3 text-xs font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-orange-600"
+                  class="mt-5 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-3 text-xs font-extrabold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0088cc]"
                 >
                   <i data-lucide="message-circle-more" class="h-4 w-4"></i>
                   Ver clientes e recuperar agora
@@ -371,19 +360,19 @@
               </div>
 
               <!-- Coluna Direita: Quem chamar primeiro -->
-              <div class="border-t xl:border-t-0 xl:border-l border-orange-100 bg-white/70 p-5 sm:p-6">
+              <div class="border-t xl:border-t-0 xl:border-l border-sky-100 bg-white/70 p-5 sm:p-6">
                 <div class="flex items-center justify-between gap-3">
                   <div>
                     <div class="text-xs font-extrabold text-slate-950">Quem chamar primeiro</div>
                     <div class="mt-1 text-[10px] font-semibold text-slate-400">Clientes com histórico forte e maior tempo sem comprar</div>
                   </div>
-                  <button type="button" onclick="switchTab('clientes')" class="shrink-0 text-[10px] font-extrabold text-orange-600 hover:underline">Ver todos →</button>
+                  <button type="button" onclick="switchTab('clientes')" class="shrink-0 text-[10px] font-extrabold text-[#0088cc] hover:underline">Ver todos →</button>
                 </div>
 
                 <div class="mt-4 space-y-2.5">
                   
-                  <div onclick="openClientWhatsapp('Rafael Martins', '5521991427730', 'Carne moída com cheddar')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-orange-200 hover:shadow-md cursor-pointer">
-                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-orange-50 text-xs font-black text-orange-600">1</span>
+                  <div onclick="openClientWhatsapp('Rafael Martins', '5521991427730', 'Carne moída com cheddar')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-sky-300 hover:shadow-md cursor-pointer">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky-50 text-xs font-black text-[#0088cc]">1</span>
                     <div class="min-w-0 flex-1">
                       <div class="flex items-center gap-2">
                         <div class="truncate text-xs font-extrabold text-slate-900">Rafael Martins</div>
@@ -391,11 +380,11 @@
                       </div>
                       <div class="mt-1 text-[10px] font-semibold text-slate-400">16 pedidos • ticket R$ 45,93 • último R$ 105,80</div>
                     </div>
-                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-orange-500"></i>
+                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-[#0088cc]"></i>
                   </div>
 
-                  <div onclick="openClientWhatsapp('Patrícia Alves', '5521988214452', 'Bacon com cheddar')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-orange-200 hover:shadow-md cursor-pointer">
-                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-orange-50 text-xs font-black text-orange-600">2</span>
+                  <div onclick="openClientWhatsapp('Patrícia Alves', '5521988214452', 'Bacon com cheddar')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-sky-300 hover:shadow-md cursor-pointer">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky-50 text-xs font-black text-[#0088cc]">2</span>
                     <div class="min-w-0 flex-1">
                       <div class="flex items-center gap-2">
                         <div class="truncate text-xs font-extrabold text-slate-900">Patrícia Alves</div>
@@ -403,11 +392,11 @@
                       </div>
                       <div class="mt-1 text-[10px] font-semibold text-slate-400">10 pedidos • ticket R$ 42,17 • último R$ 31,79</div>
                     </div>
-                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-orange-500"></i>
+                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-[#0088cc]"></i>
                   </div>
 
-                  <div onclick="openClientWhatsapp('Bruno Souza', '5521980445012', 'Strogonoff de frango')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-orange-200 hover:shadow-md cursor-pointer">
-                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-orange-50 text-xs font-black text-orange-600">3</span>
+                  <div onclick="openClientWhatsapp('Bruno Souza', '5521980445012', 'Strogonoff de frango')" class="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5 shadow-sm transition hover:border-sky-300 hover:shadow-md cursor-pointer">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-sky-50 text-xs font-black text-[#0088cc]">3</span>
                     <div class="min-w-0 flex-1">
                       <div class="flex items-center gap-2">
                         <div class="truncate text-xs font-extrabold text-slate-900">Bruno Souza</div>
@@ -415,7 +404,7 @@
                       </div>
                       <div class="mt-1 text-[10px] font-semibold text-slate-400">12 pedidos • ticket R$ 42,74 • último R$ 28,30</div>
                     </div>
-                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-orange-500"></i>
+                    <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-slate-300 transition group-hover:text-[#0088cc]"></i>
                   </div>
 
                 </div>
@@ -447,7 +436,7 @@
 
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)]">
               <div class="flex items-start gap-4">
-                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-blue-50 text-blue-600">
+                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-sky-50 text-[#0088cc]">
                   <i data-lucide="shopping-cart" class="h-5 w-5"></i>
                 </div>
                 <div>
@@ -460,7 +449,7 @@
 
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)]">
               <div class="flex items-start gap-4">
-                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-violet-50 text-violet-600">
+                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-indigo-50 text-indigo-600">
                   <i data-lucide="receipt-text" class="h-5 w-5"></i>
                 </div>
                 <div>
@@ -473,28 +462,28 @@
 
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)]">
               <div class="flex items-start gap-4">
-                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-orange-50 text-orange-600">
+                <div class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-blue-50 text-[#0088cc]">
                   <i data-lucide="clock-3" class="h-5 w-5"></i>
                 </div>
                 <div>
                   <p class="text-sm font-medium text-slate-500">Pedidos em andamento</p>
                   <p class="mt-1 text-2xl font-extrabold tracking-tight text-slate-950">14</p>
-                  <p class="mt-2 text-xs font-semibold text-orange-600">Em preparo e entrega</p>
+                  <p class="mt-2 text-xs font-semibold text-[#0088cc]">Em preparo e entrega</p>
                 </div>
               </div>
             </div>
 
           </div>
 
-          <!-- Gráfico de Faturamento da Semana & Formas de Pagamento -->
+          <!-- Gráfico de Faturamento da Semana & Formas de Pagamento (Blue Wave) -->
           <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.55fr)_minmax(310px,0.85fr)] gap-4">
             
-            <!-- Card Gráfico da Semana SVG -->
+            <!-- Card Gráfico da Semana SVG em Azul -->
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 sm:p-6 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)]">
               <div class="flex items-center justify-between gap-4">
                 <div>
                   <div class="flex items-center gap-2">
-                    <i data-lucide="trending-up" class="h-5 w-5 text-orange-500"></i>
+                    <i data-lucide="trending-up" class="h-5 w-5 text-[#0088cc]"></i>
                     <h2 class="font-extrabold text-slate-950 text-base">Faturamento da semana</h2>
                   </div>
                   <div class="mt-3 flex flex-wrap items-baseline gap-3">
@@ -502,34 +491,34 @@
                     <span class="text-xs font-bold text-emerald-600">↑ 28% na comparação anterior</span>
                   </div>
                 </div>
-                <button type="button" onclick="switchTab('relatorios')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-500 transition hover:border-orange-200 hover:text-orange-600">
+                <button type="button" onclick="switchTab('relatorios')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-500 transition hover:border-sky-300 hover:text-[#0088cc]">
                   Últimos 7 dias • detalhes
                 </button>
               </div>
 
-              <!-- SVG Line Chart Identical to Bora de Batata -->
-              <div class="mt-7 overflow-hidden rounded-2xl bg-gradient-to-b from-orange-50/70 to-transparent px-2 pt-3">
+              <!-- SVG Line Chart Identical to Bora de Batata, Styled in Blue -->
+              <div class="mt-7 overflow-hidden rounded-2xl bg-gradient-to-b from-sky-50/70 to-transparent px-2 pt-3">
                 <svg viewBox="0 0 700 240" class="h-[240px] w-full" role="img" aria-label="Gráfico de faturamento semanal">
                   <line x1="20" y1="40" x2="680" y2="40" stroke="#e2e8f0" stroke-width="1" />
                   <line x1="20" y1="90" x2="680" y2="90" stroke="#e2e8f0" stroke-width="1" />
                   <line x1="20" y1="140" x2="680" y2="140" stroke="#e2e8f0" stroke-width="1" />
                   <line x1="20" y1="190" x2="680" y2="190" stroke="#e2e8f0" stroke-width="1" />
                   <defs>
-                    <linearGradient id="admin-chart-fill" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#fb923c" stop-opacity=".28" />
-                      <stop offset="100%" stop-color="#fb923c" stop-opacity="0" />
+                    <linearGradient id="admin-chart-fill-blue" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#0088cc" stop-opacity=".25" />
+                      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
                     </linearGradient>
                   </defs>
-                  <path d="M35,185 C90,170 115,145 145,148 C190,151 215,112 250,110 C300,107 320,143 355,136 C410,125 430,95 475,90 C530,84 555,58 610,56 C640,54 660,40 675,32 L675,220 L35,220 Z" fill="url(#admin-chart-fill)" />
-                  <path d="M35,185 C90,170 115,145 145,148 C190,151 215,112 250,110 C300,107 320,143 355,136 C410,125 430,95 475,90 C530,84 555,58 610,56 C640,54 660,40 675,32" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round" />
+                  <path d="M35,185 C90,170 115,145 145,148 C190,151 215,112 250,110 C300,107 320,143 355,136 C410,125 430,95 475,90 C530,84 555,58 610,56 C640,54 660,40 675,32 L675,220 L35,220 Z" fill="url(#admin-chart-fill-blue)" />
+                  <path d="M35,185 C90,170 115,145 145,148 C190,151 215,112 250,110 C300,107 320,143 355,136 C410,125 430,95 475,90 C530,84 555,58 610,56 C640,54 660,40 675,32" fill="none" stroke="#0088cc" stroke-width="4" stroke-linecap="round" />
                   
-                  <circle cx="35" cy="185" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="145" cy="148" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="250" cy="110" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="355" cy="136" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="475" cy="90" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="610" cy="56" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
-                  <circle cx="675" cy="32" r="5.5" fill="#fff" stroke="#f97316" stroke-width="3" />
+                  <circle cx="35" cy="185" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="145" cy="148" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="250" cy="110" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="355" cy="136" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="475" cy="90" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="610" cy="56" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
+                  <circle cx="675" cy="32" r="5.5" fill="#fff" stroke="#0088cc" stroke-width="3" />
                 </svg>
                 <div class="-mt-2 grid grid-cols-7 pb-3 text-center text-[11px] font-semibold text-slate-400">
                   <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span>
@@ -541,11 +530,11 @@
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 sm:p-6 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)] flex flex-col justify-between">
               <div>
                 <div class="flex items-center gap-2">
-                  <i data-lucide="wallet-cards" class="h-5 w-5 text-orange-500"></i>
+                  <i data-lucide="wallet-cards" class="h-5 w-5 text-[#0088cc]"></i>
                   <h2 class="font-extrabold text-slate-950 text-base">Formas de pagamento</h2>
                 </div>
                 <div class="mt-7 grid place-items-center">
-                  <div class="relative grid h-44 w-44 place-items-center rounded-full" style="background: conic-gradient(#22c55e 0 52%, #3b82f6 52% 85%, #f59e0b 85% 100%);">
+                  <div class="relative grid h-44 w-44 place-items-center rounded-full" style="background: conic-gradient(#0088cc 0 52%, #38bdf8 52% 85%, #f59e0b 85% 100%);">
                     <div class="grid h-28 w-28 place-items-center rounded-full bg-white text-center shadow-inner">
                       <div>
                         <div class="text-base font-extrabold text-slate-950">R$ 2.843,50</div>
@@ -558,13 +547,13 @@
 
               <div class="mt-6 space-y-3 text-sm">
                 <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
-                  <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#0088cc]"></span>
                   <span class="font-semibold text-slate-800">Pix</span>
                   <span class="ml-auto text-xs font-bold text-slate-400">52%</span>
                   <span class="w-24 text-right text-xs font-bold text-slate-700">R$ 1.477,00</span>
                 </div>
                 <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
-                  <span class="h-2.5 w-2.5 rounded-full bg-blue-500"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-sky-400"></span>
                   <span class="font-semibold text-slate-800">Cartão</span>
                   <span class="ml-auto text-xs font-bold text-slate-400">33%</span>
                   <span class="w-24 text-right text-xs font-bold text-slate-700">R$ 938,36</span>
@@ -586,13 +575,13 @@
             <!-- Produtos Mais Vendidos -->
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)]">
               <div class="flex items-center gap-2">
-                <i data-lucide="banknote" class="h-5 w-5 text-orange-500"></i>
+                <i data-lucide="banknote" class="h-5 w-5 text-[#0088cc]"></i>
                 <h2 class="font-extrabold text-slate-950 text-base">Produtos mais vendidos</h2>
               </div>
               <div class="mt-4 space-y-3">
                 <div class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50">
-                  <span class="grid h-7 w-7 place-items-center rounded-full bg-amber-50 text-[11px] font-extrabold text-amber-600">1</span>
-                  <div class="h-10 w-10 rounded-xl bg-orange-100 grid place-items-center text-orange-600 font-bold text-xs">🍟</div>
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-sky-50 text-[11px] font-extrabold text-[#0088cc]">1</span>
+                  <div class="h-10 w-10 rounded-xl bg-sky-100 grid place-items-center text-[#0088cc] font-bold text-xs">🍟</div>
                   <div class="min-w-0 flex-1">
                     <div class="truncate text-xs font-bold text-slate-900">Carne moída com cheddar</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">42 vendas</div>
@@ -601,8 +590,8 @@
                 </div>
 
                 <div class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50">
-                  <span class="grid h-7 w-7 place-items-center rounded-full bg-amber-50 text-[11px] font-extrabold text-amber-600">2</span>
-                  <div class="h-10 w-10 rounded-xl bg-orange-100 grid place-items-center text-orange-600 font-bold text-xs">🍗</div>
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-sky-50 text-[11px] font-extrabold text-[#0088cc]">2</span>
+                  <div class="h-10 w-10 rounded-xl bg-sky-100 grid place-items-center text-[#0088cc] font-bold text-xs">🍗</div>
                   <div class="min-w-0 flex-1">
                     <div class="truncate text-xs font-bold text-slate-900">Strogonoff de frango</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">38 vendas</div>
@@ -611,8 +600,8 @@
                 </div>
 
                 <div class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50">
-                  <span class="grid h-7 w-7 place-items-center rounded-full bg-amber-50 text-[11px] font-extrabold text-amber-600">3</span>
-                  <div class="h-10 w-10 rounded-xl bg-orange-100 grid place-items-center text-orange-600 font-bold text-xs">🥓</div>
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-sky-50 text-[11px] font-extrabold text-[#0088cc]">3</span>
+                  <div class="h-10 w-10 rounded-xl bg-sky-100 grid place-items-center text-[#0088cc] font-bold text-xs">🥓</div>
                   <div class="min-w-0 flex-1">
                     <div class="truncate text-xs font-bold text-slate-900">Bacon com cheddar</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">34 vendas</div>
@@ -621,8 +610,8 @@
                 </div>
 
                 <div class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50">
-                  <span class="grid h-7 w-7 place-items-center rounded-full bg-amber-50 text-[11px] font-extrabold text-amber-600">4</span>
-                  <div class="h-10 w-10 rounded-xl bg-orange-100 grid place-items-center text-orange-600 font-bold text-xs">🥟</div>
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-sky-50 text-[11px] font-extrabold text-[#0088cc]">4</span>
+                  <div class="h-10 w-10 rounded-xl bg-sky-100 grid place-items-center text-[#0088cc] font-bold text-xs">🥟</div>
                   <div class="min-w-0 flex-1">
                     <div class="truncate text-xs font-bold text-slate-900">Pastel com tudo dentro</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">28 vendas</div>
@@ -631,8 +620,8 @@
                 </div>
 
                 <div class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-slate-50">
-                  <span class="grid h-7 w-7 place-items-center rounded-full bg-amber-50 text-[11px] font-extrabold text-amber-600">5</span>
-                  <div class="h-10 w-10 rounded-xl bg-orange-100 grid place-items-center text-orange-600 font-bold text-xs">🥤</div>
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-sky-50 text-[11px] font-extrabold text-[#0088cc]">5</span>
+                  <div class="h-10 w-10 rounded-xl bg-sky-100 grid place-items-center text-[#0088cc] font-bold text-xs">🥤</div>
                   <div class="min-w-0 flex-1">
                     <div class="truncate text-xs font-bold text-slate-900">Refrigerante lata</div>
                     <div class="mt-0.5 text-[10px] text-slate-400">25 vendas</div>
@@ -646,7 +635,7 @@
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-[0_18px_48px_-36px_rgba(15,23,42,0.30)] flex flex-col justify-between">
               <div>
                 <div class="flex items-center gap-2">
-                  <i data-lucide="credit-card" class="h-5 w-5 text-orange-500"></i>
+                  <i data-lucide="credit-card" class="h-5 w-5 text-[#0088cc]"></i>
                   <h2 class="font-extrabold text-slate-950 text-base">Status dos pedidos</h2>
                 </div>
                 <div class="mt-5 space-y-4">
@@ -668,7 +657,7 @@
                       <span class="ml-3 w-8 text-right text-[10px] text-slate-400">21%</span>
                     </div>
                     <div class="h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div class="h-full rounded-full bg-blue-500" style="width: 21%"></div>
+                      <div class="h-full rounded-full bg-[#0088cc]" style="width: 21%"></div>
                     </div>
                   </div>
 
@@ -707,7 +696,7 @@
                 </div>
               </div>
 
-              <button type="button" onclick="switchTab('relatorios')" class="mt-6 flex items-center gap-2 text-xs font-bold text-orange-600 hover:underline">
+              <button type="button" onclick="switchTab('relatorios')" class="mt-6 flex items-center gap-2 text-xs font-bold text-[#0088cc] hover:underline">
                 Relatório completo <i data-lucide="arrow-up-right" class="h-3.5 w-3.5"></i>
               </button>
             </div>
@@ -717,7 +706,7 @@
         </section>
 
         <!-- ========================================================================= -->
-        <!-- TAB 2: CENTRAL DE PEDIDOS (KANBAN)                                        -->
+        <!-- TAB 2: CENTRAL DE PEDIDOS (KANBAN - BLUE THEME)                           -->
         <!-- ========================================================================= -->
         <section id="tab-pedidos" class="panel-tab-content hidden space-y-5">
           
@@ -725,7 +714,7 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Operação em tempo real</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Operação em tempo real</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Operação ativa</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Central de Pedidos</h1>
@@ -739,7 +728,7 @@
               <button
                 type="button"
                 onclick="openManualOrderModal()"
-                class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 transition hover:bg-orange-600"
+                class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 transition hover:bg-[#0077b6]"
               >
                 <i data-lucide="plus" class="h-4 w-4"></i> Novo pedido manual
               </button>
@@ -748,7 +737,7 @@
 
           <!-- Filtros Rápidos (Chips) -->
           <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            <button type="button" onclick="filterKanbanStatus('todos')" class="kanban-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-slate-900 text-white transition" data-filter="todos">
+            <button type="button" onclick="filterKanbanStatus('todos')" class="kanban-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-[#0a2540] text-white transition" data-filter="todos">
               Todos (<span id="count-kanban-total">10</span>)
             </button>
             <button type="button" onclick="filterKanbanStatus('recebido')" class="kanban-filter-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition" data-filter="recebido">
@@ -811,13 +800,13 @@
             </div>
 
             <!-- Coluna 4: Em entrega -->
-            <div id="col-entrega" class="kanban-col rounded-2xl border border-blue-200/80 bg-blue-50/40 p-3.5 flex flex-col">
-              <div class="flex items-center justify-between pb-3 px-1 border-b border-blue-200">
+            <div id="col-entrega" class="kanban-col rounded-2xl border border-sky-200/80 bg-sky-50/40 p-3.5 flex flex-col">
+              <div class="flex items-center justify-between pb-3 px-1 border-b border-sky-200">
                 <div class="flex items-center gap-2">
-                  <span class="h-2.5 w-2.5 rounded-full bg-blue-500"></span>
-                  <span class="text-xs font-extrabold uppercase tracking-wider text-blue-800">Em entrega</span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#0088cc]"></span>
+                  <span class="text-xs font-extrabold uppercase tracking-wider text-[#0077b6]">Em entrega</span>
                 </div>
-                <span id="badge-count-entrega" class="rounded-full bg-blue-100 text-blue-800 px-2 py-0.5 text-[11px] font-extrabold">2</span>
+                <span id="badge-count-entrega" class="rounded-full bg-sky-100 text-[#0077b6] px-2 py-0.5 text-[11px] font-extrabold">2</span>
               </div>
               <div id="cards-container-entrega" class="mt-3 space-y-3 min-h-[150px]">
                 <!-- Cards renderizados via JS -->
@@ -835,13 +824,13 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Gestão de Cardápio</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Gestão de Cardápio</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Catálogo Ativo</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Produtos</h1>
               <p class="mt-1 text-sm text-slate-500">Ative, pause, altere preços e crie novos itens do cardápio.</p>
             </div>
-            <button type="button" onclick="openNewProductModal()" class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+            <button type="button" onclick="openNewProductModal()" class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition">
               <i data-lucide="plus" class="h-4 w-4"></i> Novo Produto
             </button>
           </div>
@@ -866,11 +855,6 @@
             </div>
           </div>
 
-          <!-- Filtro de Categorias de Produtos -->
-          <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none" id="product-category-filters">
-            <!-- Gerado via JS -->
-          </div>
-
           <!-- Grade de Produtos -->
           <div id="products-grid-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <!-- Renderizado dinamicamente via JS -->
@@ -884,13 +868,13 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Organização</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Organização</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Estrutura</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Categorias</h1>
               <p class="mt-1 text-sm text-slate-500">Defina e ordene como os produtos são exibidos para o cliente.</p>
             </div>
-            <button type="button" onclick="openNewCategoryModal()" class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+            <button type="button" onclick="openNewCategoryModal()" class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition">
               <i data-lucide="plus" class="h-4 w-4"></i> Nova Categoria
             </button>
           </div>
@@ -909,13 +893,13 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Campanhas & Cupons</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Campanhas & Cupons</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Conversão</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Promoções & Cupons</h1>
               <p class="mt-1 text-sm text-slate-500">Crie cupons de desconto para estimular novos pedidos e recompra.</p>
             </div>
-            <button type="button" onclick="openNewPromoModal()" class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+            <button type="button" onclick="openNewPromoModal()" class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition">
               <i data-lucide="plus" class="h-4 w-4"></i> Criar Promoção
             </button>
           </div>
@@ -932,13 +916,13 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Logística de Entrega</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Logística de Entrega</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Despacho</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Motoboys & Entregas</h1>
               <p class="mt-1 text-sm text-slate-500">Acompanhe rotas, motoboys em corrida e pedidos prontos para entrega.</p>
             </div>
-            <button type="button" onclick="switchTab('pedidos')" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold text-slate-700 shadow-sm hover:border-orange-200 hover:text-orange-600 transition">
+            <button type="button" onclick="switchTab('pedidos')" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-extrabold text-slate-700 shadow-sm hover:border-sky-300 hover:text-[#0088cc] transition">
               <i data-lucide="clipboard-list" class="h-4 w-4"></i> Voltar aos pedidos
             </button>
           </div>
@@ -993,7 +977,7 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Base de Clientes & CRM</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Base de Clientes & CRM</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Recuperação Ativa</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Clientes & Reativação</h1>
@@ -1003,7 +987,7 @@
               <button type="button" onclick="filterClients('inativos')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition">
                 Inativos (+30 dias)
               </button>
-              <button type="button" onclick="filterClients('todos')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-slate-900 text-white hover:bg-slate-800 transition">
+              <button type="button" onclick="filterClients('todos')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-slate-950 text-white hover:bg-slate-800 transition">
                 Ver todos
               </button>
             </div>
@@ -1020,8 +1004,8 @@
               <div class="mt-1 text-2xl font-black text-rose-600">17 clientes</div>
             </div>
             <div class="rounded-2xl border border-slate-200/75 bg-white p-4 shadow-sm">
-              <span class="text-xs font-bold text-orange-600">Potencial parado</span>
-              <div class="mt-1 text-2xl font-black text-orange-600">R$ 2.310,00</div>
+              <span class="text-xs font-bold text-[#0088cc]">Potencial parado</span>
+              <div class="mt-1 text-2xl font-black text-[#0088cc]">R$ 2.310,00</div>
             </div>
             <div class="rounded-2xl border border-slate-200/75 bg-white p-4 shadow-sm">
               <span class="text-xs font-bold text-emerald-600">Recuperados no mês</span>
@@ -1058,13 +1042,13 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Gestão de Pessoal</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Gestão de Pessoal</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Turnos</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Atendentes & Equipe</h1>
               <p class="mt-1 text-sm text-slate-500">Controle membros da equipe, status online e tempos de resposta.</p>
             </div>
-            <button type="button" onclick="openNewStaffModal()" class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+            <button type="button" onclick="openNewStaffModal()" class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition">
               <i data-lucide="plus" class="h-4 w-4"></i> Convidar Atendente
             </button>
           </div>
@@ -1081,7 +1065,7 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Gestão financeira</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Gestão financeira</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Painel ativo</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Financeiro</h1>
@@ -1089,9 +1073,9 @@
             </div>
             
             <div class="flex items-center gap-2">
-              <button type="button" onclick="changeFinancePeriod('Hoje')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-orange-300" data-period="Hoje">Hoje</button>
-              <button type="button" onclick="changeFinancePeriod('7 dias')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-orange-500 text-white shadow-sm" data-period="7 dias">7 dias</button>
-              <button type="button" onclick="changeFinancePeriod('30 dias')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-orange-300" data-period="30 dias">30 dias</button>
+              <button type="button" onclick="changeFinancePeriod('Hoje')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-sky-300" data-period="Hoje">Hoje</button>
+              <button type="button" onclick="changeFinancePeriod('7 dias')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-[#0088cc] text-white shadow-sm" data-period="7 dias">7 dias</button>
+              <button type="button" onclick="changeFinancePeriod('30 dias')" class="finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-sky-300" data-period="30 dias">30 dias</button>
               <button type="button" onclick="exportFinanceCSV()" class="ml-2 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2 text-xs font-extrabold text-white hover:bg-slate-800 transition">
                 <i data-lucide="file-spreadsheet" class="size-4"></i> Exportar CSV
               </button>
@@ -1117,8 +1101,8 @@
             </div>
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-sm">
               <div class="text-xs font-medium text-slate-500">A Receber / Em Trânsito</div>
-              <div id="finance-stat-pending" class="mt-1 text-2xl font-black text-blue-600">R$ 1.184,70</div>
-              <div class="mt-2 text-xs font-semibold text-blue-600">Cartões a compensar</div>
+              <div id="finance-stat-pending" class="mt-1 text-2xl font-black text-[#0088cc]">R$ 1.184,70</div>
+              <div class="mt-2 text-xs font-semibold text-[#0088cc]">Cartões a compensar</div>
             </div>
           </div>
 
@@ -1141,7 +1125,7 @@
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Inteligência Operacional</p>
+                <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Inteligência Operacional</p>
                 <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Métricas</span>
               </div>
               <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Relatórios & Análise</h1>
@@ -1153,7 +1137,7 @@
             <!-- Bairros de Maior Demanda -->
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-sm space-y-4">
               <div class="flex items-center gap-2">
-                <i data-lucide="map-pinned" class="size-5 text-orange-500"></i>
+                <i data-lucide="map-pinned" class="size-5 text-[#0088cc]"></i>
                 <h2 class="text-sm font-extrabold text-slate-900">Bairros com Mais Pedidos</h2>
               </div>
               <div class="space-y-3" id="reports-neighborhoods-list">
@@ -1164,7 +1148,7 @@
             <!-- Horários de Pico -->
             <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-sm space-y-4">
               <div class="flex items-center gap-2">
-                <i data-lucide="clock-3" class="size-5 text-orange-500"></i>
+                <i data-lucide="clock-3" class="size-5 text-[#0088cc]"></i>
                 <h2 class="text-sm font-extrabold text-slate-900">Volume por Horário (Pico Noturno)</h2>
               </div>
               <div class="space-y-3 pt-2" id="reports-hourly-list">
@@ -1182,13 +1166,13 @@
             <div class="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <div class="flex items-center gap-2">
-                  <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-orange-500">Preferências da operação</p>
+                  <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#0088cc]">Preferências da operação</p>
                   <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-[0.12em] text-slate-500">Salvo automaticamente</span>
                 </div>
                 <h1 class="mt-1 text-[32px] sm:text-[34px] font-extrabold tracking-[-0.035em] text-slate-950">Configurações</h1>
                 <p class="mt-1 text-sm text-slate-500">Centralize dados da loja, funcionamento, pagamentos e alertas.</p>
               </div>
-              <button type="submit" id="settings-save-btn" class="inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+              <button type="submit" id="settings-save-btn" class="inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition">
                 <i data-lucide="save" class="h-4 w-4"></i> Salvar alterações
               </button>
             </div>
@@ -1198,27 +1182,27 @@
               <!-- Dados Gerais da Loja -->
               <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-sm space-y-4">
                 <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <i data-lucide="store" class="size-4 text-orange-500"></i>
+                  <i data-lucide="store" class="size-4 text-[#0088cc]"></i>
                   <span class="text-xs font-extrabold text-slate-900">Identidade & Funcionamento</span>
                 </div>
 
                 <div class="space-y-3">
                   <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Nome do Estabelecimento</label>
-                    <input type="text" id="cfg-store-name" value="Bora de Batata" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                    <input type="text" id="cfg-store-name" value="Sítio Hostel Natureza" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                   </div>
                   <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">WhatsApp de Pedidos</label>
-                    <input type="text" id="cfg-store-whatsapp" value="(21) 99054-3204" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                    <input type="text" id="cfg-store-whatsapp" value="(21) 96758-1148" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                   </div>
                   <div class="grid grid-cols-2 gap-3">
                     <div>
                       <label class="block text-xs font-bold text-slate-600 mb-1">Horário de Abertura</label>
-                      <input type="time" id="cfg-store-open" value="19:00" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                      <input type="time" id="cfg-store-open" value="10:00" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                     </div>
                     <div>
                       <label class="block text-xs font-bold text-slate-600 mb-1">Horário de Fechamento</label>
-                      <input type="time" id="cfg-store-close" value="00:30" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                      <input type="time" id="cfg-store-close" value="23:30" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                     </div>
                   </div>
                 </div>
@@ -1227,7 +1211,7 @@
               <!-- Parâmetros de Entrega -->
               <div class="rounded-2xl border border-slate-200/75 bg-white p-5 shadow-sm space-y-4">
                 <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
-                  <i data-lucide="bike" class="size-4 text-orange-500"></i>
+                  <i data-lucide="bike" class="size-4 text-[#0088cc]"></i>
                   <span class="text-xs font-extrabold text-slate-900">Taxas & Raio de Entrega</span>
                 </div>
 
@@ -1235,20 +1219,20 @@
                   <div class="grid grid-cols-2 gap-3">
                     <div>
                       <label class="block text-xs font-bold text-slate-600 mb-1">Taxa Base (R$)</label>
-                      <input type="text" id="cfg-delivery-base" value="5,00" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                      <input type="text" id="cfg-delivery-base" value="5,00" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                     </div>
                     <div>
                       <label class="block text-xs font-bold text-slate-600 mb-1">Taxa por Km Extra</label>
-                      <input type="text" id="cfg-delivery-per-km" value="1,50" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                      <input type="text" id="cfg-delivery-per-km" value="1,50" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                     </div>
                   </div>
                   <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Raio Máximo Atendido</label>
-                    <input type="text" id="cfg-delivery-max-km" value="12 km" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                    <input type="text" id="cfg-delivery-max-km" value="15 km" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                   </div>
                   <div>
                     <label class="block text-xs font-bold text-slate-600 mb-1">Chave Pix da Loja</label>
-                    <input type="text" id="cfg-store-pix" value="financeiro@boradebatata.com.br" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+                    <input type="text" id="cfg-store-pix" value="financeiro@sitiohostelnatureza.com" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
                   </div>
                 </div>
               </div>
@@ -1268,7 +1252,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-2.5">
-          <div class="size-9 rounded-xl bg-blue-50 text-blue-600 grid place-items-center">
+          <div class="size-9 rounded-xl bg-sky-50 text-[#0088cc] grid place-items-center">
             <i data-lucide="bike" class="size-5"></i>
           </div>
           <div>
@@ -1294,7 +1278,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-2">
-          <i data-lucide="printer" class="size-5 text-orange-500"></i>
+          <i data-lucide="printer" class="size-5 text-[#0088cc]"></i>
           <h3 class="text-sm font-extrabold text-slate-950">Prévia do Cupom 80mm</h3>
         </div>
         <button type="button" onclick="closePrintReceiptModal()" class="text-slate-400 hover:text-slate-700">
@@ -1303,10 +1287,10 @@
       </div>
 
       <!-- Cupom Térmico Estilizado -->
-      <div id="printable-receipt-modal" class="bg-amber-50/50 border border-slate-200 rounded-2xl p-4 font-mono text-[11px] text-slate-900 leading-tight space-y-2">
+      <div id="printable-receipt-modal" class="bg-sky-50/30 border border-slate-200 rounded-2xl p-4 font-mono text-[11px] text-slate-900 leading-tight space-y-2">
         <div class="text-center border-b border-dashed border-slate-300 pb-2">
-          <div class="font-bold text-sm tracking-wider">BORA DE BATATA</div>
-          <div>DELIVERY & FAST FOOD</div>
+          <div class="font-bold text-sm tracking-wider">SÍTIO HOSTEL NATUREZA</div>
+          <div>GASTRONOMIA & DELIVERY</div>
           <div>CNPJ: 45.123.890/0001-44</div>
           <div id="receipt-date-time" class="mt-1 text-[10px] text-slate-500">09/10/2026 14:35</div>
         </div>
@@ -1357,7 +1341,7 @@
       </div>
 
       <div class="flex gap-2 pt-2">
-        <button type="button" onclick="window.print()" class="flex-1 py-3 bg-slate-950 text-white rounded-xl text-xs font-extrabold hover:bg-slate-800 transition flex items-center justify-center gap-2">
+        <button type="button" onclick="window.print()" class="flex-1 py-3 bg-[#0a2540] text-white rounded-xl text-xs font-extrabold hover:bg-slate-800 transition flex items-center justify-center gap-2">
           <i data-lucide="printer" class="size-4"></i> Imprimir Cupom
         </button>
         <button type="button" onclick="closePrintReceiptModal()" class="px-4 py-3 border border-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-50">
@@ -1372,7 +1356,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-2">
-          <i data-lucide="plus-circle" class="size-5 text-orange-500"></i>
+          <i data-lucide="plus-circle" class="size-5 text-[#0088cc]"></i>
           <h3 class="text-sm font-extrabold text-slate-950">Novo Pedido Manual</h3>
         </div>
         <button type="button" onclick="closeManualOrderModal()" class="text-slate-400 hover:text-slate-700">
@@ -1383,13 +1367,13 @@
       <form onsubmit="handleCreateManualOrder(event)" class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Nome do Cliente</label>
-          <input required type="text" name="customer" placeholder="Ex: Lucas Mendes" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+          <input required type="text" name="customer" placeholder="Ex: Lucas Mendes" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
         </div>
 
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Canal de Origem</label>
-            <select name="channel" class="w-full h-10 px-2 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none bg-white">
+            <select name="channel" class="w-full h-10 px-2 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none bg-white">
               <option value="Balcão">Balcão</option>
               <option value="WhatsApp">WhatsApp</option>
               <option value="Telefone">Telefone</option>
@@ -1398,7 +1382,7 @@
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Forma Pagamento</label>
-            <select name="payment" class="w-full h-10 px-2 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none bg-white">
+            <select name="payment" class="w-full h-10 px-2 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none bg-white">
               <option value="Pix">Pix</option>
               <option value="Cartão">Cartão</option>
               <option value="Dinheiro">Dinheiro</option>
@@ -1408,22 +1392,22 @@
 
         <div>
           <label class="block text-xs font-bold text-slate-600 mb-1">Itens do Pedido (um por linha)</label>
-          <textarea required name="items" rows="3" placeholder="1x Carne moída com cheddar • 500g&#10;1x Refrigerante lata" class="w-full p-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none"></textarea>
+          <textarea required name="items" rows="3" placeholder="1x Carne moída com cheddar • 500g&#10;1x Refrigerante lata" class="w-full p-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none"></textarea>
         </div>
 
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Valor Total (R$)</label>
-            <input required type="text" name="price" placeholder="Ex: 48,50" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+            <input required type="text" name="price" placeholder="Ex: 48,50" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-600 mb-1">Bairro / Local</label>
-            <input type="text" name="neighborhood" placeholder="Ex: Santa Cruz" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-orange-500 outline-none">
+            <input type="text" name="neighborhood" placeholder="Ex: Santa Cruz" class="w-full h-10 px-3 rounded-xl border border-slate-200 text-xs font-semibold focus:border-[#0088cc] outline-none">
           </div>
         </div>
 
         <div class="flex gap-2 pt-2">
-          <button type="submit" class="flex-1 py-3 bg-orange-500 text-white rounded-xl text-xs font-extrabold hover:bg-orange-600 transition shadow-lg shadow-orange-500/20">
+          <button type="submit" class="flex-1 py-3 bg-[#0088cc] text-white rounded-xl text-xs font-extrabold hover:bg-[#0077b6] transition shadow-lg shadow-sky-500/20">
             Adicionar ao Kanban
           </button>
           <button type="button" onclick="closeManualOrderModal()" class="px-4 py-3 border border-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-50">
@@ -1434,9 +1418,9 @@
     </div>
   </div>
 
-  <!-- ==================== JAVASCRIPT: ENGINE COMPLETA BORA DE BATATA ==================== -->
+  <!-- ==================== JAVASCRIPT: ENGINE COMPLETA ==================== -->
   <script>
-    // --- DADOS INICIAIS EXATOS DO BORA DE BATATA ---
+    // --- DADOS INICIAIS ---
     const initialOrders = [
       { id: 1048, customer: "João Silva", channel: "WhatsApp", items: ["1x Carne moída com cheddar • 500g", "1x Refrigerante lata"], payment: "Pix", price: "R$ 52,90", minutes: 2, status: "recebido", phone: "(21) 99142-7730", address: "Rua das Flores, 123", neighborhood: "Santa Cruz", notes: "Sem cebola. Enviar molho separado.", createdAt: "14:32" },
       { id: 1049, customer: "Mariana Costa", channel: "iFood", items: ["2x Bacon com cheddar • 300g"], payment: "Cartão", price: "R$ 55,80", minutes: 6, status: "recebido", phone: "(21) 98821-4452", address: "Estrada do Mendanha, 840", neighborhood: "Campo Grande", notes: "Interfone 204.", createdAt: "14:28" },
@@ -1458,28 +1442,28 @@
     ];
 
     const initialProducts = [
-      { id: 1, name: "Carne moída com cheddar", category: "Batatas recheadas", price: 32.90, sales: 42, active: true, description: "Batata recheada com carne moída selecionada e autêntico cheddar cremoso." },
-      { id: 2, name: "Strogonoff de frango", category: "Batatas recheadas", price: 31.90, sales: 38, active: true, description: "Batata recheada com suculento strogonoff de frango com milho e batata palha." },
-      { id: 3, name: "Bacon com cheddar", category: "Batatas recheadas", price: 29.90, sales: 34, active: true, description: "Batata recheada com cubos crocantes de bacon e banho de cheddar." },
-      { id: 4, name: "Calabresa com cheddar", category: "Batatas recheadas", price: 29.90, sales: 31, active: true, description: "Batata recheada com calabresa fatiada e cheddar cremoso." },
-      { id: 5, name: "Pastel com tudo dentro", category: "Pastéis", price: 24.99, sales: 28, active: true, description: "Pastel crocante gigante recheado com queijo, presunto, carne, ovo e azeitona." },
-      { id: 6, name: "Pastel montável", category: "Pastéis", price: 18.99, sales: 29, active: true, description: "Pastel sequinho com recheio personalizável da sua escolha." },
+      { id: 1, name: "Carne moída com cheddar", category: "Pratos Executivos", price: 32.90, sales: 42, active: true, description: "Batata recheada com carne moída selecionada e autêntico cheddar cremoso." },
+      { id: 2, name: "Strogonoff de frango", category: "Pratos Executivos", price: 31.90, sales: 38, active: true, description: "Batata recheada com suculento strogonoff de frango com milho e batata palha." },
+      { id: 3, name: "Bacon com cheddar", category: "Pratos Executivos", price: 29.90, sales: 34, active: true, description: "Batata recheada com cubos crocantes de bacon e banho de cheddar." },
+      { id: 4, name: "Calabresa com cheddar", category: "Pratos Executivos", price: 29.90, sales: 31, active: true, description: "Batata recheada com calabresa fatiada e cheddar cremoso." },
+      { id: 5, name: "Pastel com tudo dentro", category: "Petiscos", price: 24.99, sales: 28, active: true, description: "Pastel crocante gigante recheado com queijo, presunto, carne, ovo e azeitona." },
+      { id: 6, name: "Pastel montável", category: "Petiscos", price: 18.99, sales: 29, active: true, description: "Pastel sequinho com recheio personalizável da sua escolha." },
       { id: 7, name: "Refrigerante lata", category: "Bebidas", price: 6.80, sales: 46, active: true, description: "Coca-Cola, Guaraná Antarctica ou Sprite gelados 350ml." },
       { id: 8, name: "Guaracamp", category: "Bebidas", price: 2.50, sales: 40, active: false, description: "Copo clássico 285ml bem gelado." },
     ];
 
     const initialCategories = [
-      { id: 1, name: "Batatas recheadas", description: "Batatas de 300g e 500g com recheios variados.", products: 4, active: true, order: 1 },
-      { id: 2, name: "Pastéis", description: "Pastel montável e opções completas.", products: 2, active: true, order: 2 },
-      { id: 3, name: "Bebidas", description: "Refrigerantes, Guaracamp e sucos.", products: 2, active: true, order: 3 },
+      { id: 1, name: "Pratos Executivos", description: "Pratos e batatas especiais com acompanhamentos.", products: 4, active: true, order: 1 },
+      { id: 2, name: "Petiscos", description: "Pastéis crocantes e porções para compartilhar.", products: 2, active: true, order: 2 },
+      { id: 3, name: "Bebidas", description: "Refrigerantes, sucos naturais e cervejas.", products: 2, active: true, order: 3 },
       { id: 4, name: "Combos", description: "Combinações promocionais de comida e bebida.", products: 0, active: false, order: 4 },
     ];
 
     const initialPromotions = [
       { id: 1, title: "Primeiro pedido", type: "Percentual", benefit: "10% OFF", code: "PRIMEIRA10", uses: 38, limit: 100, expires: "31/10/2026", active: true },
-      { id: 2, title: "Combo da noite", type: "Combo", benefit: "Batata + bebida", code: "COMBODANOITE", uses: 24, limit: 80, expires: "15/10/2026", active: true },
-      { id: 3, title: "Cupom R$ 5", type: "Valor fixo", benefit: "R$ 5 OFF", code: "BORA5", uses: 51, limit: 60, expires: "10/10/2026", active: true },
-      { id: 4, title: "Volta pra Bora", type: "Percentual", benefit: "15% OFF", code: "VOLTEI15", uses: 17, limit: null, expires: "30/11/2026", active: false },
+      { id: 2, title: "Combo da noite", type: "Combo", benefit: "Prato + bebida", code: "COMBODANOITE", uses: 24, limit: 80, expires: "15/10/2026", active: true },
+      { id: 3, title: "Cupom R$ 5", type: "Valor fixo", benefit: "R$ 5 OFF", code: "NATUREZA5", uses: 51, limit: 60, expires: "10/10/2026", active: true },
+      { id: 4, title: "Volta pro Hostel", type: "Percentual", benefit: "15% OFF", code: "VOLTEI15", uses: 17, limit: null, expires: "30/11/2026", active: false },
     ];
 
     const initialClients = [
@@ -1492,10 +1476,10 @@
     ];
 
     const initialStaff = [
-      { id: 1, name: "Camila Oliveira", email: "camila@boradebatata.local", shift: "19h às 00h", active: true, online: true, orders: 46, averageMinutes: 3 },
-      { id: 2, name: "Ana Souza", email: "ana@boradebatata.local", shift: "19h às 23h", active: true, online: true, orders: 39, averageMinutes: 4 },
-      { id: 3, name: "Julia Martins", email: "julia@boradebatata.local", shift: "20h às 01h", active: true, online: false, orders: 34, averageMinutes: 5 },
-      { id: 4, name: "Marina Costa", email: "marina@boradebatata.local", shift: "Folguista", active: false, online: false, orders: 18, averageMinutes: 6 },
+      { id: 1, name: "Camila Oliveira", email: "camila@sitiohostel.local", shift: "10h às 18h", active: true, online: true, orders: 46, averageMinutes: 3 },
+      { id: 2, name: "Ana Souza", email: "ana@sitiohostel.local", shift: "18h às 23h", active: true, online: true, orders: 39, averageMinutes: 4 },
+      { id: 3, name: "Julia Martins", email: "julia@sitiohostel.local", shift: "14h às 22h", active: true, online: false, orders: 34, averageMinutes: 5 },
+      { id: 4, name: "Marina Costa", email: "marina@sitiohostel.local", shift: "Folguista", active: false, online: false, orders: 18, averageMinutes: 6 },
     ];
 
     // --- ESTADO LOCAL PERSISTIDO ---
@@ -1521,26 +1505,22 @@
     function switchTab(tabId) {
       currentTab = tabId;
 
-      // Ocultar todas as tabs
       document.querySelectorAll(".panel-tab-content").forEach(el => el.classList.add("hidden"));
 
-      // Exibir tab selecionada
       const target = document.getElementById("tab-" + tabId);
       if (target) {
         target.classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // Atualizar botões da sidebar
       document.querySelectorAll(".nav-item-btn").forEach(btn => {
         if (btn.getAttribute("data-tab") === tabId) {
-          btn.className = "nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition bg-orange-50 text-orange-600";
+          btn.className = "nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition bg-sky-50 text-[#0088cc]";
         } else {
           btn.className = "nav-item-btn flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[13px] font-semibold transition text-slate-600 hover:bg-slate-50 hover:text-slate-950";
         }
       });
 
-      // Fechar sidebar mobile se aberta
       const sidebar = document.getElementById("sidebar-container");
       const backdrop = document.getElementById("sidebar-backdrop");
       if (sidebar && backdrop && !backdrop.classList.contains("hidden")) {
@@ -1548,7 +1528,6 @@
         backdrop.classList.add("hidden");
       }
 
-      // Re-renderizar dados específicos da tab
       if (tabId === "pedidos") renderKanbanBoard();
       if (tabId === "produtos") renderProducts();
       if (tabId === "categorias") renderCategories();
@@ -1562,7 +1541,6 @@
       lucide.createIcons();
     }
 
-    // --- CONTROLE DE NOTIFICAÇÕES & POPUP ---
     function toggleNotificationsPopover() {
       const popover = document.getElementById("notifications-popover");
       if (popover) popover.classList.toggle("hidden");
@@ -1577,11 +1555,9 @@
       }
     }
 
-    // --- FEEDBACK TOAST ---
     function showToast(message, isError = false) {
       const toast = document.getElementById("toast-feedback");
       const msg = document.getElementById("toast-message");
-      const icon = document.getElementById("toast-icon");
       if (toast && msg) {
         msg.textContent = message;
         toast.className = `fixed top-5 right-5 z-[9999] flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-xs font-bold transition-all duration-300 ${
@@ -1596,7 +1572,6 @@
     function renderKanbanBoard() {
       const columns = ["recebido", "preparando", "pronto", "entrega"];
       
-      // Contadores
       const counts = { recebido: 0, preparando: 0, pronto: 0, entrega: 0 };
       orders.forEach(o => {
         if (counts[o.status] !== undefined) counts[o.status]++;
@@ -1614,18 +1589,15 @@
       document.getElementById("count-kanban-entrega").textContent = counts.entrega;
       document.getElementById("nav-badge-pedidos").textContent = orders.length;
 
-      // Limpar containers
       columns.forEach(col => {
         const container = document.getElementById(`cards-container-${col}`);
         if (container) container.innerHTML = "";
       });
 
-      // Preencher cards
       orders.forEach(order => {
         const container = document.getElementById(`cards-container-${order.status}`);
         if (!container) return;
 
-        // Verificar filtro rápido
         if (activeKanbanFilter !== "todos" && activeKanbanFilter !== order.status) {
           return;
         }
@@ -1633,9 +1605,8 @@
         const card = document.createElement("div");
         card.className = "bg-white rounded-2xl p-4 border border-slate-200/80 shadow-[0_4px_16px_-8px_rgba(15,23,42,0.15)] hover:shadow-md transition space-y-3";
 
-        // Cores dos botões de avanço
         let actionBtnText = "Avançar";
-        let actionBtnClass = "bg-orange-500 text-white hover:bg-orange-600";
+        let actionBtnClass = "bg-[#0088cc] text-white hover:bg-[#0077b6]";
         if (order.status === "recebido") {
           actionBtnText = "Confirmar pedido";
           actionBtnClass = "bg-emerald-500 text-white hover:bg-emerald-600";
@@ -1644,13 +1615,12 @@
           actionBtnClass = "bg-amber-100 text-amber-800 hover:bg-amber-200";
         } else if (order.status === "pronto") {
           actionBtnText = "Atribuir motoboy";
-          actionBtnClass = "bg-blue-100 text-blue-700 hover:bg-blue-200";
+          actionBtnClass = "bg-sky-100 text-[#0077b6] hover:bg-sky-200";
         } else if (order.status === "entrega") {
           actionBtnText = "Finalizar entrega";
           actionBtnClass = "bg-slate-900 text-white hover:bg-slate-800";
         }
 
-        // Itens formatados
         const itemsList = order.items.map(it => `<li class="truncate">• ${it}</li>`).join("");
 
         card.innerHTML = `
@@ -1674,7 +1644,7 @@
           </div>
 
           ${order.courier ? `
-            <div class="flex items-center gap-1.5 text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg">
+            <div class="flex items-center gap-1.5 text-[10px] font-bold text-[#0077b6] bg-sky-50 px-2.5 py-1 rounded-lg">
               <i data-lucide="bike" class="size-3.5"></i>
               <span>Entregador: ${order.courier}</span>
             </div>
@@ -1699,7 +1669,6 @@
       lucide.createIcons();
     }
 
-    // --- AVANÇAR STATUS DO PEDIDO ---
     function advanceOrderStatus(orderId) {
       const order = orders.find(o => o.id === orderId);
       if (!order) return;
@@ -1743,7 +1712,7 @@
       activeKanbanFilter = status;
       document.querySelectorAll(".kanban-filter-pill").forEach(pill => {
         if (pill.getAttribute("data-filter") === status) {
-          pill.className = "kanban-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-slate-900 text-white transition";
+          pill.className = "kanban-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-[#0a2540] text-white transition";
         } else {
           pill.className = "kanban-filter-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition";
         }
@@ -1762,12 +1731,12 @@
       initialCouriers.forEach(courier => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 hover:border-orange-500 hover:bg-orange-50/50 text-left transition group";
+        btn.className = "w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 hover:border-[#0088cc] hover:bg-sky-50/50 text-left transition group";
         btn.onclick = () => confirmAssignCourier(courier.name);
 
         btn.innerHTML = `
           <div class="flex items-center gap-3">
-            <div class="size-8 rounded-full bg-slate-100 group-hover:bg-orange-500 group-hover:text-white text-slate-700 grid place-items-center font-bold text-xs transition">
+            <div class="size-8 rounded-full bg-slate-100 group-hover:bg-[#0088cc] group-hover:text-white text-slate-700 grid place-items-center font-bold text-xs transition">
               ${courier.name.split(' ').map(n=>n[0]).join('')}
             </div>
             <div>
@@ -1893,7 +1862,7 @@
         card.innerHTML = `
           <div class="flex items-start justify-between gap-3">
             <div>
-              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-50 text-orange-600">${p.category}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-[#0088cc]">${p.category}</span>
               <h3 class="mt-1 text-sm font-extrabold text-slate-900">${p.name}</h3>
               <p class="mt-1 text-[11px] text-slate-400 line-clamp-2">${p.description}</p>
             </div>
@@ -1938,7 +1907,7 @@
       products.unshift({
         id: Date.now(),
         name,
-        category: "Batatas recheadas",
+        category: "Pratos Executivos",
         price,
         sales: 0,
         active: true,
@@ -1960,7 +1929,7 @@
         item.className = "p-4 flex items-center justify-between hover:bg-slate-50 transition";
         item.innerHTML = `
           <div class="flex items-center gap-3">
-            <span class="size-7 rounded-lg bg-orange-50 text-orange-600 font-extrabold text-xs grid place-items-center">${cat.order}</span>
+            <span class="size-7 rounded-lg bg-sky-50 text-[#0088cc] font-extrabold text-xs grid place-items-center">${cat.order}</span>
             <div>
               <div class="text-xs font-extrabold text-slate-900">${cat.name}</div>
               <div class="text-[10px] text-slate-400">${cat.description}</div>
@@ -2004,7 +1973,7 @@
         card.innerHTML = `
           <div class="flex items-start justify-between">
             <div>
-              <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-orange-100 text-orange-700">${promo.type}</span>
+              <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-sky-100 text-[#0077b6]">${promo.type}</span>
               <h3 class="mt-2 text-sm font-extrabold text-slate-950">${promo.title}</h3>
               <p class="text-xs font-bold text-emerald-600 mt-0.5">${promo.benefit}</p>
             </div>
@@ -2071,11 +2040,11 @@
                 <span class="text-xs font-black text-slate-900">#1042 Amanda Rocha</span>
                 <div class="text-[11px] text-slate-500">Rua das Acácias, 321 • Campo Grande</div>
               </div>
-              <span class="text-xs font-extrabold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-xl">Em rota (8 min)</span>
+              <span class="text-xs font-extrabold text-[#0088cc] bg-sky-50 px-2.5 py-1 rounded-xl">Em rota (8 min)</span>
             </div>
             <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
               <span class="text-slate-400">Entregador: <strong>Matheus Alves</strong></span>
-              <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-orange-600 hover:underline">
+              <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-[#0088cc] hover:underline">
                 <i data-lucide="navigation" class="size-3.5"></i> Abrir GPS
               </a>
             </div>
@@ -2087,11 +2056,11 @@
                 <span class="text-xs font-black text-slate-900">#1043 Gabriel Martins</span>
                 <div class="text-[11px] text-slate-500">Rua Pioneiros, 789 • Realengo</div>
               </div>
-              <span class="text-xs font-extrabold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-xl">Em rota (12 min)</span>
+              <span class="text-xs font-extrabold text-[#0088cc] bg-sky-50 px-2.5 py-1 rounded-xl">Em rota (12 min)</span>
             </div>
             <div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
               <span class="text-slate-400">Entregador: <strong>Rafael Lima</strong></span>
-              <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-orange-600 hover:underline">
+              <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-[#0088cc] hover:underline">
                 <i data-lucide="navigation" class="size-3.5"></i> Abrir GPS
               </a>
             </div>
@@ -2140,7 +2109,7 @@
     function openClientWhatsapp(name, phone, favorite) {
       const cleanPhone = phone.replace(/[^0-9]/g, "");
       const fullPhone = cleanPhone.startsWith("55") ? cleanPhone : `55${cleanPhone}`;
-      const msg = encodeURIComponent(`Olá ${name}! Tudo bem? 😊 Sentimos sua falta aqui no Bora de Batata! Preparamos um cupom exclusivo de 15% OFF (cupom: VOLTEI15) para você matar a saudade do seu ${favorite} hoje! Bora pedir?`);
+      const msg = encodeURIComponent(`Olá ${name}! Tudo bem? 😊 Sentimos sua falta aqui no Sítio Hostel Natureza! Preparamos um cupom exclusivo de 15% OFF (cupom: VOLTEI15) para você saborear o seu ${favorite} hoje! Gostaria de pedir?`);
       window.open(`https://api.whatsapp.com/send?phone=${fullPhone}&text=${msg}`, "_blank");
     }
 
@@ -2151,7 +2120,7 @@
       container.innerHTML = initialStaff.map(s => `
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
           <div class="flex items-center justify-between">
-            <div class="size-10 rounded-2xl bg-orange-50 text-orange-600 font-black grid place-items-center text-xs">
+            <div class="size-10 rounded-2xl bg-sky-50 text-[#0088cc] font-black grid place-items-center text-xs">
               ${s.name.split(' ').map(n=>n[0]).join('')}
             </div>
             <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${s.online ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-500'}">
@@ -2176,8 +2145,8 @@
       initialStaff.push({
         id: Date.now(),
         name,
-        email: `${name.toLowerCase().replace(/\s+/g, '')}@boradebatata.local`,
-        shift: "19h às 00h",
+        email: `${name.toLowerCase().replace(/\s+/g, '')}@sitiohostel.local`,
+        shift: "10h às 18h",
         active: true,
         online: true,
         orders: 0,
@@ -2197,9 +2166,9 @@
     function changeFinancePeriod(period) {
       document.querySelectorAll(".finance-period-btn").forEach(btn => {
         if (btn.getAttribute("data-period") === period) {
-          btn.className = "finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-orange-500 text-white shadow-sm";
+          btn.className = "finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-[#0088cc] text-white shadow-sm";
         } else {
-          btn.className = "finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-orange-300";
+          btn.className = "finance-period-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition bg-white border border-slate-200 text-slate-700 hover:border-sky-300";
         }
       });
 
@@ -2240,7 +2209,7 @@
           <div class="flex items-center gap-3">
             <span class="size-7 rounded-lg bg-rose-50 text-rose-600 grid place-items-center font-bold">↑</span>
             <div>
-              <div class="font-extrabold text-slate-900">Compra de embalagens térmicas</div>
+              <div class="font-extrabold text-slate-900">Compra de insumos & embalagens</div>
               <div class="text-[10px] text-slate-400">Pix Fornecedor • 13:51</div>
             </div>
           </div>
@@ -2265,7 +2234,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "relatorio-financeiro-bora-de-batata.csv";
+      a.download = "relatorio-financeiro-sitio-hostel.csv";
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -2279,19 +2248,19 @@
         nbContainer.innerHTML = `
           <div class="flex items-center justify-between text-xs p-2 rounded-xl bg-slate-50">
             <span class="font-extrabold text-slate-900">1. Centro</span>
-            <span class="text-orange-600 font-black">92 pedidos (R$ 3.884,00)</span>
+            <span class="text-[#0088cc] font-black">92 pedidos (R$ 3.884,00)</span>
           </div>
           <div class="flex items-center justify-between text-xs p-2 rounded-xl bg-slate-50">
             <span class="font-extrabold text-slate-900">2. Jardim</span>
-            <span class="text-orange-600 font-black">78 pedidos (R$ 3.106,00)</span>
+            <span class="text-[#0088cc] font-black">78 pedidos (R$ 3.106,00)</span>
           </div>
           <div class="flex items-center justify-between text-xs p-2 rounded-xl bg-slate-50">
             <span class="font-extrabold text-slate-900">3. Vila Nova</span>
-            <span class="text-orange-600 font-black">61 pedidos (R$ 2.497,00)</span>
+            <span class="text-[#0088cc] font-black">61 pedidos (R$ 2.497,00)</span>
           </div>
           <div class="flex items-center justify-between text-xs p-2 rounded-xl bg-slate-50">
             <span class="font-extrabold text-slate-900">4. Boa Vista</span>
-            <span class="text-orange-600 font-black">49 pedidos (R$ 1.988,00)</span>
+            <span class="text-[#0088cc] font-black">49 pedidos (R$ 1.988,00)</span>
           </div>
         `;
       }
@@ -2301,19 +2270,19 @@
         hrContainer.innerHTML = `
           <div>
             <div class="flex justify-between text-xs font-bold mb-1"><span>21h (Pico Máximo)</span><span>63 pedidos</span></div>
-            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-orange-500 rounded-full" style="width: 100%"></div></div>
+            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-[#0088cc] rounded-full" style="width: 100%"></div></div>
           </div>
           <div>
             <div class="flex justify-between text-xs font-bold mb-1"><span>22h</span><span>58 pedidos</span></div>
-            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-orange-400 rounded-full" style="width: 92%"></div></div>
+            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-sky-500 rounded-full" style="width: 92%"></div></div>
           </div>
           <div>
             <div class="flex justify-between text-xs font-bold mb-1"><span>20h</span><span>46 pedidos</span></div>
-            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-amber-400 rounded-full" style="width: 73%"></div></div>
+            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-sky-400 rounded-full" style="width: 73%"></div></div>
           </div>
           <div>
-            <div class="flex justify-between text-xs font-bold mb-1"><span>19h (Abertura)</span><span>28 pedidos</span></div>
-            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-amber-300 rounded-full" style="width: 44%"></div></div>
+            <div class="flex justify-between text-xs font-bold mb-1"><span>19h (Abertura Noturna)</span><span>28 pedidos</span></div>
+            <div class="h-2 rounded-full bg-slate-100 overflow-hidden"><div class="h-full bg-sky-300 rounded-full" style="width: 44%"></div></div>
           </div>
         `;
       }
@@ -2329,7 +2298,7 @@
       showToast("Configurações salvas e aplicadas!");
       setTimeout(() => {
         btn.innerHTML = `<i data-lucide="save" class="h-4 w-4"></i> Salvar alterações`;
-        btn.className = "inline-flex items-center gap-2 rounded-xl bg-orange-500 px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition";
+        btn.className = "inline-flex items-center gap-2 rounded-xl bg-[#0088cc] px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-sky-500/20 hover:bg-[#0077b6] transition";
         lucide.createIcons();
       }, 2500);
     }
