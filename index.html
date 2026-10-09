@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
@@ -18,19 +18,18 @@
         extend: {
           colors: {
             brand: {
-              gold: '#c8933e',
-              goldLight: '#f4dec1',
-              goldDark: '#9e6d23',
+              navy: '#0f2e4a',
+              navyDark: '#081c2e',
+              blue: '#0088cc',
+              blueHover: '#0077b6',
+              blueLight: '#38bdf8',
               teal: '#0a2e36',
-              tealDark: '#061e23',
-              tealLight: '#134752',
               emerald: '#059669',
-              emeraldDark: '#047857',
             }
           },
           fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Montserrat"', '"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Montserrat"', 'sans-serif'],
           }
         }
       }
@@ -163,14 +162,14 @@
         </div>
       </a>
 
-      <!-- Menu Desktop -->
+      <!-- Menu Desktop Exatamente como na Imagem de Referência -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-bold text-slate-700 dark:text-slate-200">
-        <a href="#topo" class="hover:text-emerald-600 dark:hover:text-brand-gold transition">Início</a>
-        <a href="#cardapio" class="text-emerald-700 dark:text-brand-gold flex items-center gap-1.5 font-extrabold hover:opacity-85 transition">
-          <i data-lucide="utensils" class="size-4"></i> Cardápio Oficial
-        </a>
-        <a href="#localizacao" class="hover:text-emerald-600 dark:hover:text-brand-gold transition">Como Chegar</a>
-        <a href="#contato" class="hover:text-emerald-600 dark:hover:text-brand-gold transition">Contato</a>
+        <a href="#topo" class="text-[#0088cc] border-b-2 border-[#0088cc] pb-0.5 transition font-extrabold">Início</a>
+        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Sobre</a>
+        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Hospedagem</a>
+        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Atrativos</a>
+        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Galeria</a>
+        <a href="#contato" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Contato</a>
       </nav>
 
       <!-- Botões de Ação Topo -->
@@ -197,15 +196,15 @@
         <!-- Botão Carrinho com Contador -->
         <button id="btn-toggle-cart" type="button" aria-label="Abrir carrinho" class="relative grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white transition active:scale-95 shadow-sm">
           <i data-lucide="shopping-bag" class="size-4.5"></i>
-          <span id="cart-badge" class="hidden absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-emerald-600 dark:bg-brand-gold text-white dark:text-[#06181c] text-[11px] font-extrabold shadow">
+          <span id="cart-badge" class="hidden absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#0088cc] text-white text-[11px] font-extrabold shadow">
             0
           </span>
         </button>
 
-        <!-- CTA Ver Cardápio Topo -->
-        <a href="#cardapio" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-4 py-2 text-xs font-extrabold uppercase tracking-wider text-white dark:text-brand-tealDark shadow-md transition hover:brightness-105 active:scale-95">
-          <i data-lucide="utensils" class="size-3.5"></i>
-          <span>Cardápio</span>
+        <!-- CTA Reservar agora Topo Exatamente como na Imagem -->
+        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-5 py-2.5 text-xs font-bold shadow-md shadow-sky-500/20 transition hover:scale-105 active:scale-95">
+          <i data-lucide="calendar" class="size-4"></i>
+          <span>Reservar agora</span>
         </a>
 
         <!-- Botão Menu Mobile -->
@@ -218,12 +217,12 @@
     <!-- Mobile Menu Drawer -->
     <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#071f25]/95 px-6 py-4 md:hidden shadow-lg">
       <nav class="flex flex-col gap-3 text-sm font-bold text-slate-700 dark:text-slate-200">
-        <a href="#topo" class="py-2 hover:text-emerald-700 dark:hover:text-brand-gold" onclick="closeMobileMenu()">Início</a>
-        <a href="#cardapio" class="py-2 text-emerald-700 dark:text-brand-gold font-extrabold flex items-center gap-2" onclick="closeMobileMenu()">
-          <i data-lucide="utensils" class="size-4"></i> Cardápio Oficial
-        </a>
-        <a href="#localizacao" class="py-2 hover:text-emerald-700 dark:hover:text-brand-gold" onclick="closeMobileMenu()">Como Chegar</a>
-        <a href="#contato" class="py-2 hover:text-emerald-700 dark:hover:text-brand-gold" onclick="closeMobileMenu()">Contato & Horários</a>
+        <a href="#topo" class="py-2 text-[#0088cc] font-extrabold" onclick="closeMobileMenu()">Início</a>
+        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Sobre</a>
+        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Hospedagem</a>
+        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Atrativos</a>
+        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Galeria</a>
+        <a href="#contato" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Contato</a>
         
         <!-- Alternador Computador / Celular no Drawer -->
         <div class="pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
@@ -240,49 +239,117 @@
             ☀️ / 🌙 Mudar Tema
           </button>
         </div>
+
+        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#0088cc] px-4 py-3 text-xs font-bold text-white shadow-md">
+          <i data-lucide="calendar" class="size-4"></i>
+          <span>Reservar agora</span>
+        </a>
       </nav>
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section id="topo" class="relative isolate min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-center overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
+  <!-- ==================== HERO SECTION (IDENTIDADE VISUAL DA IMAGEM) ==================== -->
+  <section id="topo" class="relative isolate min-h-[92vh] flex flex-col justify-between overflow-hidden pt-28 pb-10 sm:pt-36 sm:pb-12">
     
-    <!-- Imagem de Fundo Solar e Iluminada com Piscina e Tobogã -->
+    <!-- Imagem de Fundo Oficial do Sítio (Mantida Conforme Solicitado) -->
     <div class="absolute inset-0 -z-20 overflow-hidden">
       <img src="assets/hero-bg.jpg" alt="Sítio Natureza Piscina e Tobogã Campo Grande" class="h-full w-full object-cover object-center scale-[1.01] transition-transform duration-1000">
-      <!-- Gradiente suave na lateral esquerda para leitura perfeita sem cobrir a piscina -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/50 to-transparent dark:from-[#06181c]/95 dark:via-[#06181c]/50 dark:to-transparent"></div>
+      <!-- Gradiente suave na lateral esquerda para leitura perfeita dos textos -->
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/55 to-transparent dark:from-[#06181c]/95 dark:via-[#06181c]/55 dark:to-transparent"></div>
       <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f8fafc] dark:from-[#06181c] to-transparent"></div>
     </div>
 
-    <!-- Conteúdo Central Hero Aberto e Editorial -->
+    <!-- Conteúdo Central Hero com Textos e Tipografia Idênticos à Imagem -->
     <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 my-auto">
-      <div class="max-w-xl">
+      <div class="max-w-2xl">
         
-        <!-- Tag Oficial -->
-        <div class="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-white/80 dark:bg-emerald-950/70 backdrop-blur-md px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-emerald-800 dark:text-emerald-300 shadow-sm">
-          <i data-lucide="check-circle" class="size-3.5 text-emerald-600 dark:text-emerald-400"></i>
-          <span>GASTRONOMIA, PISCINAS & LAZER • CAMPO GRANDE</span>
+        <!-- Tag Superior: NATUREZA • LAZER • HOSPEDAGEM -->
+        <div class="text-[#0088cc] dark:text-[#38bdf8] font-bold text-xs sm:text-sm tracking-[0.22em] uppercase mb-2">
+          NATUREZA &bull; LAZER &bull; HOSPEDAGEM
         </div>
 
-        <!-- Título Principal -->
-        <h1 class="mt-4 font-serif text-3xl font-extrabold leading-[1.12] text-slate-900 dark:text-white sm:text-5xl lg:text-6xl drop-shadow-sm">
-          Lazer, sabor caseiro e natureza em <span class="italic text-emerald-700 dark:text-brand-goldLight underline decoration-emerald-500/50 dark:decoration-brand-gold/60 decoration-wavy decoration-1 underline-offset-8">Campo Grande.</span>
+        <!-- Título Principal com Tipografia e Cores Idênticas -->
+        <h1 class="font-sans font-black tracking-tight text-4xl sm:text-6xl lg:text-7xl leading-[1.03]">
+          <span class="block text-[#0f2e4a] dark:text-white uppercase font-black">SÍTIO HOSTEL</span>
+          <span class="block text-[#0088cc] dark:text-[#38bdf8] uppercase font-black">NATUREZA</span>
         </h1>
 
-        <!-- Subtítulo Fiel e Direto -->
-        <p class="mt-4 text-sm sm:text-base lg:text-lg font-medium leading-relaxed text-slate-700 dark:text-slate-200">
-          Explore nossos 43 pratos executivos fartos, petiscos crocantes à beira da piscina, bebidas geladas e entrega rápida pelo WhatsApp.
+        <!-- Duas Ondas Decorativas de Água em Azul Celeste -->
+        <div class="my-4 flex flex-col gap-1 w-28 sm:w-36 text-[#0088cc] dark:text-[#38bdf8]">
+          <svg viewBox="0 0 140 14" fill="none" class="w-full h-3">
+            <path d="M2 7 C 15 1, 25 13, 38 7 C 51 1, 61 13, 74 7 C 87 1, 97 13, 110 7 C 123 1, 133 13, 138 7" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+          <svg viewBox="0 0 140 14" fill="none" class="w-full h-3">
+            <path d="M2 7 C 15 1, 25 13, 38 7 C 51 1, 61 13, 74 7 C 87 1, 97 13, 110 7 C 123 1, 133 13, 138 7" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Subtítulo com Texto Exato da Imagem de Referência -->
+        <p class="mt-2 text-sm sm:text-base lg:text-lg font-medium leading-relaxed text-slate-700 dark:text-slate-200 max-w-xl">
+          Hospedagem aconchegante, piscina com tobogã, boa comida, drinks incríveis e muito contato com a natureza.
         </p>
 
-        <!-- Botão de Ação Principal -->
-        <div class="mt-7 flex items-center">
-          <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-8 py-4 text-xs font-extrabold text-white dark:text-brand-tealDark shadow-lg transition hover:brightness-105 active:scale-95 uppercase tracking-wider">
-            <i data-lucide="utensils" class="size-4"></i>
-            <span>Ver Cardápio Completo (43 Pratos)</span>
-            <i data-lucide="arrow-down" class="size-3.5"></i>
+        <!-- Botões Exatos da Imagem de Referência -->
+        <div class="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+          <!-- Botão 1: Reservar agora -->
+          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-7 py-3.5 text-xs sm:text-sm font-bold shadow-lg shadow-sky-500/25 transition hover:scale-105 active:scale-95">
+            <i data-lucide="calendar" class="size-4"></i>
+            <span>Reservar agora</span>
+          </a>
+
+          <!-- Botão 2: Ver o espaço -->
+          <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full border-2 border-[#0088cc] bg-white/90 hover:bg-white dark:bg-black/40 dark:hover:bg-black/60 text-[#0f2e4a] dark:text-white px-7 py-3.5 text-xs sm:text-sm font-bold shadow-md transition hover:scale-105 active:scale-95">
+            <i data-lucide="play-circle" class="size-4 text-[#0088cc]"></i>
+            <span>Ver o espaço</span>
           </a>
         </div>
+      </div>
+    </div>
+
+    <!-- Barra Inferior de Destaques da Capa (Exatamente como na Imagem de Referência) -->
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
+      <div class="rounded-3xl sm:rounded-full bg-white/95 dark:bg-[#071f25]/95 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-2xl p-4 sm:px-8 sm:py-4 grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/60 dark:divide-white/10">
+        
+        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
+          <div class="text-[#0088cc] shrink-0">
+            <i data-lucide="waves" class="size-6"></i>
+          </div>
+          <div>
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Piscina com tobogã</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">Diversão para toda a família</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
+          <div class="text-[#0088cc] shrink-0">
+            <i data-lucide="utensils" class="size-6"></i>
+          </div>
+          <div>
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Comida boa e drinks</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">Sabores que combinam com a sua natureza</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
+          <div class="text-[#0088cc] shrink-0">
+            <i data-lucide="users" class="size-6"></i>
+          </div>
+          <div>
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Hospedagem completa</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">Conforto, lazer e experiências</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
+          <div class="text-[#0088cc] shrink-0">
+            <i data-lucide="map-pin" class="size-6"></i>
+          </div>
+          <div>
+            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Em meio à natureza</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">Localização privilegiada</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
