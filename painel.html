@@ -211,6 +211,30 @@
             Operação interna • Sítio Hostel Natureza
           </div>
 
+          <!-- Campainha Sonora do Caixa (Ativar/Desativar e Testar Som) -->
+          <div class="flex items-center gap-2">
+            <button
+              id="btn-cashier-sound-toggle"
+              type="button"
+              onclick="toggleCashierSound()"
+              class="flex items-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-2.5 sm:px-3 py-2 text-xs font-bold text-[#0088cc] hover:bg-sky-100 transition shadow-sm"
+              title="Clique para alternar a campainha sonora do caixa"
+            >
+              <i data-lucide="bell-ring" id="cashier-sound-icon" class="size-3.5 text-[#0088cc] animate-pulse"></i>
+              <span id="cashier-sound-label" class="hidden md:inline">Campainha do Caixa:</span>
+              <span id="cashier-sound-status" class="rounded-full bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 font-extrabold uppercase">Ativada</span>
+            </button>
+            <button
+              type="button"
+              onclick="testCashierSound()"
+              class="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-sm"
+              title="Testar campainha sonora (Ka-ching)"
+            >
+              <i data-lucide="volume-2" class="size-3.5 text-slate-500"></i>
+              <span>Testar Som</span>
+            </button>
+          </div>
+
           <!-- Ações da Direita (Notificações & Perfil) -->
           <div class="ml-auto flex items-center gap-3">
             
@@ -285,6 +309,32 @@
 
         </div>
       </header>
+
+      <!-- Banner Flutuante de Alerta Sonoro de Novo Pedido -->
+      <div id="incoming-order-alert-banner" class="hidden mx-3 sm:mx-6 2xl:mx-8 mt-4 -mb-2 p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/95 text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xl transition-all">
+        <div class="flex items-center gap-3">
+          <div class="grid size-11 place-items-center rounded-2xl bg-emerald-600 text-white shadow-md shrink-0">
+            <i data-lucide="bell-ring" class="size-5.5 animate-bounce"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="rounded-full bg-emerald-600 text-white text-[9px] font-black uppercase px-2 py-0.5 animate-pulse">NOVO PEDIDO NO CAIXA!</span>
+              <span class="text-xs sm:text-sm font-black" id="incoming-order-alert-id">#1055</span>
+            </div>
+            <div class="text-xs font-semibold text-emerald-800 mt-0.5" id="incoming-order-alert-text">
+              Pedido recebido acabou de entrar no sistema!
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 self-end sm:self-auto">
+          <button type="button" onclick="switchTab('pedidos'); dismissIncomingOrderAlert()" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 px-4 py-2 text-xs font-black text-white shadow transition active:scale-95">
+            Ver Pedidos
+          </button>
+          <button type="button" onclick="dismissIncomingOrderAlert()" class="p-2 text-emerald-700 hover:text-emerald-950 rounded-xl hover:bg-emerald-100 transition" title="Fechar alerta">
+            <i data-lucide="x" class="size-4.5"></i>
+          </button>
+        </div>
+      </div>
 
       <!-- Main Body Container -->
       <main class="mx-auto w-full max-w-[1680px] p-3 sm:p-6 2xl:p-8 flex-1 pb-24 lg:pb-8">
@@ -2353,9 +2403,220 @@
       }
     }
 
+    // ==========================================
+    // CAMPAINHA SONORA DE CAIXA (WEB AUDIO API)
+    // ==========================================
+    class CashierAudioEngine {
+      constructor() {
+        this.audioCtx = null;
+        this.enabled = true;
+        const saved = localStorage.getItem('sitio_cashier_sound');
+        if (saved !== null) {
+          this.enabled = (saved === 'true');
+        }
+      }
+
+      initContext() {
+        if (!this.audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            this.audioCtx = new AudioContextClass();
+          }
+        }
+        if (this.audioCtx && this.audioCtx.state === 'suspended') {
+          this.audioCtx.resume();
+        }
+      }
+
+      playChime() {
+        if (!this.enabled) return;
+        try {
+          this.initContext();
+          if (!this.audioCtx) return;
+
+          const ctx = this.audioCtx;
+          const now = ctx.currentTime;
+
+          // Tom 1: Sino principal nítido e ressonante (Mi 6 / 1318.5 Hz)
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(1318.5, now);
+          osc1.frequency.exponentialRampToValueAtTime(1328.0, now + 0.08);
+
+          gain1.gain.setValueAtTime(0, now);
+          gain1.gain.linearRampToValueAtTime(0.40, now + 0.015);
+          gain1.gain.exponentialRampToValueAtTime(0.0001, now + 1.25);
+
+          osc1.connect(gain1);
+          gain1.connect(ctx.destination);
+          osc1.start(now);
+          osc1.stop(now + 1.25);
+
+          // Tom 2: "Ding" harmônico clássico de caixa (Dó 7 / 2093 Hz) levemente defasado (80ms)
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(1975.5, now + 0.08);
+          osc2.frequency.exponentialRampToValueAtTime(2093.0, now + 0.16);
+
+          gain2.gain.setValueAtTime(0, now + 0.08);
+          gain2.gain.linearRampToValueAtTime(0.35, now + 0.095);
+          gain2.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+
+          osc2.connect(gain2);
+          gain2.connect(ctx.destination);
+          osc2.start(now + 0.08);
+          osc2.stop(now + 1.4);
+
+          // Tom 3: Brilho metálico tipo moeda (Mi 7 / 2637 Hz)
+          const osc3 = ctx.createOscillator();
+          const gain3 = ctx.createGain();
+          osc3.type = 'sine';
+          osc3.frequency.setValueAtTime(2637.0, now + 0.14);
+
+          gain3.gain.setValueAtTime(0, now + 0.14);
+          gain3.gain.linearRampToValueAtTime(0.20, now + 0.155);
+          gain3.gain.exponentialRampToValueAtTime(0.0001, now + 0.85);
+
+          osc3.connect(gain3);
+          gain3.connect(ctx.destination);
+          osc3.start(now + 0.14);
+          osc3.stop(now + 0.85);
+
+        } catch (err) {
+          console.warn("Audio Context playback error:", err);
+        }
+      }
+
+      toggle() {
+        this.enabled = !this.enabled;
+        localStorage.setItem('sitio_cashier_sound', this.enabled);
+        return this.enabled;
+      }
+    }
+
+    const cashierAudio = new CashierAudioEngine();
+
+    function updateCashierSoundUI() {
+      const icon = document.getElementById('cashier-sound-icon');
+      const status = document.getElementById('cashier-sound-status');
+      const btn = document.getElementById('btn-cashier-sound-toggle');
+
+      if (!status || !btn) return;
+
+      if (cashierAudio.enabled) {
+        status.textContent = "Ativada";
+        status.className = "rounded-full bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 font-extrabold uppercase";
+        if (icon) icon.className = "size-3.5 text-[#0088cc] animate-pulse";
+        btn.className = "flex items-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-2.5 sm:px-3 py-2 text-xs font-bold text-[#0088cc] hover:bg-sky-100 transition shadow-sm";
+      } else {
+        status.textContent = "Muda";
+        status.className = "rounded-full bg-slate-400 text-white text-[9px] px-1.5 py-0.5 font-extrabold uppercase";
+        if (icon) icon.className = "size-3.5 text-slate-400";
+        btn.className = "flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-2.5 sm:px-3 py-2 text-xs font-bold text-slate-500 hover:bg-slate-100 transition shadow-sm";
+      }
+      lucide.createIcons();
+    }
+
+    function toggleCashierSound() {
+      const isEnabled = cashierAudio.toggle();
+      updateCashierSoundUI();
+      if (isEnabled) {
+        cashierAudio.playChime();
+        showToast("🔔 Campainha do caixa ATIVADA com sucesso!");
+      } else {
+        showToast("🔕 Campainha do caixa SILENCIADA.");
+      }
+    }
+
+    function testCashierSound() {
+      cashierAudio.initContext();
+      cashierAudio.playChime();
+      showToast("🔔 Campainha testada: som de caixa registradora tocando!");
+    }
+
+    function dismissIncomingOrderAlert() {
+      const banner = document.getElementById('incoming-order-alert-banner');
+      if (banner) banner.classList.add('hidden');
+    }
+
+    function triggerNewOrderAlert(newOrder) {
+      // 1. Toca campainha
+      cashierAudio.playChime();
+
+      // 2. Exibe banner animado
+      const banner = document.getElementById('incoming-order-alert-banner');
+      const idEl = document.getElementById('incoming-order-alert-id');
+      const textEl = document.getElementById('incoming-order-alert-text');
+
+      if (banner && idEl && textEl) {
+        idEl.textContent = `#${newOrder.id} • ${newOrder.customer}`;
+        textEl.textContent = `${newOrder.channel}: ${newOrder.price} (${Array.isArray(newOrder.items) ? newOrder.items.length : 1} itens) acabou de entrar!`;
+        banner.classList.remove('hidden');
+        lucide.createIcons();
+      }
+
+      // 3. Notificação Toast
+      showToast(`🔔 Novo pedido #${newOrder.id} recebido de ${newOrder.customer}!`);
+
+      // 4. Pisca título da janela
+      const originalTitle = document.title;
+      let flashes = 0;
+      const flashInterval = setInterval(() => {
+        document.title = (flashes % 2 === 0) ? `🔔 (1) NOVO PEDIDO #${newOrder.id}!` : originalTitle;
+        flashes++;
+        if (flashes > 8) {
+          clearInterval(flashInterval);
+          document.title = originalTitle;
+        }
+      }, 700);
+    }
+
+    // Monitoramento de novos pedidos em tempo real (Storage Event & Heartbeat)
+    let knownOrderIds = new Set(orders.map(o => String(o.id)));
+
+    function checkForIncomingOrders() {
+      try {
+        const stored = localStorage.getItem("bora-panel-orders") || localStorage.getItem("sitio_panel_orders");
+        if (!stored) return;
+        const currentStoredOrders = JSON.parse(stored);
+        if (!Array.isArray(currentStoredOrders)) return;
+
+        let hasNew = false;
+        let latestNewOrder = null;
+
+        currentStoredOrders.forEach(ord => {
+          const idStr = String(ord.id);
+          if (!knownOrderIds.has(idStr)) {
+            knownOrderIds.add(idStr);
+            hasNew = true;
+            latestNewOrder = ord;
+          }
+        });
+
+        if (hasNew && latestNewOrder) {
+          orders = currentStoredOrders;
+          renderKanbanBoard();
+          triggerNewOrderAlert(latestNewOrder);
+        }
+      } catch (e) {
+        console.warn("Erro ao verificar novos pedidos:", e);
+      }
+    }
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'sitio_panel_orders' || e.key === 'bora-panel-orders') {
+        checkForIncomingOrders();
+      }
+    });
+
+    setInterval(checkForIncomingOrders, 2500);
+
     // --- INICIALIZAÇÃO ---
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
+      updateCashierSoundUI();
       renderKanbanBoard();
     });
   </script>

@@ -378,6 +378,37 @@
         </button>
       </div>
 
+      <!-- Banner de Pedir Novamente (1-Click Repeat Order - Padrão Inteligente) -->
+      <div id="repeat-order-banner" class="hidden mt-6 mb-2 rounded-2xl sm:rounded-3xl border border-sky-300/80 dark:border-sky-500/30 bg-gradient-to-r from-sky-50 via-blue-50/70 to-indigo-50/40 dark:from-[#06242c] dark:via-[#072c36] dark:to-[#093542] p-4 sm:p-5 shadow-sm transition-all duration-300">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5">
+          <div class="flex items-start gap-3">
+            <div class="grid size-10 place-items-center rounded-2xl bg-[#0088cc] text-white shadow-md shrink-0">
+              <i data-lucide="rotate-ccw" class="size-5"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="rounded-full bg-[#0088cc] text-white text-[9px] font-black uppercase px-2 py-0.5">1 Toque</span>
+                <h3 class="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white" id="repeat-order-title">
+                  Deseja repetir seu último pedido?
+                </h3>
+              </div>
+              <p class="mt-1 text-xs text-slate-600 dark:text-slate-300 font-medium" id="repeat-order-summary">
+                Carregando último pedido...
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+            <button type="button" onclick="repeatLastOrder()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 rounded-full bg-[#0088cc] hover:bg-[#0077b6] px-4 py-2.5 text-xs font-black text-white shadow-md active:scale-95 transition">
+              <i data-lucide="zap" class="size-3.5"></i>
+              <span>Repetir com 1 Toque</span>
+            </button>
+            <button type="button" onclick="dismissRepeatOrderBanner()" class="p-2 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition" title="Dispensar banner">
+              <i data-lucide="x" class="size-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Grade de Itens do Cardápio (100% Otimizada para Mobile e Desktop) -->
       <div class="mt-8 grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="menu-items-grid">
         <!-- Renderizado dinamicamente pelo JavaScript com todas as 43 fotos reais do CardapioWeb -->
@@ -589,6 +620,19 @@
           </div>
         </div>
 
+        <!-- Seção: Upselling Inteligente / Monte seu Combo (Bebidas & Extras) -->
+        <div class="space-y-2.5 border-t border-slate-200 dark:border-white/10 pt-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="size-3.5 text-amber-500"></i> Turbine seu pedido (Bebidas & Extras)
+            </span>
+            <span class="text-[10px] text-[#0088cc] dark:text-[#38bdf8] font-extrabold uppercase">Monte seu Combo</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="modal-upsell-addons-container">
+            <!-- Gerado dinamicamente via JS com foto, nome e preço adicional -->
+          </div>
+        </div>
+
         <!-- Campo Observações do Item -->
         <div>
           <label class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1 flex items-center gap-1.5">
@@ -651,6 +695,19 @@
       <!-- Inserido dinamicamente via JS -->
     </div>
 
+    <!-- Upselling Rápido no Carrinho (1-Toque para Aumentar Ticket Médio) -->
+    <div id="cart-upsell-section" class="border-t border-slate-200 dark:border-white/10 px-4 py-3 bg-slate-50/90 dark:bg-[#061e25]">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-[11px] font-extrabold text-slate-800 dark:text-white flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="size-3.5 text-amber-500"></i> Que tal adicionar uma bebida ou extra?
+        </span>
+        <span class="text-[9px] font-extrabold text-[#0088cc] uppercase bg-sky-100 dark:bg-white/10 px-2 py-0.5 rounded-full">1 Toque</span>
+      </div>
+      <div class="flex gap-2 overflow-x-auto scrollbar-none pb-1" id="cart-upsell-chips-container">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </div>
+
     <!-- Rodapé Checkout do Carrinho (5 Etapas Padrão Bora de Batata) -->
     <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-4 sm:p-5 space-y-4 overflow-y-auto max-h-[58vh]">
       
@@ -694,9 +751,27 @@
             <input type="text" id="cart-customer-complement" placeholder="Ex.: Apto 204, portão azul, próx. à padaria..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#0088cc] transition">
           </div>
 
-          <div class="p-2.5 rounded-xl border border-sky-100 dark:border-sky-900/40 bg-sky-50/70 dark:bg-sky-950/20 text-[11px] text-sky-800 dark:text-sky-300 flex items-center justify-between">
-            <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="size-3.5 text-[#0088cc]"></i> Taxa de Entrega (Campo Grande)</span>
-            <span class="font-extrabold text-[#0088cc] dark:text-[#38bdf8]">R$ 8,00</span>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1 flex items-center justify-between">
+              <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="size-3.5 text-[#0088cc]"></i> Região / Bairro de Entrega *</span>
+              <span id="cart-delivery-fee-badge" class="font-extrabold text-[#0088cc] dark:text-[#38bdf8] text-xs">R$ 8,00</span>
+            </label>
+            <select id="cart-neighborhood-select" onchange="updateDeliveryFeeFromSelect(this.value)" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#071f25] px-3.5 py-2.5 text-xs text-slate-900 dark:text-white outline-none focus:border-[#0088cc] transition font-semibold cursor-pointer">
+              <option value="6.00" data-name="Campo Grande - Centro">Campo Grande (Centro) — R$ 6,00</option>
+              <option value="5.00" data-name="Campo Grande - Av. Alhambra / Próx. Sítio">Campo Grande (Av. Alhambra / Próx. Sítio) — R$ 5,00</option>
+              <option value="8.00" data-name="Campo Grande - Estrada do Mendanha" selected>Campo Grande (Estrada do Mendanha) — R$ 8,00</option>
+              <option value="8.00" data-name="Campo Grande - Posse / Monteiro">Campo Grande (Posse / Monteiro) — R$ 8,00</option>
+              <option value="8.00" data-name="Campo Grande - Estrada da Posse">Campo Grande (Estrada da Posse) — R$ 8,00</option>
+              <option value="9.00" data-name="Campo Grande - West Shopping / Rio da Prata">Campo Grande (West Shopping / Rio da Prata) — R$ 9,00</option>
+              <option value="10.00" data-name="Inhoaíba">Inhoaíba — R$ 10,00</option>
+              <option value="10.00" data-name="Paciência">Paciência — R$ 10,00</option>
+              <option value="10.00" data-name="Cosmos">Cosmos — R$ 10,00</option>
+              <option value="12.00" data-name="Santíssimo">Santíssimo — R$ 12,00</option>
+              <option value="12.00" data-name="Senador Camará">Senador Camará — R$ 12,00</option>
+              <option value="14.00" data-name="Bangu">Bangu — R$ 14,00</option>
+              <option value="15.00" data-name="Realengo">Realengo — R$ 15,00</option>
+              <option value="10.00" data-name="Outro Bairro">Outro Bairro (A combinar no WhatsApp) — R$ 10,00</option>
+            </select>
           </div>
         </div>
 
@@ -1270,6 +1345,8 @@
     window.addEventListener('DOMContentLoaded', () => {
       renderMenuItems();
       updateThemeButtons();
+      renderCartUpsellChips();
+      checkRepeatOrderBanner();
       lucide.createIcons();
     });
 
@@ -1409,7 +1486,215 @@
 
     let selectedPaymentMethod = 'Pix';
     let selectedRemovals = [];
-    const DELIVERY_FEE = 8.0;
+    let selectedUpsellAddons = [];
+    let selectedDeliveryFee = 8.00;
+    let selectedNeighborhoodName = "Campo Grande (Estrada do Mendanha)";
+
+    // Catálogo de Upselling Inteligente ("Monte seu Combo")
+    const UPSELL_ADDONS = [
+      { id: 'addon_coca', name: 'Coca-Cola Lata 350ml', price: 8.00, tag: 'Bebida', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308507/d9a4931b-827b-4836-ab73-331814774428.jpeg' },
+      { id: 'addon_coca_zero', name: 'Coca Zero Lata 350ml', price: 8.00, tag: 'Bebida', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308510/099cf9b8-8a33-407b-88fe-e31b51156c64.jpeg' },
+      { id: 'addon_suco_maracuja', name: 'Suco Natural Maracujá 300ml', price: 11.90, tag: 'Natural', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308513/c49dccd9Suco_natural_sobre_grama_artificial.png' },
+      { id: 'addon_guaracamp', name: 'Guaracamp Copo Geladinho', price: 3.00, tag: 'Bebida', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308512/98c97592-1ce4-48f4-92a9-671b98e31bd6.jpeg' },
+      { id: 'addon_batata_extra', name: 'Porção Batata Crocante Extra', price: 12.00, tag: 'Extra', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308480/d3d8d64d-5c21-4fa3-bd1d-daebdd9be2a5.jpeg' },
+      { id: 'addon_feijao', name: 'Porção Feijão Caseiro', price: 5.00, tag: 'Guarnição', image_url: 'https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308500/6280bbc9-7fd9-4317-89a5-ffb44747540a.jpeg' }
+    ];
+
+    // Atualização dinâmica da taxa de entrega conforme o bairro selecionado
+    function updateDeliveryFeeFromSelect(val) {
+      selectedDeliveryFee = parseFloat(val) || 8.0;
+      const select = document.getElementById('cart-neighborhood-select');
+      if (select && select.selectedOptions && select.selectedOptions[0]) {
+        selectedNeighborhoodName = select.selectedOptions[0].getAttribute('data-name') || select.selectedOptions[0].text;
+      }
+      const badge = document.getElementById('cart-delivery-fee-badge');
+      if (badge) badge.textContent = `R$ ${selectedDeliveryFee.toFixed(2).replace('.', ',')}`;
+      updateCartUI();
+    }
+
+    // Renderiza os add-ons de upselling dentro do modal do prato
+    function renderModalUpsellAddons() {
+      const container = document.getElementById('modal-upsell-addons-container');
+      if (!container) return;
+
+      container.innerHTML = UPSELL_ADDONS.map(addon => {
+        const isSelected = selectedUpsellAddons.some(a => a.id === addon.id);
+        return `
+          <button type="button" onclick="toggleModalUpsellAddon('${addon.id}')" class="upsell-modal-item text-left p-2.5 rounded-2xl border transition-all duration-200 flex items-center justify-between gap-2.5 ${
+            isSelected 
+              ? 'border-[#0088cc] bg-sky-50 dark:bg-sky-950/40 text-slate-900 dark:text-white shadow-sm ring-1 ring-[#0088cc]' 
+              : 'border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:border-[#0088cc]/60'
+          }">
+            <div class="flex items-center gap-2 min-w-0">
+              <div class="size-9 rounded-xl overflow-hidden shrink-0 bg-white border border-slate-200 dark:border-white/10">
+                <img src="${addon.image_url}" alt="${addon.name}" class="h-full w-full object-cover">
+              </div>
+              <div class="min-w-0">
+                <span class="block text-[11px] font-extrabold truncate text-slate-900 dark:text-white">${addon.name}</span>
+                <span class="block text-[10px] font-black text-[#0088cc] dark:text-[#38bdf8]">+ R$ ${addon.price.toFixed(2).replace('.', ',')}</span>
+              </div>
+            </div>
+            <div class="shrink-0 size-5 rounded-full grid place-items-center text-xs ${
+              isSelected ? 'bg-[#0088cc] text-white font-bold' : 'border border-slate-300 dark:border-white/20 text-transparent'
+            }">
+              ${isSelected ? '✓' : ''}
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function toggleModalUpsellAddon(addonId) {
+      const found = UPSELL_ADDONS.find(a => a.id === addonId);
+      if (!found) return;
+
+      const idx = selectedUpsellAddons.findIndex(a => a.id === addonId);
+      if (idx >= 0) {
+        selectedUpsellAddons.splice(idx, 1);
+      } else {
+        selectedUpsellAddons.push(found);
+      }
+
+      renderModalUpsellAddons();
+      updateModalTotal();
+    }
+
+    // Renderiza os botões de upselling de 1 toque no rodapé do carrinho
+    function renderCartUpsellChips() {
+      const container = document.getElementById('cart-upsell-chips-container');
+      if (!container) return;
+
+      container.innerHTML = UPSELL_ADDONS.slice(0, 4).map(item => `
+        <button type="button" onclick="quickAddUpsellToCart('${item.id}')" class="shrink-0 inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 px-2.5 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-[#0088cc] hover:text-[#0088cc] shadow-sm transition active:scale-95">
+          <div class="size-6 rounded-lg overflow-hidden shrink-0 bg-slate-100">
+            <img src="${item.image_url}" alt="${item.name}" class="h-full w-full object-cover">
+          </div>
+          <span class="text-[11px] font-extrabold truncate max-w-[120px]">${item.name}</span>
+          <span class="text-[10px] font-black text-[#0088cc] dark:text-[#38bdf8]">+R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+        </button>
+      `).join('');
+    }
+
+    function quickAddUpsellToCart(addonId) {
+      const item = UPSELL_ADDONS.find(a => a.id === addonId);
+      if (!item) return;
+
+      const cartItem = {
+        cartId: Date.now() + Math.random(),
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image_url: item.image_url,
+        qty: 1,
+        notes: '',
+        addons: []
+      };
+
+      cart.push(cartItem);
+      updateCartUI();
+      showToast(`✅ ${item.name} adicionado ao pedido!`);
+    }
+
+    // Gerenciamento do Banner "Pedir Novamente"
+    function checkRepeatOrderBanner() {
+      const banner = document.getElementById('repeat-order-banner');
+      if (!banner) return;
+
+      let lastOrder = null;
+      try {
+        const raw = localStorage.getItem('sitio_last_order');
+        if (raw) lastOrder = JSON.parse(raw);
+      } catch (e) {}
+
+      // Se ainda não houver pedido no cache do cliente, verifica pedidos do painel como demonstração inteligente
+      if (!lastOrder) {
+        try {
+          const panelOrders = JSON.parse(localStorage.getItem('sitio_panel_orders') || '[]');
+          if (Array.isArray(panelOrders) && panelOrders.length > 0) {
+            const first = panelOrders[0];
+            lastOrder = {
+              customer: first.customer,
+              itemsSummary: Array.isArray(first.items) ? first.items.slice(0, 2).join(' + ') : 'Pratos Executivos Sítio',
+              total: first.price,
+              isSample: true
+            };
+          }
+        } catch (e) {}
+      }
+
+      if (lastOrder) {
+        const titleEl = document.getElementById('repeat-order-title');
+        const summaryEl = document.getElementById('repeat-order-summary');
+        
+        const firstName = lastOrder.customer ? lastOrder.customer.split(' ')[0] : '';
+        if (titleEl) {
+          titleEl.textContent = firstName ? `Deseja repetir seu último pedido, ${firstName}?` : 'Deseja repetir seu último pedido?';
+        }
+
+        let summaryText = "";
+        if (lastOrder.items && Array.isArray(lastOrder.items) && lastOrder.items.length > 0) {
+          const names = lastOrder.items.map(it => `${it.qty}x ${it.name}`).join(' + ');
+          summaryText = `${names} • Total: R$ ${typeof lastOrder.total === 'number' ? lastOrder.total.toFixed(2).replace('.', ',') : lastOrder.total}`;
+        } else if (lastOrder.itemsSummary) {
+          summaryText = `${lastOrder.itemsSummary} • Total: ${lastOrder.total}`;
+        }
+
+        if (summaryEl) summaryEl.textContent = summaryText;
+        banner.classList.remove('hidden');
+        lucide.createIcons();
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function repeatLastOrder() {
+      try {
+        const raw = localStorage.getItem('sitio_last_order');
+        if (raw) {
+          const last = JSON.parse(raw);
+          if (last.items && Array.isArray(last.items) && last.items.length > 0) {
+            cart = last.items.map(it => ({
+              ...it,
+              cartId: Date.now() + Math.random()
+            }));
+
+            if (last.customer && document.getElementById('cart-customer-name')) {
+              document.getElementById('cart-customer-name').value = last.customer;
+            }
+            if (last.location && document.getElementById('cart-customer-location')) {
+              document.getElementById('cart-customer-location').value = last.location;
+            }
+            if (last.complement && document.getElementById('cart-customer-complement')) {
+              document.getElementById('cart-customer-complement').value = last.complement;
+            }
+            if (last.neighborhoodFee && document.getElementById('cart-neighborhood-select')) {
+              document.getElementById('cart-neighborhood-select').value = last.neighborhoodFee;
+              updateDeliveryFeeFromSelect(last.neighborhoodFee);
+            }
+            if (last.mode) {
+              setOrderMode(last.mode);
+            }
+
+            updateCartUI();
+            openCartDrawer();
+            showToast("⚡ Seu último pedido foi carregado no carrinho!");
+            return;
+          }
+        }
+
+        // Se for um item demonstrativo inicial
+        quickAddToCart(4308479); // Filé de Peixe Empanado (Mais Pedido)
+        openCartDrawer();
+        showToast("⚡ Pedido adicionado com 1 toque!");
+      } catch (err) {
+        console.error("Erro ao repetir pedido:", err);
+      }
+    }
+
+    function dismissRepeatOrderBanner() {
+      const banner = document.getElementById('repeat-order-banner');
+      if (banner) banner.classList.add('hidden');
+    }
 
     function openProductModal(itemId) {
       let product = null;
@@ -1422,11 +1707,14 @@
       activeModalProduct = product;
       modalQuantity = 1;
       selectedRemovals = [];
+      selectedUpsellAddons = [];
 
       // Reseta chips de retirada
       document.querySelectorAll('.removal-chip').forEach(btn => {
         btn.className = "removal-chip px-3 py-1.5 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-rose-400 transition";
       });
+
+      renderModalUpsellAddons();
 
       document.getElementById('modal-product-img').src = product.image_url || 'assets/hero-bg.jpg';
       document.getElementById('modal-product-title').textContent = product.name;
@@ -1445,6 +1733,7 @@
       document.getElementById('product-modal').classList.add('hidden');
       activeModalProduct = null;
       selectedRemovals = [];
+      selectedUpsellAddons = [];
     }
 
     function toggleRemovalChip(btn, text) {
@@ -1467,7 +1756,9 @@
 
     function updateModalTotal() {
       if (!activeModalProduct) return;
-      const total = activeModalProduct.price * modalQuantity;
+      const addonsSum = selectedUpsellAddons.reduce((acc, curr) => acc + curr.price, 0);
+      const singleItemPrice = activeModalProduct.price + addonsSum;
+      const total = singleItemPrice * modalQuantity;
       document.getElementById('modal-total-btn').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
     }
 
@@ -1487,7 +1778,8 @@
         price: activeModalProduct.price,
         image_url: activeModalProduct.image_url,
         qty: modalQuantity,
-        notes: fullNotes
+        notes: fullNotes,
+        addons: [...selectedUpsellAddons]
       };
 
       cart.push(cartItem);
@@ -1515,7 +1807,8 @@
         price: product.price,
         image_url: product.image_url,
         qty: 1,
-        notes: ''
+        notes: '',
+        addons: []
       };
 
       cart.push(cartItem);
@@ -1566,8 +1859,13 @@
       const subtitleEl = document.getElementById('cart-items-counter-subtitle');
 
       const totalQty = cart.reduce((acc, curr) => acc + curr.qty, 0);
-      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      
+      const subtotal = cart.reduce((acc, curr) => {
+        const addonsTotal = curr.addons ? curr.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+        return acc + ((curr.price + addonsTotal) * curr.qty);
+      }, 0);
+
+      const deliveryFee = orderMode === 'delivery' ? selectedDeliveryFee : 0.0;
       const total = subtotal + deliveryFee;
 
       if (totalQty > 0) {
@@ -1586,7 +1884,7 @@
       }
 
       if (subtotalEl) subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-      if (deliveryEl) deliveryEl.textContent = orderMode === 'delivery' ? `R$ ${DELIVERY_FEE.toFixed(2).replace('.', ',')}` : "Grátis (Balcão)";
+      if (deliveryEl) deliveryEl.textContent = orderMode === 'delivery' ? `R$ ${selectedDeliveryFee.toFixed(2).replace('.', ',')}` : "Grátis (Balcão)";
       if (totalEl) totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 
       if (cart.length === 0) {
@@ -1601,38 +1899,52 @@
         return;
       }
 
-      container.innerHTML = cart.map(it => `
-        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3 flex items-start justify-between gap-3 shadow-sm hover:shadow-md transition">
-          <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05181c] border border-slate-200 dark:border-white/10">
-            <img src="${it.image_url || 'assets/hero-bg.jpg'}" alt="${it.name}" class="h-full w-full object-cover">
-          </div>
+      container.innerHTML = cart.map(it => {
+        const addonsTotal = it.addons ? it.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+        const itemLineTotal = (it.price + addonsTotal) * it.qty;
 
-          <div class="min-w-0 flex-1">
-            <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">${it.name}</h4>
-            <div class="text-[11px] font-black text-[#0088cc] mt-0.5">
-              R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}
+        return `
+          <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3 flex items-start justify-between gap-3 shadow-sm hover:shadow-md transition">
+            <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05181c] border border-slate-200 dark:border-white/10">
+              <img src="${it.image_url || 'assets/hero-bg.jpg'}" alt="${it.name}" class="h-full w-full object-cover">
             </div>
-            ${it.notes ? `
-              <p class="mt-1 text-[10px] text-amber-800 dark:text-amber-200/90 italic bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-500/20">
-                Obs: ${it.notes}
-              </p>
-            ` : ''}
-          </div>
 
-          <div class="flex items-center gap-1.5 shrink-0 pt-0.5">
-            <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
-              <i data-lucide="minus" class="size-3"></i>
-            </button>
-            <span class="w-5 text-center text-xs font-black text-slate-900 dark:text-white">${it.qty}</span>
-            <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
-              <i data-lucide="plus" class="size-3"></i>
-            </button>
-            <button type="button" onclick="removeCartItem(${it.cartId})" class="ml-1 text-slate-400 hover:text-rose-500 p-1 transition" title="Remover item">
-              <i data-lucide="trash-2" class="size-3.5"></i>
-            </button>
+            <div class="min-w-0 flex-1">
+              <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">${it.name}</h4>
+              <div class="text-[11px] font-black text-[#0088cc] dark:text-[#38bdf8] mt-0.5">
+                R$ ${itemLineTotal.toFixed(2).replace('.', ',')}
+              </div>
+              ${it.addons && it.addons.length > 0 ? `
+                <div class="mt-1 flex flex-wrap gap-1">
+                  ${it.addons.map(a => `
+                    <span class="inline-flex items-center gap-1 rounded bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 px-1.5 py-0.5 text-[9px] font-bold">
+                      + ${a.name} (R$ ${a.price.toFixed(2).replace('.', ',')})
+                    </span>
+                  `).join('')}
+                </div>
+              ` : ''}
+              ${it.notes ? `
+                <p class="mt-1 text-[10px] text-amber-800 dark:text-amber-200/90 italic bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-500/20">
+                  Obs: ${it.notes}
+                </p>
+              ` : ''}
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0 pt-0.5">
+              <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
+                <i data-lucide="minus" class="size-3"></i>
+              </button>
+              <span class="w-5 text-center text-xs font-black text-slate-900 dark:text-white">${it.qty}</span>
+              <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-100 active:scale-95 transition">
+                <i data-lucide="plus" class="size-3"></i>
+              </button>
+              <button type="button" onclick="removeCartItem(${it.cartId})" class="ml-1 text-slate-400 hover:text-rose-500 p-1 transition" title="Remover item">
+                <i data-lucide="trash-2" class="size-3.5"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       lucide.createIcons();
       calculateChange();
@@ -1706,8 +2018,11 @@
       const resultEl = document.getElementById('troco-result-text');
       if (!input || !resultEl) return;
 
-      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      const subtotal = cart.reduce((acc, curr) => {
+        const addonsTotal = curr.addons ? curr.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+        return acc + ((curr.price + addonsTotal) * curr.qty);
+      }, 0);
+      const deliveryFee = orderMode === 'delivery' ? selectedDeliveryFee : 0.0;
       const total = subtotal + deliveryFee;
 
       const valStr = input.value.replace(/[^\d.,]/g, '').replace(',', '.');
@@ -1782,8 +2097,11 @@
         location = "Retirada no Balcão (Av. Alhambra, 783 - Campo Grande RJ)";
       }
 
-      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-      const deliveryFee = orderMode === 'delivery' ? DELIVERY_FEE : 0.0;
+      const subtotal = cart.reduce((acc, curr) => {
+        const addonsTotal = curr.addons ? curr.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+        return acc + ((curr.price + addonsTotal) * curr.qty);
+      }, 0);
+      const deliveryFee = orderMode === 'delivery' ? selectedDeliveryFee : 0.0;
       const total = subtotal + deliveryFee;
 
       let trocoText = "";
@@ -1804,9 +2122,43 @@
       const now = new Date();
       const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
+      // Salva último pedido no cache local para o Banner "Pedir Novamente com 1 Toque"
+      try {
+        const lastOrderObj = {
+          customer: name,
+          location: location,
+          complement: complement,
+          neighborhoodFee: selectedDeliveryFee.toFixed(2),
+          neighborhoodName: selectedNeighborhoodName,
+          mode: orderMode,
+          payment: selectedPaymentMethod,
+          items: cart.map(i => ({
+            id: i.id,
+            name: i.name,
+            price: i.price,
+            qty: i.qty,
+            notes: i.notes || '',
+            addons: i.addons || [],
+            image_url: i.image_url
+          })),
+          total: total
+        };
+        localStorage.setItem('sitio_last_order', JSON.stringify(lastOrderObj));
+      } catch (e) {
+        console.warn("Erro ao salvar último pedido:", e);
+      }
+
       // Integração em tempo real com o Painel de Gestão (Bora de Batata)
       try {
-        const itemsList = cart.map(it => `${it.qty}x ${it.name}${it.notes ? ` [${it.notes}]` : ''} • R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}`);
+        const itemsList = cart.map(it => {
+          let addonsTxt = "";
+          if (it.addons && it.addons.length > 0) {
+            addonsTxt = ` [+ ${it.addons.map(a => a.name).join(', ')}]`;
+          }
+          const addonsSum = it.addons ? it.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+          return `${it.qty}x ${it.name}${addonsTxt}${it.notes ? ` [Obs: ${it.notes}]` : ''} • R$ ${((it.price + addonsSum) * it.qty).toFixed(2).replace('.', ',')}`;
+        });
+
         const existing = JSON.parse(localStorage.getItem('sitio_panel_orders') || 'null');
         const orderList = Array.isArray(existing) ? existing : [];
         const newOrder = {
@@ -1820,12 +2172,13 @@
           status: "recebido",
           phone: "(21) 96758-1148",
           address: orderMode === 'delivery' ? `${location} (${complement})` : location,
-          neighborhood: "Campo Grande",
+          neighborhood: orderMode === 'delivery' ? selectedNeighborhoodName : "Retirada no Balcão",
           notes: notes,
           createdAt: timeStr
         };
         orderList.unshift(newOrder);
         localStorage.setItem('sitio_panel_orders', JSON.stringify(orderList));
+        localStorage.setItem('bora-panel-orders', JSON.stringify(orderList));
       } catch (err) {
         console.warn("Aviso ao sincronizar pedido com o painel:", err);
       }
@@ -1838,6 +2191,7 @@
       if (orderMode === 'delivery') {
         msg += `📍 *Endereço:* ${location}\n`;
         msg += `📌 *Complemento/Ref:* ${complement}\n`;
+        msg += `🏘️ *Região:* ${selectedNeighborhoodName}\n`;
       }
       msg += `💳 *Pagamento:* ${selectedPaymentMethod}${trocoText}\n`;
       if (notes) {
@@ -1846,15 +2200,22 @@
       msg += `─────────────────────────\n`;
       msg += `🛒 *ITENS DO PEDIDO:*\n`;
       cart.forEach(it => {
-        msg += `• ${it.qty}x *${it.name}* — R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}\n`;
+        const addonsSum = it.addons ? it.addons.reduce((sum, a) => sum + a.price, 0) : 0;
+        const lineTotal = (it.price + addonsSum) * it.qty;
+        msg += `• ${it.qty}x *${it.name}* — R$ ${lineTotal.toFixed(2).replace('.', ',')}\n`;
+        if (it.addons && it.addons.length > 0) {
+          it.addons.forEach(a => {
+            msg += `   └ ➕ _${a.name}_ (+R$ ${a.price.toFixed(2).replace('.', ',')})\n`;
+          });
+        }
         if (it.notes) {
-          msg += `   └ _Obs:_ ${it.notes}\n`;
+          msg += `   └ 📝 _Obs:_ ${it.notes}\n`;
         }
       });
       msg += `─────────────────────────\n`;
       msg += `💵 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
       if (orderMode === 'delivery') {
-        msg += `🛵 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+        msg += `🛵 *Taxa de Entrega (${selectedNeighborhoodName}):* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
       }
       msg += `💰 *TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
       msg += `─────────────────────────\n`;
@@ -1863,10 +2224,11 @@
       const url = `https://api.whatsapp.com/send?phone=5521967581148&text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
 
-      // Limpa o carrinho e fecha o drawer
+      // Limpa o carrinho e atualiza o banner
       cart = [];
       updateCartUI();
       closeCartDrawer();
+      checkRepeatOrderBanner();
       showToast("✅ Pedido enviado com sucesso para o WhatsApp!");
     }
 
