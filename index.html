@@ -116,10 +116,10 @@
           </span>
         </button>
 
-        <!-- CTA Pedir no WhatsApp -->
-        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-5 py-2.5 text-xs font-extrabold uppercase tracking-wider text-white dark:text-brand-tealDark shadow-md transition hover:brightness-105 active:scale-95">
-          <i data-lucide="message-circle" class="size-4"></i>
-          <span>Pedir no WhatsApp</span>
+        <!-- CTA Ver Cardápio Topo -->
+        <a href="#cardapio" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-5 py-2.5 text-xs font-extrabold uppercase tracking-wider text-white dark:text-brand-tealDark shadow-md transition hover:brightness-105 active:scale-95">
+          <i data-lucide="utensils" class="size-4"></i>
+          <span>Ver Cardápio</span>
         </a>
 
         <!-- Botão Menu Mobile -->
@@ -183,17 +183,12 @@
           Explore nossos 43 pratos executivos fartos, petiscos crocantes à beira da piscina, bebidas geladas e entrega rápida pelo WhatsApp.
         </p>
 
-        <!-- Botões de Ação Principais -->
-        <div class="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
-          <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-7 py-3.5 text-xs font-extrabold text-white dark:text-brand-tealDark shadow-lg transition hover:brightness-105 active:scale-95 uppercase tracking-wider">
+        <!-- Botão de Ação Principal -->
+        <div class="mt-7 flex items-center">
+          <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-8 py-4 text-xs font-extrabold text-white dark:text-brand-tealDark shadow-lg transition hover:brightness-105 active:scale-95 uppercase tracking-wider">
             <i data-lucide="utensils" class="size-4"></i>
             <span>Ver Cardápio Completo (43 Pratos)</span>
             <i data-lucide="arrow-down" class="size-3.5"></i>
-          </a>
-
-          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-slate-300 dark:border-white/30 bg-white/90 hover:bg-white dark:bg-black/50 dark:hover:bg-black/70 px-6 py-3.5 text-xs font-extrabold text-slate-800 dark:text-white backdrop-blur-md transition shadow-md">
-            <i data-lucide="message-circle" class="size-4 text-emerald-600 dark:text-emerald-400"></i>
-            <span>Pedir no WhatsApp</span>
           </a>
         </div>
       </div>
@@ -1453,18 +1448,5 @@
     btnMenu.onclick = () => mobileMenu.classList.toggle('hidden');
     function closeMobileMenu() { mobileMenu.classList.add('hidden'); }
   </script>
-
-  <!-- Botão Flutuante Oficial WhatsApp -->
-  <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3.5 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-white/80 dark:border-emerald-400/30 group">
-    <div class="relative">
-      <i data-lucide="message-circle" class="size-5"></i>
-      <span class="absolute -top-1 -right-1 flex size-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
-        <span class="relative inline-flex rounded-full size-2.5 bg-emerald-300"></span>
-      </span>
-    </div>
-    <span class="text-xs font-extrabold uppercase tracking-wider hidden sm:inline-block">Pedir no WhatsApp</span>
-  </a>
-
 </body>
 </html>
