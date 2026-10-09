@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sítio Hostel Natureza | Cardápio Online Oficial & Delivery - Campo Grande RJ</title>
-  <meta name="description" content="Cardápio oficial do Sítio Hostel Natureza em Campo Grande, RJ. Pratos executivos fartos, petiscos crocantes, bebidas e sobremesas. Peça pelo WhatsApp para delivery ou retirada.">
+  <title>Sítio Hostel Natureza | Lazer, Hospedagem & Gastronomia em Campo Grande RJ</title>
+  <meta name="description" content="Sítio Hostel Natureza em Campo Grande, RJ. Hospedagem aconchegante, piscina com tobogã, boa comida, drinks incríveis e muito contato com a natureza. Faça seu pedido online ou reserve pelo WhatsApp.">
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +18,13 @@
         extend: {
           colors: {
             brand: {
-              navy: '#0f2e4a',
-              navyDark: '#081c2e',
-              blue: '#0088cc',
-              blueHover: '#0077b6',
-              blueLight: '#38bdf8',
-              teal: '#0a2e36',
-              emerald: '#059669',
+              navy: '#0a2540',
+              navyDark: '#061826',
+              azure: '#008ed6',
+              azureHover: '#0077b6',
+              azureLight: '#38bdf8',
+              azureSoft: '#e0f2fe',
+              slate: '#334155',
             }
           },
           fontFamily: {
@@ -44,6 +44,7 @@
     }
   </script>
   <style>
+    /* Smooth luxury scrollbars */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -52,49 +53,66 @@
       background: #f1f5f9;
     }
     .dark ::-webkit-scrollbar-track {
-      background: #06181c;
+      background: #061826;
     }
     ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+      background: #94a3b8;
+      border-radius: 4px;
     }
     .dark ::-webkit-scrollbar-thumb {
-      background: #134752;
+      background: #1e3a5f;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #c8933e;
+      background: #008ed6;
+    }
+
+    /* Active nav link luxury underline */
+    .nav-link-active {
+      color: #008ed6 !important;
+      position: relative;
+    }
+    .nav-link-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background-color: #008ed6;
+      border-radius: 9999px;
     }
 
     /* ==================== MODO DISPOSITIVO (MOBILE x COMPUTADOR) ==================== */
     @media (min-width: 641px) {
       body.device-mode-mobile {
-        background-color: #0b1518 !important;
-        background-image: radial-gradient(#1e3a40 1px, transparent 1px);
-        background-size: 20px 20px;
-        padding-top: 18px;
-        padding-bottom: 40px;
+        background-color: #08121e !important;
+        background-image: radial-gradient(#1e3a5f 1px, transparent 1px);
+        background-size: 24px 24px;
+        padding-top: 24px;
+        padding-bottom: 50px;
       }
       body.device-mode-mobile #app-frame {
-        max-width: 416px;
+        max-width: 420px;
         margin: 0 auto;
         min-height: 94vh;
         background: #f8fafc;
-        box-shadow: 0 0 0 10px #1e293b, 0 0 0 12px #334155, 0 30px 80px rgba(0, 0, 0, 0.9);
-        border-radius: 46px;
+        box-shadow: 0 0 0 12px #0f172a, 0 0 0 14px #334155, 0 35px 85px rgba(0, 0, 0, 0.95);
+        border-radius: 48px;
         overflow-x: hidden;
         position: relative;
         transition: max-width 0.3s ease;
       }
       .dark body.device-mode-mobile #app-frame {
-        background: #06181c !important;
-        box-shadow: 0 0 0 10px #091c22, 0 0 0 12px #134752, 0 30px 80px rgba(0, 0, 0, 0.95);
+        background: #061826 !important;
+        box-shadow: 0 0 0 12px #09131d, 0 0 0 14px #1e293b, 0 35px 85px rgba(0, 0, 0, 0.98);
       }
       body.device-mode-mobile header#navbar {
-        max-width: 416px !important;
+        max-width: 420px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        border-radius: 46px 46px 0 0;
+        border-radius: 48px 48px 0 0;
       }
-      body.device-mode-mobile nav.hidden.md\:flex {
+      body.device-mode-mobile nav#desktop-nav {
         display: none !important;
       }
       body.device-mode-mobile #btn-menu-mobile {
@@ -104,22 +122,25 @@
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
       }
       body.device-mode-mobile #cart-drawer {
-        max-width: 416px !important;
+        max-width: 420px !important;
       }
       body.device-mode-mobile #mobile-bar-indicator {
         display: flex !important;
+      }
+      body.device-mode-mobile #floating-device-switcher {
+        display: none !important;
       }
     }
 
     @media (max-width: 640px) {
       body.force-desktop-mode {
-        min-width: 1080px !important;
+        min-width: 1100px !important;
         overflow-x: auto !important;
       }
       body.force-desktop-mode header#navbar {
-        min-width: 1080px !important;
+        min-width: 1100px !important;
       }
-      body.force-desktop-mode nav.hidden.md\:flex {
+      body.force-desktop-mode nav#desktop-nav {
         display: flex !important;
       }
       body.force-desktop-mode #btn-menu-mobile {
@@ -131,116 +152,110 @@
     }
   </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 dark:bg-[#06181c] dark:text-slate-100 font-sans antialiased selection:bg-[#c8933e] selection:text-white transition-colors duration-300">
+<body class="bg-[#f8fafc] text-slate-800 dark:bg-[#061826] dark:text-slate-100 font-sans antialiased selection:bg-[#008ed6] selection:text-white transition-colors duration-300">
 
   <!-- Indicador Flutuante quando em Modo Celular no PC -->
-  <div id="mobile-bar-indicator" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-[100] items-center gap-3 rounded-full bg-slate-900/95 text-white px-4 py-2 text-xs font-bold shadow-2xl backdrop-blur-md border border-white/20">
-    <span>📱 Modo Celular Ativo (416px)</span>
-    <button type="button" onclick="setDeviceMode('desktop')" class="rounded-full bg-emerald-600 hover:bg-emerald-500 px-2.5 py-0.5 text-[11px] text-white font-extrabold transition">
-      Voltar p/ Computador
+  <div id="mobile-bar-indicator" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-[100] items-center gap-3 rounded-full bg-[#0a2540]/95 text-white px-4 py-2 text-xs font-bold shadow-2xl backdrop-blur-md border border-white/20">
+    <span>📱 Modo Celular Ativo (420px)</span>
+    <button type="button" onclick="setDeviceMode('desktop')" class="rounded-full bg-[#008ed6] hover:bg-[#0077b6] px-3 py-1 text-[11px] text-white font-extrabold transition shadow-sm">
+      Voltar para Computador
+    </button>
+  </div>
+
+  <!-- SELETOR FLUTUANTE DE DISPOSITIVO (Framer / Agency Standard - Fora do Header!) -->
+  <div id="floating-device-switcher" class="fixed bottom-6 left-6 z-[90] hidden sm:flex items-center gap-1.5 p-1.5 rounded-full bg-slate-900/90 text-white backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.35)] border border-white/20 transition-all hover:scale-105">
+    <span class="text-[10px] font-bold text-slate-400 pl-2 pr-1 uppercase tracking-wider">Visualização:</span>
+    <button type="button" id="btn-device-desktop" onclick="setDeviceMode('desktop')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold transition bg-[#008ed6] text-white shadow-sm" title="Modo Computador">
+      <i data-lucide="monitor" class="size-3.5"></i>
+      <span>PC</span>
+    </button>
+    <button type="button" id="btn-device-mobile" onclick="setDeviceMode('mobile')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-300 hover:text-white transition" title="Modo Celular">
+      <i data-lucide="smartphone" class="size-3.5"></i>
+      <span>Celular</span>
     </button>
   </div>
 
   <div id="app-frame" class="w-full transition-all duration-300">
 
-  <!-- ==================== HEADER / NAVBAR ==================== -->
-  <header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-white/90 dark:bg-[#06191e]/90 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/10 shadow-sm" id="navbar">
+  <!-- ==================== HEADER / NAVBAR (IDÊNTICO À IMAGEM DE REFERÊNCIA) ==================== -->
+  <header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-white/90 dark:bg-[#061826]/90 backdrop-blur-xl border-b border-slate-200/70 dark:border-white/10 shadow-[0_4px_20px_rgba(10,37,64,0.04)]" id="navbar">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
       
-      <!-- Logo Oficial -->
-      <a href="#topo" class="flex items-center gap-3 group">
-        <div class="grid size-11 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-50 dark:bg-white/10 p-1 shadow-sm transition group-hover:border-brand-gold">
-          <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="h-full w-full object-contain">
-        </div>
-        <div>
-          <span class="block text-base font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-lg leading-tight">
-            Sítio Hostel Natureza
+      <!-- Logo Oficial com Brasão Circular 3D e Tipografia Idêntica -->
+      <a href="#topo" class="flex items-center gap-3.5 group">
+        <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="h-12 w-12 sm:h-14 sm:w-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
+        <div class="leading-none">
+          <span class="block text-lg sm:text-xl font-bold tracking-tight text-[#0a2540] dark:text-white">
+            Sítio Hostel
           </span>
-          <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-brand-gold">
-            Gastronomia & Lazer • Campo Grande
+          <span class="block text-lg sm:text-xl font-bold tracking-tight text-[#0a2540] dark:text-white">
+            Natureza
           </span>
         </div>
       </a>
 
       <!-- Menu Desktop Exatamente como na Imagem de Referência -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-bold text-slate-700 dark:text-slate-200">
-        <a href="#topo" class="text-[#0088cc] border-b-2 border-[#0088cc] pb-0.5 transition font-extrabold">Início</a>
-        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Sobre</a>
-        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Hospedagem</a>
-        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Atrativos</a>
-        <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Galeria</a>
-        <a href="#contato" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Contato</a>
+      <nav id="desktop-nav" class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#0a2540] dark:text-slate-200">
+        <a href="#topo" class="nav-link-active font-bold transition">Início</a>
+        <a href="#sobre" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Sobre</a>
+        <a href="#hospedagem" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Hospedagem</a>
+        <a href="#atrativos" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Atrativos</a>
+        <a href="#galeria" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Galeria</a>
+        <a href="#cardapio" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Cardápio</a>
+        <a href="#contato" class="hover:text-[#008ed6] dark:hover:text-[#38bdf8] transition">Contato</a>
       </nav>
 
       <!-- Botões de Ação Topo -->
-      <div class="flex items-center gap-2 sm:gap-2.5">
+      <div class="flex items-center gap-2.5 sm:gap-3">
         
-        <!-- SELETOR VERSÃO: COMPUTADOR x CELULAR -->
-        <div class="inline-flex items-center rounded-full bg-slate-100 dark:bg-white/10 p-0.5 border border-slate-200/80 dark:border-white/15 text-[11px] font-bold shadow-sm" id="device-toggle-group">
-          <button type="button" id="btn-device-desktop" onclick="setDeviceMode('desktop')" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-extrabold transition bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark shadow-sm" title="Versão Computador">
-            <i data-lucide="monitor" class="size-3.5"></i>
-            <span class="hidden sm:inline">PC</span>
-          </button>
-          <button type="button" id="btn-device-mobile" onclick="setDeviceMode('mobile')" class="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition" title="Versão Celular">
-            <i data-lucide="smartphone" class="size-3.5"></i>
-            <span class="hidden sm:inline">Celular</span>
-          </button>
-        </div>
-
         <!-- Toggle Tema Claro / Escuro -->
-        <button id="btn-theme-toggle" type="button" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" class="grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-amber-300 transition active:scale-95 shadow-sm">
+        <button id="btn-theme-toggle" type="button" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" class="grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100/80 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-amber-300 transition active:scale-95 shadow-sm">
           <i data-lucide="sun" id="theme-icon-sun" class="hidden dark:block size-4.5"></i>
           <i data-lucide="moon" id="theme-icon-moon" class="block dark:hidden size-4.5 text-slate-700"></i>
         </button>
 
         <!-- Botão Carrinho com Contador -->
-        <button id="btn-toggle-cart" type="button" aria-label="Abrir carrinho" class="relative grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white transition active:scale-95 shadow-sm">
+        <button id="btn-toggle-cart" type="button" aria-label="Abrir carrinho" class="relative grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100/80 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white transition active:scale-95 shadow-sm">
           <i data-lucide="shopping-bag" class="size-4.5"></i>
-          <span id="cart-badge" class="hidden absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#0088cc] text-white text-[11px] font-extrabold shadow">
+          <span id="cart-badge" class="hidden absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#008ed6] text-white text-[11px] font-extrabold shadow">
             0
           </span>
         </button>
 
-        <!-- CTA Reservar agora Topo Exatamente como na Imagem -->
-        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-5 py-2.5 text-xs font-bold shadow-md shadow-sky-500/20 transition hover:scale-105 active:scale-95">
+        <!-- CTA "Reservar agora" Topo Idêntico à Referência -->
+        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white px-6 py-2.5 text-xs sm:text-sm font-bold shadow-md shadow-sky-500/25 transition-all duration-300 hover:scale-105 active:scale-95">
           <i data-lucide="calendar" class="size-4"></i>
           <span>Reservar agora</span>
         </a>
 
         <!-- Botão Menu Mobile -->
-        <button id="btn-menu-mobile" type="button" class="grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white md:hidden">
+        <button id="btn-menu-mobile" type="button" aria-label="Abrir menu mobile" class="grid size-9 sm:size-10 place-items-center rounded-full border border-slate-200 dark:border-white/20 bg-slate-100 dark:bg-white/10 text-slate-800 dark:text-white md:hidden">
           <i data-lucide="menu" class="size-4.5"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#071f25]/95 px-6 py-4 md:hidden shadow-lg">
-      <nav class="flex flex-col gap-3 text-sm font-bold text-slate-700 dark:text-slate-200">
-        <a href="#topo" class="py-2 text-[#0088cc] font-extrabold" onclick="closeMobileMenu()">Início</a>
-        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Sobre</a>
-        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Hospedagem</a>
-        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Atrativos</a>
-        <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Galeria</a>
-        <a href="#contato" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Contato</a>
+    <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-white/10 bg-white/98 dark:bg-[#061826]/98 px-6 py-5 md:hidden shadow-2xl">
+      <nav class="flex flex-col gap-3 text-sm font-semibold text-[#0a2540] dark:text-slate-200">
+        <a href="#topo" class="py-2 text-[#008ed6] font-bold" onclick="closeMobileMenu()">Início</a>
+        <a href="#sobre" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Sobre</a>
+        <a href="#hospedagem" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Hospedagem</a>
+        <a href="#atrativos" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Atrativos</a>
+        <a href="#galeria" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Galeria</a>
+        <a href="#cardapio" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Cardápio Online (43 Itens)</a>
+        <a href="#contato" class="py-2 hover:text-[#008ed6]" onclick="closeMobileMenu()">Contato & Localização</a>
         
         <!-- Alternador Computador / Celular no Drawer -->
-        <div class="pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
+        <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
           <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Modo de Exibição:</span>
-          <div class="inline-flex rounded-lg bg-slate-100 dark:bg-white/10 p-0.5 text-xs font-bold">
-            <button type="button" onclick="setDeviceMode('desktop'); closeMobileMenu();" class="px-2.5 py-1 rounded-md" id="btn-drawer-pc">💻 PC</button>
-            <button type="button" onclick="setDeviceMode('mobile'); closeMobileMenu();" class="px-2.5 py-1 rounded-md" id="btn-drawer-mob">📱 Celular</button>
+          <div class="inline-flex rounded-full bg-slate-100 dark:bg-white/10 p-1 text-xs font-bold">
+            <button type="button" onclick="setDeviceMode('desktop'); closeMobileMenu();" class="px-3 py-1.5 rounded-full" id="btn-drawer-pc">💻 PC</button>
+            <button type="button" onclick="setDeviceMode('mobile'); closeMobileMenu();" class="px-3 py-1.5 rounded-full" id="btn-drawer-mob">📱 Celular</button>
           </div>
         </div>
 
-        <div class="pt-2 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
-          <span class="text-xs">Alternar Tema:</span>
-          <button type="button" onclick="toggleTheme()" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 text-xs font-bold">
-            ☀️ / 🌙 Mudar Tema
-          </button>
-        </div>
-
-        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#0088cc] px-4 py-3 text-xs font-bold text-white shadow-md">
+        <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#008ed6] px-4 py-3 text-xs font-bold text-white shadow-md">
           <i data-lucide="calendar" class="size-4"></i>
           <span>Reservar agora</span>
         </a>
@@ -248,15 +263,17 @@
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION (IDENTIDADE VISUAL DA IMAGEM) ==================== -->
+
+
+  <!-- ==================== HERO SECTION (IDENTIDADE VISUAL DA IMAGEM DE REFERÊNCIA) ==================== -->
   <section id="topo" class="relative isolate min-h-[92vh] flex flex-col justify-between overflow-hidden pt-28 pb-10 sm:pt-36 sm:pb-12">
     
-    <!-- Imagem de Fundo Oficial do Sítio (Mantida Conforme Solicitado) -->
+    <!-- Foto Real do Sítio com Iluminação Ambiente Radial Suave (Sem lavar a imagem da piscina!) -->
     <div class="absolute inset-0 -z-20 overflow-hidden">
-      <img src="assets/hero-bg.jpg" alt="Sítio Natureza Piscina e Tobogã Campo Grande" class="h-full w-full object-cover object-center scale-[1.01] transition-transform duration-1000">
-      <!-- Gradiente suave na lateral esquerda para leitura perfeita dos textos -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/55 to-transparent dark:from-[#06181c]/95 dark:via-[#06181c]/55 dark:to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f8fafc] dark:from-[#06181c] to-transparent"></div>
+      <img src="assets/hero-bg.jpg" alt="Piscina com Tobogã do Sítio Hostel Natureza" class="h-full w-full object-cover object-center scale-[1.01] transition-transform duration-1000">
+      <!-- Glow radial suave concentrado atrás do texto para máxima legibilidade, preservando a piscina e céu vivos -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_70%_at_15%_45%,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.78)_40%,rgba(255,255,255,0.18)_75%,transparent_100%)] dark:bg-[radial-gradient(ellipse_75%_70%_at_15%_45%,rgba(6,24,38,0.96)_0%,rgba(6,24,38,0.82)_40%,rgba(6,24,38,0.25)_75%,transparent_100%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f8fafc] dark:from-[#061826] to-transparent"></div>
     </div>
 
     <!-- Conteúdo Central Hero com Textos e Tipografia Idênticos à Imagem -->
@@ -264,89 +281,95 @@
       <div class="max-w-2xl">
         
         <!-- Tag Superior: NATUREZA • LAZER • HOSPEDAGEM -->
-        <div class="text-[#0088cc] dark:text-[#38bdf8] font-bold text-xs sm:text-sm tracking-[0.22em] uppercase mb-2">
+        <div class="text-[#008ed6] dark:text-[#38bdf8] font-bold text-xs sm:text-sm tracking-[0.26em] uppercase mb-3">
           NATUREZA &bull; LAZER &bull; HOSPEDAGEM
         </div>
 
         <!-- Título Principal com Tipografia e Cores Idênticas -->
-        <h1 class="font-sans font-black tracking-tight text-4xl sm:text-6xl lg:text-7xl leading-[1.03]">
-          <span class="block text-[#0f2e4a] dark:text-white uppercase font-black">SÍTIO HOSTEL</span>
-          <span class="block text-[#0088cc] dark:text-[#38bdf8] uppercase font-black">NATUREZA</span>
+        <h1 class="font-sans font-black tracking-[-0.03em] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[0.98]">
+          <span class="block text-[#0a2540] dark:text-white uppercase font-black">SÍTIO HOSTEL</span>
+          <span class="block text-[#008ed6] dark:text-[#38bdf8] uppercase font-black">NATUREZA</span>
         </h1>
 
         <!-- Duas Ondas Decorativas de Água em Azul Celeste -->
-        <div class="my-4 flex flex-col gap-1 w-28 sm:w-36 text-[#0088cc] dark:text-[#38bdf8]">
-          <svg viewBox="0 0 140 14" fill="none" class="w-full h-3">
-            <path d="M2 7 C 15 1, 25 13, 38 7 C 51 1, 61 13, 74 7 C 87 1, 97 13, 110 7 C 123 1, 133 13, 138 7" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+        <div class="my-4 flex flex-col gap-1.5 w-32 sm:w-40 text-[#008ed6] dark:text-[#38bdf8]">
+          <svg viewBox="0 0 160 16" fill="none" class="w-full h-3.5">
+            <path d="M 2 8 C 18 1, 32 15, 48 8 C 64 1, 78 15, 94 8 C 110 1, 124 15, 140 8 C 148 4, 154 6, 158 8" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
           </svg>
-          <svg viewBox="0 0 140 14" fill="none" class="w-full h-3">
-            <path d="M2 7 C 15 1, 25 13, 38 7 C 51 1, 61 13, 74 7 C 87 1, 97 13, 110 7 C 123 1, 133 13, 138 7" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <svg viewBox="0 0 160 16" fill="none" class="w-full h-3.5">
+            <path d="M 2 8 C 18 1, 32 15, 48 8 C 64 1, 78 15, 94 8 C 110 1, 124 15, 140 8 C 148 4, 154 6, 158 8" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
           </svg>
         </div>
 
         <!-- Subtítulo com Texto Exato da Imagem de Referência -->
-        <p class="mt-2 text-sm sm:text-base lg:text-lg font-medium leading-relaxed text-slate-700 dark:text-slate-200 max-w-xl">
+        <p class="mt-3 text-base sm:text-lg font-medium leading-relaxed text-[#334155] dark:text-slate-200 max-w-xl">
           Hospedagem aconchegante, piscina com tobogã, boa comida, drinks incríveis e muito contato com a natureza.
         </p>
 
         <!-- Botões Exatos da Imagem de Referência -->
-        <div class="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+        <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
           <!-- Botão 1: Reservar agora -->
-          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-7 py-3.5 text-xs sm:text-sm font-bold shadow-lg shadow-sky-500/25 transition hover:scale-105 active:scale-95">
+          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="inline-flex items-center gap-2.5 rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white px-8 py-4 text-xs sm:text-sm font-bold shadow-[0_10px_25px_rgba(0,142,214,0.35)] transition-all duration-300 hover:scale-105 active:scale-95">
             <i data-lucide="calendar" class="size-4"></i>
             <span>Reservar agora</span>
           </a>
 
           <!-- Botão 2: Ver o espaço -->
-          <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full border-2 border-[#0088cc] bg-white/90 hover:bg-white dark:bg-black/40 dark:hover:bg-black/60 text-[#0f2e4a] dark:text-white px-7 py-3.5 text-xs sm:text-sm font-bold shadow-md transition hover:scale-105 active:scale-95">
-            <i data-lucide="play-circle" class="size-4 text-[#0088cc]"></i>
+          <a href="#sobre" class="inline-flex items-center gap-2.5 rounded-full border border-[#008ed6]/40 hover:border-[#008ed6] bg-white/95 hover:bg-white dark:bg-[#061826]/90 dark:hover:bg-[#061826] text-[#0a2540] dark:text-white px-8 py-4 text-xs sm:text-sm font-bold shadow-md transition-all duration-300 hover:scale-105 active:scale-95">
+            <span class="grid size-5 place-items-center rounded-full bg-[#008ed6]/15 text-[#008ed6]">
+              <i data-lucide="play" class="size-2.5 fill-current ml-0.5"></i>
+            </span>
             <span>Ver o espaço</span>
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Barra Inferior de Destaques da Capa (Exatamente como na Imagem de Referência) -->
-    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-10 sm:mt-12">
-      <div class="rounded-3xl sm:rounded-full bg-white/95 dark:bg-[#071f25]/95 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-2xl p-4 sm:px-8 sm:py-4 grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/60 dark:divide-white/10">
+    <!-- Barra Inferior de Destaques (Exatamente como na Imagem de Referência) -->
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16">
+      <div class="rounded-3xl lg:rounded-full bg-white/95 dark:bg-[#071f25]/95 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-[0_20px_50px_rgba(10,37,64,0.12)] p-5 sm:px-8 sm:py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-white/10">
         
-        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
-          <div class="text-[#0088cc] shrink-0">
+        <!-- 1. Piscina com tobogã -->
+        <div class="flex items-center gap-3.5 pt-2 sm:pt-0 sm:px-3">
+          <div class="text-[#008ed6] shrink-0 grid size-11 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5">
             <i data-lucide="waves" class="size-6"></i>
           </div>
           <div>
-            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Piscina com tobogã</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-300">Diversão para toda a família</p>
+            <h4 class="text-sm font-extrabold text-[#0a2540] dark:text-white">Piscina com tobogã</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Diversão para toda a família</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
-          <div class="text-[#0088cc] shrink-0">
+        <!-- 2. Comida boa e drinks -->
+        <div class="flex items-center gap-3.5 pt-4 sm:pt-0 sm:px-3">
+          <div class="text-[#008ed6] shrink-0 grid size-11 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5">
             <i data-lucide="utensils" class="size-6"></i>
           </div>
           <div>
-            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Comida boa e drinks</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-300">Sabores que combinam com a sua natureza</p>
+            <h4 class="text-sm font-extrabold text-[#0a2540] dark:text-white">Comida boa e drinks</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Sabores que combinam com a sua natureza</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
-          <div class="text-[#0088cc] shrink-0">
+        <!-- 3. Hospedagem completa -->
+        <div class="flex items-center gap-3.5 pt-4 sm:pt-0 sm:px-3">
+          <div class="text-[#008ed6] shrink-0 grid size-11 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5">
             <i data-lucide="users" class="size-6"></i>
           </div>
           <div>
-            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Hospedagem completa</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-300">Conforto, lazer e experiências</p>
+            <h4 class="text-sm font-extrabold text-[#0a2540] dark:text-white">Hospedagem completa</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Conforto, lazer e experiências</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-3 pt-2 sm:pt-0 sm:px-3">
-          <div class="text-[#0088cc] shrink-0">
+        <!-- 4. Em meio à natureza -->
+        <div class="flex items-center gap-3.5 pt-4 sm:pt-0 sm:px-3">
+          <div class="text-[#008ed6] shrink-0 grid size-11 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5">
             <i data-lucide="map-pin" class="size-6"></i>
           </div>
           <div>
-            <h4 class="text-xs sm:text-sm font-extrabold text-[#0f2e4a] dark:text-white">Em meio à natureza</h4>
-            <p class="text-[11px] text-slate-500 dark:text-slate-300">Localização privilegiada</p>
+            <h4 class="text-sm font-extrabold text-[#0a2540] dark:text-white">Em meio à natureza</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Localização privilegiada</p>
           </div>
         </div>
 
@@ -356,73 +379,346 @@
 
 
 
+  <!-- ==================== SEÇÃO: SOBRE O SÍTIO HOSTEL NATUREZA ==================== -->
+  <section id="sobre" class="py-24 bg-white dark:bg-[#071d28] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <!-- Texto Sobre -->
+        <div>
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#008ed6]">
+            <i data-lucide="compass" class="size-3.5"></i> Conheça Nosso Espaço
+          </span>
+          <h2 class="mt-4 font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0a2540] dark:text-white leading-[1.15]">
+            Um refúgio de paz, água fresca e natureza exuberante em Campo Grande
+          </h2>
+          <p class="mt-4 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Localizado na Av. Alhambra, o <strong class="text-[#0a2540] dark:text-white">Sítio Hostel Natureza</strong> foi criado para quem busca relaxar com a família, reunir amigos ou comemorar momentos especiais em um ambiente seguro, acolhedor e cercado pelo verde.
+          </p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Aqui você desfruta da nossa ampla piscina com tobogã para todas as idades, bar de drinks artesanais, cozinha com refeições executivas e petiscos crocantes preparados na hora, além de suítes confortáveis para hospedagem e Day Use.
+          </p>
+
+          <!-- Destaques em Cards -->
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-4">
+              <div class="text-[#008ed6] font-black text-2xl sm:text-3xl">100%</div>
+              <div class="text-xs font-bold text-[#0a2540] dark:text-white mt-1">Contato com a Natureza</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">Área verde preservada e ar puro</div>
+            </div>
+            <div class="rounded-2xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-4">
+              <div class="text-[#008ed6] font-black text-2xl sm:text-3xl">+40</div>
+              <div class="text-xs font-bold text-[#0a2540] dark:text-white mt-1">Opções Gastronômicas</div>
+              <div class="text-[11px] text-slate-500 mt-0.5">Pratos, petiscos e drinks artesanais</div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#atrativos" class="inline-flex items-center gap-2 rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white px-7 py-3.5 text-xs sm:text-sm font-bold shadow-md shadow-sky-500/20 transition hover:scale-105 active:scale-95">
+              <span>Ver Nossos Atrativos</span>
+              <i data-lucide="arrow-right" class="size-4"></i>
+            </a>
+            <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/20 bg-white dark:bg-white/5 text-[#0a2540] dark:text-white px-7 py-3.5 text-xs sm:text-sm font-bold hover:bg-slate-50 dark:hover:bg-white/10 transition">
+              <i data-lucide="message-circle" class="size-4 text-[#008ed6]"></i>
+              <span>Falar no WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Foto Destaque do Espaço -->
+        <div class="relative">
+          <div class="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-2xl border border-slate-200/80 dark:border-white/10">
+            <img src="assets/hero-bg.jpg" alt="Estrutura e Lazer Sítio Hostel Natureza" class="h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            <div class="absolute bottom-5 left-5 right-5 text-white">
+              <span class="inline-block rounded-full bg-[#008ed6] px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider">
+                Campo Grande, RJ
+              </span>
+              <h3 class="mt-2 text-xl font-bold">Piscina cristalina, tobogã & decks ensolarados</h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ==================== SEÇÃO: HOSPEDAGEM & DAY USE ==================== -->
+  <section id="hospedagem" class="py-24 bg-slate-50 dark:bg-[#061826] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#008ed6]">
+          <i data-lucide="home" class="size-3.5"></i> Conforto & Descanso
+        </span>
+        <h2 class="mt-3 font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a2540] dark:text-white">
+          Hospedagem Completa & Day Use
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          Opções flexíveis para você passar o dia se divertindo na piscina ou se hospedar para acordar ouvindo o som dos pássaros.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Card 1: Day Use -->
+        <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071d28] p-7 shadow-sm transition hover:shadow-xl hover:-translate-y-1">
+          <div class="grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5 text-[#008ed6] mb-5">
+            <i data-lucide="sun" class="size-6"></i>
+          </div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#008ed6]">Diversão do Dia</span>
+          <h3 class="mt-1 text-xl font-bold text-[#0a2540] dark:text-white">Day Use na Piscina</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Acesso completo à piscina com tobogã, espreguiçadeiras, área verde e serviço de bar e restaurante durante todo o dia.
+          </p>
+          <ul class="mt-5 space-y-2.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-white/10 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Piscina com tobogã liberada</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Atendimento de garçom no deck</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Estacionamento e duchas</li>
+          </ul>
+          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Day%20Use%20no%20S%C3%ADtio%20Natureza." target="_blank" class="mt-6 block w-full text-center rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white py-3 text-xs font-bold transition shadow-sm">
+            Consultar Valores de Day Use
+          </a>
+        </div>
+
+        <!-- Card 2: Suítes e Quartos -->
+        <div class="rounded-3xl border-2 border-[#008ed6] bg-white dark:bg-[#071d28] p-7 shadow-xl transition hover:-translate-y-1 relative">
+          <span class="absolute -top-3.5 right-6 rounded-full bg-[#008ed6] px-3.5 py-1 text-[10px] font-black uppercase text-white shadow">
+            Mais Procurado
+          </span>
+          <div class="grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5 text-[#008ed6] mb-5">
+            <i data-lucide="bed-double" class="size-6"></i>
+          </div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#008ed6]">Pernoite & Fim de Semana</span>
+          <h3 class="mt-1 text-xl font-bold text-[#0a2540] dark:text-white">Suítes Aconchegantes</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Quartos privativos com camas confortáveis, ar condicionado e todo o sossego que sua noite de descanso merece.
+          </p>
+          <ul class="mt-5 space-y-2.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-white/10 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Ar condicionado & Wi-Fi</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Café da manhã opcional</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Acesso ilimitado ao lazer</li>
+          </ul>
+          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20reservar%20uma%20su%C3%ADte%20no%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" class="mt-6 block w-full text-center rounded-full bg-[#0a2540] hover:bg-black text-white dark:bg-[#008ed6] dark:hover:bg-[#0077b6] py-3 text-xs font-bold transition shadow-sm">
+            Ver Disponibilidade de Suítes
+          </a>
+        </div>
+
+        <!-- Card 3: Locação p/ Eventos -->
+        <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071d28] p-7 shadow-sm transition hover:shadow-xl hover:-translate-y-1">
+          <div class="grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/5 text-[#008ed6] mb-5">
+            <i data-lucide="party-popper" class="size-6"></i>
+          </div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#008ed6]">Comemorações</span>
+          <h3 class="mt-1 text-xl font-bold text-[#0a2540] dark:text-white">Eventos & Aniversários</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Estrutura perfeita para churrascos, festas de aniversário, confraternizações de empresas e encontros de família.
+          </p>
+          <ul class="mt-5 space-y-2.5 text-xs text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-white/10 pt-4">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Área coberta e churrasqueira</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Pacotes com gastronomia inclusa</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 text-[#008ed6]"></i> Capacidade flexível de convidados</li>
+          </ul>
+          <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20evento%20no%20S%C3%ADtio%20Natureza." target="_blank" class="mt-6 block w-full text-center rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white py-3 text-xs font-bold transition shadow-sm">
+            Solicitar Orçamento de Evento
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ==================== SEÇÃO: ATRATIVOS DO RESORT ==================== -->
+  <section id="atrativos" class="py-24 bg-white dark:bg-[#071d28] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#008ed6]">
+            <i data-lucide="sparkles" class="size-3.5"></i> Experiências Únicas
+          </span>
+          <h2 class="mt-3 font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a2540] dark:text-white">
+            Nossos Principais Atrativos
+          </h2>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 max-w-md">
+          Cada detalhe do Sítio Natureza foi pensado para proporcionar dias inesquecíveis de diversão e descanso no Rio de Janeiro.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <div class="group rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 transition hover:-translate-y-1 hover:border-[#008ed6]/40 hover:shadow-xl">
+          <div class="text-[#008ed6] grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/10 mb-4 transition group-hover:scale-110">
+            <i data-lucide="waves" class="size-6"></i>
+          </div>
+          <h3 class="text-base font-bold text-[#0a2540] dark:text-white">Piscina com Tobogã</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Água tratada e cristalina, com escorregador aquático azul que diverte crianças, jovens e adultos o dia inteiro.
+          </p>
+        </div>
+
+        <div class="group rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 transition hover:-translate-y-1 hover:border-[#008ed6]/40 hover:shadow-xl">
+          <div class="text-[#008ed6] grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/10 mb-4 transition group-hover:scale-110">
+            <i data-lucide="utensils-crossed" class="size-6"></i>
+          </div>
+          <h3 class="text-base font-bold text-[#0a2540] dark:text-white">Bar & Petiscaria</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Cardápio completo com carnes na chapa, batatas crocantes, porções fartas, sucos naturais e cervejas bem geladas.
+          </p>
+        </div>
+
+        <div class="group rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 transition hover:-translate-y-1 hover:border-[#008ed6]/40 hover:shadow-xl">
+          <div class="text-[#008ed6] grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/10 mb-4 transition group-hover:scale-110">
+            <i data-lucide="trees" class="size-6"></i>
+          </div>
+          <h3 class="text-base font-bold text-[#0a2540] dark:text-white">Clima de Serra & Bosque</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Vegetação nativa, árvores frondosas, brisa suave e sombra fresca para relaxar nas redes e espreguiçadeiras.
+          </p>
+        </div>
+
+        <div class="group rounded-3xl border border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-6 transition hover:-translate-y-1 hover:border-[#008ed6]/40 hover:shadow-xl">
+          <div class="text-[#008ed6] grid size-12 place-items-center rounded-2xl bg-sky-50 dark:bg-white/10 mb-4 transition group-hover:scale-110">
+            <i data-lucide="shield-check" class="size-6"></i>
+          </div>
+          <h3 class="text-base font-bold text-[#0a2540] dark:text-white">Segurança & Conforto</h3>
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Ambiente familiar fechado e controlado, com vestiários limpos, duchas e suporte atencioso de nossa equipe.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ==================== SEÇÃO: GALERIA DE FOTOS ==================== -->
+  <section id="galeria" class="py-24 bg-slate-50 dark:bg-[#061826] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#008ed6]">
+          <i data-lucide="image" class="size-3.5"></i> Fotos do Local
+        </span>
+        <h2 class="mt-3 font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a2540] dark:text-white">
+          Galeria Sítio Natureza
+        </h2>
+        <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">
+          Veja um pouco do que espera por você e sua família aqui em Campo Grande RJ.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-slate-200 dark:bg-white/10 shadow-md">
+          <img src="assets/hero-bg.jpg" alt="Piscina com Tobogã" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#38bdf8]">Lazer Aquático</span>
+            <h4 class="text-sm font-bold">Piscina ensolarada com tobogã</h4>
+          </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-slate-200 dark:bg-white/10 shadow-md">
+          <img src="https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308453/f10c54bfChatGPT_Image_3_de_jun._de_2026__13_23_33.png" alt="Prato Executivo Frango Crocante" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#38bdf8]">Gastronomia</span>
+            <h4 class="text-sm font-bold">Pratos executivos fartos e artesanais</h4>
+          </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-slate-200 dark:bg-white/10 shadow-md">
+          <img src="https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308488/3b6bb867-5d51-4cfa-8919-ca3b6e85744a.jpeg" alt="Petiscos de Alcatra com Batata" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#38bdf8]">Petiscos & Drinks</span>
+            <h4 class="text-sm font-bold">Porções crocantes para curtir na piscina</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
   <!-- ==================== SEÇÃO: CARDÁPIO ONLINE OFICIAL (TODOS OS 43 PRODUTOS REAIS) ==================== -->
-  <section id="cardapio" class="py-20 bg-white dark:bg-[#071d23] border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
+  <section id="cardapio" class="py-24 bg-white dark:bg-[#071d28] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       
       <!-- Topo do Cardápio -->
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-b border-slate-200/80 dark:border-white/10 pb-8">
         <div>
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/30 bg-emerald-50 dark:bg-brand-gold/10 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-emerald-800 dark:text-brand-gold">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 dark:bg-sky-950/40 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#008ed6]">
             <i data-lucide="utensils" class="size-3.5"></i> Cardápio Oficial Cadastrado
           </span>
-          <h2 class="mt-3 font-serif text-3xl font-extrabold sm:text-4xl text-slate-900 dark:text-white">
+          <h2 class="mt-3 font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0a2540] dark:text-white">
             Faça Seu Pedido Online
           </h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 max-w-xl">
-            Clique no prato para personalizar observações (ex.: sem cebola, molho à parte) e enviar o pedido diretamente no WhatsApp oficial do sítio!
+            Clique no prato para personalizar observações (ex.: sem cebola, molho à parte) e enviar seu pedido diretamente no WhatsApp do sítio!
           </p>
         </div>
 
         <!-- Campo de Busca no Cardápio -->
         <div class="relative w-full md:w-80">
           <i data-lucide="search" class="absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-slate-400"></i>
-          <input type="text" id="menu-search-input" oninput="filterMenuSearch(this.value)" placeholder="Buscar prato, petisco ou suco..." class="w-full rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 pl-11 pr-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 outline-none transition focus:border-emerald-600 dark:focus:border-brand-gold focus:bg-white dark:focus:bg-white/15 shadow-sm">
+          <input type="text" id="menu-search-input" oninput="filterMenuSearch(this.value)" placeholder="Buscar prato, petisco ou suco..." class="w-full rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 pl-11 pr-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 outline-none transition focus:border-[#008ed6] focus:bg-white dark:focus:bg-white/15 shadow-sm">
         </div>
       </div>
 
       <!-- Barra de Filtros por Categoria -->
       <div class="mt-8 flex gap-2.5 overflow-x-auto pb-3 scrollbar-none" id="categories-filter-bar">
-        <button type="button" onclick="filterCategory('todos')" class="category-btn active shrink-0 rounded-full px-5 py-2.5 text-xs font-bold transition bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark shadow-sm" data-cat="todos">
+        <button type="button" onclick="filterCategory('todos')" class="category-btn active shrink-0 rounded-full px-5 py-2.5 text-xs font-bold transition bg-[#008ed6] text-white shadow-md shadow-sky-500/20" data-cat="todos">
           Todos os Pratos (43)
         </button>
         
-          <button type="button" onclick="filterCategory('Mais Pedidos do Natureza')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Mais Pedidos do Natureza">
-            Mais Pedidos do Natureza (4)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Pratos Executivos')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Pratos Executivos">
-            Pratos Executivos (6)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Executivo + Suco 300ml')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Executivo + Suco 300ml">
-            Executivo + Suco 300ml (4)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Executivo + Coca Lata')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Executivo + Coca Lata">
-            Executivo + Coca Lata (4)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Petiscos com Batata ou Aipim')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Petiscos com Batata ou Aipim">
-            Petiscos com Batata ou Aipim (8)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Petiscos PUROS')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Petiscos PUROS">
-            Petiscos PUROS (6)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Guarnições')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Guarnições">
-            Guarnições (6)
-          </button>
-        
-          <button type="button" onclick="filterCategory('Bebidas')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100 hover:bg-slate-200 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40" data-cat="Bebidas">
-            Bebidas (5)
-          </button>
-        
+        <button type="button" onclick="filterCategory('Mais Pedidos do Natureza')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Mais Pedidos do Natureza">
+          Mais Pedidos do Natureza (4)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Pratos Executivos')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Pratos Executivos">
+          Pratos Executivos (6)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Executivo + Suco 300ml')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Executivo + Suco 300ml">
+          Executivo + Suco 300ml (4)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Executivo + Coca Lata')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Executivo + Coca Lata">
+          Executivo + Coca Lata (4)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Petiscos com Batata ou Aipim')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Petiscos com Batata ou Aipim">
+          Petiscos com Batata ou Aipim (8)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Petiscos PUROS')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Petiscos PUROS">
+          Petiscos PUROS (6)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Guarnições')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Guarnições">
+          Guarnições (6)
+        </button>
+      
+        <button type="button" onclick="filterCategory('Bebidas')" class="category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]" data-cat="Bebidas">
+          Bebidas (5)
+        </button>
       </div>
 
       <!-- Grade de Itens do Cardápio com Fotos Reais -->
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="menu-items-grid">
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="menu-items-grid">
         <!-- Renderizado dinamicamente pelo JavaScript com fotos reais do CardapioWeb -->
       </div>
 
@@ -430,47 +726,53 @@
       <div id="no-items-found" class="hidden my-16 text-center text-slate-400">
         <i data-lucide="search-x" class="size-12 mx-auto mb-3 opacity-40"></i>
         <p class="text-base font-bold text-slate-700 dark:text-slate-300">Nenhum prato encontrado com esse termo.</p>
-        <button type="button" onclick="clearSearch()" class="mt-3 text-xs font-extrabold text-emerald-700 dark:text-brand-gold underline">Ver todos os pratos</button>
+        <button type="button" onclick="clearSearch()" class="mt-3 text-xs font-extrabold text-[#008ed6] underline">Ver todos os pratos</button>
       </div>
 
     </div>
   </section>
 
+
+
   <!-- ==================== SEÇÃO: LOCALIZAÇÃO & COMO CHEGAR (100% REAL) ==================== -->
-  <section id="localizacao" class="py-16 bg-slate-50 dark:bg-[#06181c] border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
+  <section id="localizacao" class="py-20 bg-slate-50 dark:bg-[#061826] border-t border-slate-200/80 dark:border-white/10 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-6 sm:p-10 shadow-sm">
+      <div class="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#071f25] p-6 sm:p-10 shadow-sm">
         
         <div class="grid gap-8 lg:grid-cols-3 items-center">
           
           <div class="lg:col-span-2">
-            <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-emerald-700 dark:text-brand-gold">
+            <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-[#008ed6]">
               <i data-lucide="navigation" class="size-3.5"></i> Endereço Oficial
             </span>
-            <h2 class="mt-2 font-serif text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h2 class="mt-2 font-heading text-2xl sm:text-3xl font-extrabold text-[#0a2540] dark:text-white">
               Av. Alhambra, 783 - Campo Grande, RJ
             </h2>
             <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Fácil acesso em Campo Grande. Você pode retirar seu pedido diretamente no local ou solicitar entrega no seu endereço pelo nosso delivery via WhatsApp.
+              Fácil acesso em Campo Grande. Você pode retirar seu pedido diretamente no local, almoçar na beira da piscina ou solicitar entrega rápida pelo nosso delivery no WhatsApp.
             </p>
-            <div class="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
+            <div class="mt-5 flex flex-wrap gap-5 text-xs font-semibold text-slate-600 dark:text-slate-300">
               <div class="flex items-center gap-2">
-                <i data-lucide="phone" class="size-4 text-emerald-600 dark:text-brand-gold"></i>
+                <i data-lucide="phone" class="size-4 text-[#008ed6]"></i>
                 <span>(21) 96758-1148</span>
               </div>
               <div class="flex items-center gap-2">
-                <i data-lucide="instagram" class="size-4 text-emerald-600 dark:text-brand-gold"></i>
+                <i data-lucide="instagram" class="size-4 text-[#008ed6]"></i>
                 <span>@sitiohostelnatureza</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="size-4 text-[#008ed6]"></i>
+                <span>Dom a Ter: 10h às 17h</span>
               </div>
             </div>
           </div>
 
           <div class="flex flex-col gap-3">
-            <a href="https://maps.google.com/?q=Av.+Alhambra,+783+-+Campo+Grande,+Rio+de+Janeiro+-+RJ" target="_blank" rel="noreferrer" class="flex items-center justify-center gap-2 rounded-2xl bg-slate-900 hover:bg-black text-white dark:bg-white dark:text-slate-900 px-6 py-3.5 text-xs font-extrabold transition shadow-md">
+            <a href="https://maps.google.com/?q=Av.+Alhambra,+783+-+Campo+Grande,+Rio+de+Janeiro+-+RJ" target="_blank" rel="noreferrer" class="flex items-center justify-center gap-2 rounded-full bg-[#0a2540] hover:bg-black text-white dark:bg-white dark:text-[#0a2540] px-6 py-4 text-xs font-extrabold transition shadow-md">
               <i data-lucide="map" class="size-4"></i>
               <span>Abrir Rota no Google Maps</span>
             </a>
-            <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3.5 text-xs font-extrabold transition shadow-md">
+            <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="flex items-center justify-center gap-2 rounded-full bg-[#008ed6] hover:bg-[#0077b6] text-white px-6 py-4 text-xs font-extrabold transition shadow-md shadow-sky-500/25">
               <i data-lucide="message-circle" class="size-4"></i>
               <span>Chamar no WhatsApp</span>
             </a>
@@ -482,67 +784,69 @@
     </div>
   </section>
 
+
+
   <!-- ==================== CONTATO, LOCALIZAÇÃO & RODAPÉ ==================== -->
-  <footer id="contato" class="bg-[#051a1f] border-t border-white/10 pt-16 pb-12 text-slate-300">
+  <footer id="contato" class="bg-[#051420] border-t border-white/10 pt-16 pb-12 text-slate-300">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         
         <!-- Coluna 1: Marca -->
         <div>
           <div class="flex items-center gap-3">
-            <div class="grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 p-1">
-              <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="h-full w-full object-contain">
-            </div>
+            <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="size-12 object-contain">
             <div>
               <span class="block text-base font-extrabold text-white">Sítio Hostel Natureza</span>
-              <span class="block text-[10px] uppercase tracking-widest text-brand-gold">Campo Grande • RJ</span>
+              <span class="block text-[10px] uppercase tracking-widest text-[#38bdf8]">Campo Grande • RJ</span>
             </div>
           </div>
           <p class="mt-4 text-xs leading-6 text-slate-400">
-            Pratos executivos, petiscos e bebidas com entrega rápida em Campo Grande ou retirada no balcão.
+            Hospedagem aconchegante, piscina com tobogã, pratos executivos, petiscos crocantes e drinks em meio à natureza.
           </p>
-          <div class="mt-4 flex items-center gap-3">
-            <a href="https://instagram.com/sitiohostelnatureza" target="_blank" class="grid size-9 place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-brand-gold hover:text-brand-gold transition">
-              <i data-lucide="instagram" class="size-4.5"></i>
+          <div class="mt-5 flex items-center gap-3">
+            <a href="https://instagram.com/sitiohostelnatureza" target="_blank" rel="noreferrer" class="grid size-9 place-items-center rounded-full bg-white/5 border border-white/10 hover:border-[#008ed6] hover:text-[#008ed6] transition">
+              <i data-lucide="instagram" class="size-4"></i>
             </a>
-            <a href="https://wa.me/5521967581148" target="_blank" class="grid size-9 place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-emerald-400 hover:text-emerald-400 transition">
-              <i data-lucide="message-circle" class="size-4.5"></i>
+            <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="grid size-9 place-items-center rounded-full bg-white/5 border border-white/10 hover:border-[#008ed6] hover:text-[#008ed6] transition">
+              <i data-lucide="message-circle" class="size-4"></i>
             </a>
-            <a href="tel:+5521967581148" class="grid size-9 place-items-center rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400 hover:text-cyan-400 transition">
-              <i data-lucide="phone" class="size-4.5"></i>
+            <a href="tel:+5521967581148" class="grid size-9 place-items-center rounded-full bg-white/5 border border-white/10 hover:border-[#008ed6] hover:text-[#008ed6] transition">
+              <i data-lucide="phone" class="size-4"></i>
             </a>
           </div>
         </div>
 
-        <!-- Coluna 2: Links Rápidos -->
+        <!-- Coluna 2: Navegação -->
         <div>
           <h4 class="text-xs font-extrabold uppercase tracking-widest text-white border-b border-white/10 pb-2">
             Navegação
           </h4>
           <ul class="mt-4 space-y-2.5 text-xs">
-            <li><a href="#topo" class="hover:text-brand-gold transition">Início</a></li>
-            <li><a href="#cardapio" class="hover:text-brand-gold transition text-brand-gold font-bold">Cardápio Oficial</a></li>
-            <li><a href="#localizacao" class="hover:text-brand-gold transition">Como Chegar</a></li>
-            <li><a href="https://wa.me/5521967581148" target="_blank" class="hover:text-brand-gold transition">WhatsApp Oficial</a></li>
+            <li><a href="#topo" class="hover:text-[#38bdf8] transition">Início</a></li>
+            <li><a href="#sobre" class="hover:text-[#38bdf8] transition">Sobre o Sítio</a></li>
+            <li><a href="#hospedagem" class="hover:text-[#38bdf8] transition">Hospedagem & Day Use</a></li>
+            <li><a href="#atrativos" class="hover:text-[#38bdf8] transition">Atrativos</a></li>
+            <li><a href="#galeria" class="hover:text-[#38bdf8] transition">Galeria</a></li>
+            <li><a href="#cardapio" class="hover:text-[#38bdf8] transition text-[#38bdf8] font-bold">Cardápio Online Oficial</a></li>
           </ul>
         </div>
 
-        <!-- Coluna 3: Endereço & Horários -->
+        <!-- Coluna 3: Localização & Horários -->
         <div>
           <h4 class="text-xs font-extrabold uppercase tracking-widest text-white border-b border-white/10 pb-2">
             Localização & Horários
           </h4>
           <div class="mt-4 space-y-3 text-xs leading-5">
             <div class="flex items-start gap-2.5">
-              <i data-lucide="map-pin" class="size-4 text-brand-gold shrink-0 mt-0.5"></i>
+              <i data-lucide="map-pin" class="size-4 text-[#008ed6] shrink-0 mt-0.5"></i>
               <span>Av. Alhambra, 783 - Campo Grande, Rio de Janeiro - RJ</span>
             </div>
             <div class="flex items-start gap-2.5">
-              <i data-lucide="clock" class="size-4 text-brand-gold shrink-0 mt-0.5"></i>
+              <i data-lucide="clock" class="size-4 text-[#008ed6] shrink-0 mt-0.5"></i>
               <span>Atendimento: Domingo a Terça, das 10:00 às 17:00</span>
             </div>
             <div class="flex items-start gap-2.5">
-              <i data-lucide="shield" class="size-4 text-brand-gold shrink-0 mt-0.5"></i>
+              <i data-lucide="shield" class="size-4 text-[#008ed6] shrink-0 mt-0.5"></i>
               <span>CNPJ: 65.616.181/0001-20 (Piscinas Bar Sítio Natureza)</span>
             </div>
           </div>
@@ -554,9 +858,9 @@
             Fale Conosco
           </h4>
           <p class="mt-4 text-xs leading-5 text-slate-400">
-            Dúvidas sobre o cardápio, pedidos de marmitas ou encomendas?
+            Dúvidas sobre reservas de quartos, Day Use, cardápio ou eventos?
           </p>
-          <a href="https://wa.me/5521967581148" target="_blank" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-xs font-bold text-white shadow-lg hover:bg-emerald-700 transition">
+          <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#008ed6] px-4 py-3.5 text-xs font-bold text-white shadow-lg shadow-sky-500/25 hover:bg-[#0077b6] transition">
             <i data-lucide="message-circle" class="size-4"></i>
             <span>(21) 96758-1148</span>
           </a>
@@ -570,40 +874,42 @@
     </div>
   </footer>
 
+
+
   <!-- ==================== MODAL DE DETALHES DO PRODUTO ==================== -->
   <div id="product-modal" class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
     <div class="relative w-full max-w-lg rounded-3xl border border-slate-200 dark:border-white/20 bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
       
       <!-- Topo Modal com Imagem do Prato -->
-      <div class="relative h-48 w-full bg-slate-100 dark:bg-[#05181c] overflow-hidden shrink-0">
+      <div class="relative h-48 w-full bg-slate-100 dark:bg-[#051826] overflow-hidden shrink-0">
         <img id="modal-product-img" src="" alt="Prato" class="h-full w-full object-cover">
         <button type="button" onclick="closeProductModal()" class="absolute top-3 right-3 grid size-9 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/90">
           <i data-lucide="x" class="size-5"></i>
         </button>
-        <span id="modal-product-badge" class="absolute bottom-3 left-4 rounded-full bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark px-3 py-1 text-[10px] font-extrabold uppercase shadow"></span>
+        <span id="modal-product-badge" class="absolute bottom-3 left-4 rounded-full bg-[#008ed6] text-white px-3 py-1 text-[10px] font-extrabold uppercase shadow"></span>
       </div>
 
       <!-- Conteúdo do Modal com Scroll -->
       <div class="p-6 overflow-y-auto space-y-4 flex-1">
         <div>
-          <h3 id="modal-product-title" class="text-xl font-extrabold text-slate-900 dark:text-white"></h3>
+          <h3 id="modal-product-title" class="text-xl font-extrabold text-[#0a2540] dark:text-white"></h3>
           <p id="modal-product-desc" class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
         </div>
 
         <div class="border-t border-slate-200 dark:border-white/10 pt-3">
           <div class="flex items-center justify-between">
             <span class="text-xs text-slate-500 dark:text-slate-400">Preço Unitário:</span>
-            <span id="modal-product-unit-price" class="text-base font-extrabold text-emerald-700 dark:text-brand-gold"></span>
+            <span id="modal-product-unit-price" class="text-base font-extrabold text-[#008ed6]"></span>
           </div>
         </div>
 
         <!-- Campo Observações do Item -->
         <div>
           <label class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5 flex items-center gap-1.5">
-            <i data-lucide="message-square" class="size-3.5 text-emerald-600 dark:text-brand-gold"></i>
+            <i data-lucide="message-square" class="size-3.5 text-[#008ed6]"></i>
             <span>Alguma observação para a cozinha?</span>
           </label>
-          <textarea id="modal-item-notes" rows="2" placeholder="Ex.: Sem cebola, salada à parte, ponto da carne, etc..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 p-3 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-emerald-600 dark:focus:border-brand-gold resize-none"></textarea>
+          <textarea id="modal-item-notes" rows="2" placeholder="Ex.: Sem cebola, salada à parte, ponto da carne, etc..." class="w-full rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-white/10 p-3 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#008ed6] resize-none"></textarea>
         </div>
 
         <!-- Seletor de Quantidade -->
@@ -622,8 +928,8 @@
       </div>
 
       <!-- Rodapé do Modal -->
-      <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-4 shrink-0">
-        <button type="button" onclick="confirmModalAddToCart()" class="w-full flex items-center justify-between rounded-2xl bg-emerald-700 hover:bg-emerald-800 dark:bg-gradient-to-r dark:from-brand-gold dark:to-brand-goldLight px-5 py-3.5 text-sm font-extrabold text-white dark:text-brand-tealDark shadow-lg transition active:scale-95">
+      <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#051826] p-4 shrink-0">
+        <button type="button" onclick="confirmModalAddToCart()" class="w-full flex items-center justify-between rounded-full bg-[#008ed6] hover:bg-[#0077b6] px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-sky-500/25 transition active:scale-95">
           <span>Adicionar ao Pedido</span>
           <span id="modal-total-btn" class="font-extrabold">R$ 0,00</span>
         </button>
@@ -632,6 +938,8 @@
     </div>
   </div>
 
+
+
   <!-- ==================== CARRINHO / DRAWER LATERAL (100% REAL) ==================== -->
   <div id="cart-drawer-overlay" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
   <aside id="cart-drawer" class="fixed inset-y-0 right-0 z-[70] w-full max-w-md translate-x-full bg-white dark:bg-[#071f25] text-slate-900 dark:text-white shadow-2xl transition-transform duration-300 flex flex-col justify-between border-l border-slate-200 dark:border-white/15">
@@ -639,15 +947,15 @@
     <!-- Topo do Carrinho -->
     <div class="border-b border-slate-200 dark:border-white/10 px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
-        <div class="grid size-9 place-items-center rounded-xl bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark font-extrabold">
+        <div class="grid size-9 place-items-center rounded-full bg-[#008ed6] text-white font-extrabold">
           <i data-lucide="shopping-bag" class="size-4.5"></i>
         </div>
         <div>
-          <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Meu Pedido</h3>
-          <span class="text-[10px] text-emerald-700 dark:text-brand-gold font-bold">Sítio Hostel Natureza</span>
+          <h3 class="text-base font-extrabold text-[#0a2540] dark:text-white">Meu Pedido</h3>
+          <span class="text-[10px] text-[#008ed6] font-bold">Sítio Hostel Natureza</span>
         </div>
       </div>
-      <button type="button" onclick="toggleCartDrawer()" class="rounded-xl border border-slate-200 dark:border-white/15 p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10">
+      <button type="button" onclick="toggleCartDrawer()" class="rounded-full border border-slate-200 dark:border-white/15 p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10">
         <i data-lucide="x" class="size-4.5"></i>
       </button>
     </div>
@@ -658,16 +966,16 @@
     </div>
 
     <!-- Rodapé Checkout do Carrinho -->
-    <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#05181c] p-6 space-y-3.5 overflow-y-auto max-h-[50vh]">
+    <div class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#051826] p-6 space-y-3.5 overflow-y-auto max-h-[50vh]">
       
-      <!-- Modalidade Oficial: Delivery ou Retirada no Local -->
+      <!-- Modalidade: Delivery ou Retirada no Local -->
       <div>
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Como deseja receber?</label>
         <div class="grid grid-cols-2 gap-2">
-          <button type="button" id="btn-mode-delivery" onclick="setOrderMode('delivery')" class="rounded-xl border border-emerald-600 bg-emerald-50 text-emerald-800 dark:border-brand-gold dark:bg-brand-gold/20 dark:text-brand-gold py-2.5 text-xs font-extrabold">
+          <button type="button" id="btn-mode-delivery" onclick="setOrderMode('delivery')" class="rounded-full border border-[#008ed6] bg-sky-50 text-[#008ed6] dark:bg-[#008ed6]/20 py-2.5 text-xs font-extrabold">
             🛵 Entrega / Delivery
           </button>
-          <button type="button" id="btn-mode-retirada" onclick="setOrderMode('retirada')" class="rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400">
+          <button type="button" id="btn-mode-retirada" onclick="setOrderMode('retirada')" class="rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400">
             🛍️ Retirar no Balcão
           </button>
         </div>
@@ -676,19 +984,19 @@
       <!-- Nome do Cliente -->
       <div>
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Seu Nome *</label>
-        <input type="text" id="cart-customer-name" placeholder="Ex.: Lucas Mendes" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-emerald-600 dark:focus:border-brand-gold">
+        <input type="text" id="cart-customer-name" placeholder="Ex.: Lucas Mendes" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#008ed6]">
       </div>
 
       <!-- Endereço para Entrega ou Retirada -->
       <div id="cart-location-field">
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-location">Endereço Completo para Entrega *</label>
-        <input type="text" id="cart-customer-location" placeholder="Ex.: Rua, número, bairro e ponto de referência" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-emerald-600 dark:focus:border-brand-gold">
+        <input type="text" id="cart-customer-location" placeholder="Ex.: Rua, número, bairro e ponto de referência" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#008ed6]">
       </div>
 
       <!-- Forma de Pagamento Oficial -->
       <div>
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Forma de Pagamento</label>
-        <select id="cart-payment-method" onchange="toggleTrocoField(this.value)" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0a2e36] px-3.5 py-2.5 text-xs text-slate-900 dark:text-white outline-none focus:border-emerald-600 dark:focus:border-brand-gold">
+        <select id="cart-payment-method" onchange="toggleTrocoField(this.value)" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0a2540] px-3.5 py-2.5 text-xs text-slate-900 dark:text-white outline-none focus:border-[#008ed6]">
           <option value="Pix">Pix Automático (Chave oficial)</option>
           <option value="Cartão de Crédito">Cartão de Crédito na Maquininha</option>
           <option value="Cartão de Débito">Cartão de Débito na Maquininha</option>
@@ -700,23 +1008,23 @@
       <!-- Troco para quanto? -->
       <div id="troco-wrapper" class="hidden">
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Precisa de troco para quanto?</label>
-        <input type="text" id="cart-troco" placeholder="Ex.: Troco para R$ 50,00 ou Não preciso" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-emerald-600 dark:focus:border-brand-gold">
+        <input type="text" id="cart-troco" placeholder="Ex.: Troco para R$ 50,00 ou Não preciso" class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#008ed6]">
       </div>
 
       <!-- Observações Gerais -->
       <div>
         <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Observações do Pedido</label>
-        <input type="text" id="cart-notes" placeholder="Ex.: Enviar talheres descartáveis, tocar campainha..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-emerald-600 dark:focus:border-brand-gold">
+        <input type="text" id="cart-notes" placeholder="Ex.: Enviar talheres descartáveis, tocar campainha..." class="w-full rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 outline-none focus:border-[#008ed6]">
       </div>
 
       <!-- Total -->
       <div class="border-t border-slate-200 dark:border-white/10 pt-3 flex items-center justify-between">
         <span class="text-sm font-bold text-slate-600 dark:text-slate-300">Total a Pagar:</span>
-        <span id="cart-total-price" class="text-xl font-extrabold text-emerald-700 dark:text-brand-gold">R$ 0,00</span>
+        <span id="cart-total-price" class="text-xl font-extrabold text-[#008ed6]">R$ 0,00</span>
       </div>
 
       <!-- Botão Enviar Pedido no WhatsApp -->
-      <button type="button" onclick="checkoutOrderWhatsApp()" class="w-full flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 py-3.5 text-sm font-extrabold text-white shadow-lg transition active:scale-95">
+      <button type="button" onclick="checkoutOrderWhatsApp()" class="w-full flex items-center justify-center gap-2 rounded-full bg-[#008ed6] hover:bg-[#0077b6] py-4 text-sm font-extrabold text-white shadow-lg shadow-sky-500/25 transition active:scale-95">
         <i data-lucide="message-circle" class="size-4.5"></i>
         <span>Enviar Pedido no WhatsApp</span>
       </button>
@@ -750,303 +1058,303 @@
         "category": "Mais Pedidos do Natureza"
       },
       {
-        "id": 4308463,
-        "name": "Executivo File de Peixe Empanado",
-        "description": "Marmita Peixe Empanado Especial com arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante e dourado. Uma refeição leve, caseira e repleta de sabor.",
-        "price": 31.9,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308463/dbf333ccChatGPT_Image_3_de_jun._de_2026__13_31_09.png",
+        "id": 4308465,
+        "name": "Executivo de Alcatra Grelhada",
+        "description": "Alcatra grelhada com arroz soltinho, feijão fresquinho, farofa crocante e batata frita douradinha. A marmita ideal para o seu almoço, combinando sabor tradicional e qualidade!",
+        "price": 29.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308465/291244ea-58aa-4629-9e8c-55c3c0ec54fa.jpeg",
         "category": "Mais Pedidos do Natureza"
       },
       {
-        "id": 4308457,
-        "name": "Executivo de Alcatra acebolada",
-        "description": "Prato Completo da Casa: arroz soltinho, farofa saborosa e alcatra suculento, com deliciosos acompanhamentos. Uma refeição caseira, ideal para saciar a fome de forma satisfatória.",
-        "price": 34.9,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308457/446891b0ChatGPT_Image_3_de_jun._de_2026__13_25_49.png",
+        "id": 4308488,
+        "name": "Alcatra com Batata ou Aipim",
+        "description": "Alcatra em tiras acebolada servida com batata frita ou aipim crocante. Serve 2 a 3 pessoas.",
+        "price": 60,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308488/3b6bb867-5d51-4cfa-8919-ca3b6e85744a.jpeg",
         "category": "Mais Pedidos do Natureza"
       }
     ]
   },
   {
-    "id": 507390,
+    "id": 507391,
     "name": "Pratos Executivos",
     "items": [
       {
-        "id": 4469478,
-        "name": "Executivo Frango à Passarinho Crocante",
-        "description": "Acompanhado de arroz soltinho, feijão temperado, batata frita dourada e farofa especial. Uma combinação irresistível para matar a fome com muito sabor!",
-        "price": 26.9,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4469478/8eaf17a834b42cc6-427b-495c-865c-49ef0b9c3522.jpg",
-        "category": "Pratos Executivos"
-      },
-      {
-        "id": 4308460,
-        "name": "Executivo de Filé de Frango Grelhado",
-        "description": "Marmita de Frango Grelhado da Casa com arroz soltinho, farofa saborosa e suculento filé de frango grelhado, acompanhada de deliciosos complementos. Uma refeição leve, completa e repleta de sabor!",
-        "price": 26.9,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308460/enhanced-image-4308460-2026-06-03T16-11-58-713Z.jpg",
-        "category": "Pratos Executivos"
-      },
-      {
-        "id": 4308464,
-        "name": "Executivo de Frango à Parmegiana",
-        "description": "Marmita de Frango à Parmegiana com arroz soltinho, coberto por molho de tomate e queijo derretido, gratinado na medida. Inclui acompanhamentos. Uma refeição completa, deliciosa e cheia de sabor!",
-        "price": 31.9,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308464/2f3ab8caChatGPT_Image_3_de_jun._de_2026__13_35_24.png",
-        "category": "Pratos Executivos"
-      },
-      {
         "id": 4308466,
-        "name": "Executivo Tilapia em Posta",
-        "description": "Marmita Peixe Frito Especial com arroz soltinho, pirão saboroso, salada fresca e tilápia frita, crocante e dourada. Uma refeição caseira, generosa e repleta de sabor.",
+        "name": "Executivo de Filé de Peixe Empanado",
+        "description": "Peixe empanado crocante, arroz soltinho, feijão fresquinho, farofa e batata frita dourada. Uma refeição equilibrada, saborosa e cheia de frescor!",
+        "price": 28.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308466/f26ffab3-a5f1-4fd3-b81b-568eb4194095.jpeg",
+        "category": "Pratos Executivos"
+      },
+      {
+        "id": 4308467,
+        "name": "Executivo de Contra Filé Grelhado",
+        "description": "Contrafilé grelhado no ponto com arroz soltinho, feijão temperado, farofa crocante e batata frita dourada. Uma marmita farta e suculenta!",
         "price": 31.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308466/c0536813ChatGPT_Image_3_de_jun._de_2026__13_37_25.png",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308467/2026850c-e2f7-4c4d-a99f-723528b1fd78.jpeg",
         "category": "Pratos Executivos"
       },
       {
-        "id": 4308462,
-        "name": "Executivo de File de Peixe Ao Molho de Camarão",
-        "description": "Filé de peixe empanado, crocante por fora e macio por dentro, acompanhado de um molho de camarão cremoso e temperado, que realça o sabor do mar. Serve com arroz soltinho e salada fresca, proporcionando uma refeição equilibrada, saborosa e sofisticada.",
-        "price": 37.9,
+        "id": 4308468,
+        "name": "Executivo de Filé de Frango Grelhado",
+        "description": "Filé de frango grelhado bem temperado, arroz branco, feijão caseiro, farofa crocante e batata frita. Leve, saudável e muito saboroso!",
+        "price": 24.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308462/1f2ee98ba6cb6423-a8f0-426b-9ece-d1f3d6b7b27b.png",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308468/c5fa4e61-9c60-449e-b83c-fdbda6b23ba4.jpeg",
         "category": "Pratos Executivos"
       },
       {
-        "id": 5280957,
-        "name": "Parmegiana de carne",
-        "description": "Carne macia com molho de tomate e queijo gratinado, servida com arroz branco soltinho e um acompanhamento à sua escolha. Um clássico cheio de sabor que promete agradar a todos os paladares!",
-        "price": 38.9,
-        "badge": "new_item",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/5280957/e96d0bea11b98800-7e7c-47f7-a1fa-7779e4c46561.jpg",
-        "category": "Pratos Executivos"
-      }
-    ]
-  },
-  {
-    "id": 521251,
-    "name": "Executivo + Suco 300ml",
-    "items": [
-      {
-        "id": 4423438,
-        "name": "Estrogonofe de Frango + SUCO DE 300ml PROMOCIONAL",
-        "description": "Delicie-se com nossa marmita completa: strogonoff cremoso e bem temperado, servido com arroz soltinho e batata frita crocante. Uma refeição saborosa e prática para o seu almoço!",
-        "price": 34.9,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423438/458a215d202606031306_EFYG_i.jpg",
-        "category": "Executivo + Suco 300ml"
-      },
-      {
-        "id": 4423435,
-        "name": "Frango Crocante + Suco de 300ml PROMOCIONAL",
-        "description": "Marmita Especial com um  Arroz soltinho, Farofa saborosa e Filé de Frango Empanado Crocante, acompanhado de deliciosos complementos. Uma combinação perfeita, crocante e cheia de sabor!",
-        "price": 35.9,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423435/d04f553e202606031327_38J7_i.jpg",
-        "category": "Executivo + Suco 300ml"
-      },
-      {
-        "id": 4415021,
-        "name": "File de Peixe Empanado + Suco 300ml PROMOCIONAL",
-        "description": "🍛 Marmita Peixe Empanado Especial Arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante, dourado no ponto certo. Uma refeição leve, caseira e cheia de sabor!",
-        "price": 39.9,
-        "badge": "offer",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415021/ca02d5cdISCA_PE.jpeg",
-        "category": "Executivo + Suco 300ml"
-      },
-      {
-        "id": 4423442,
-        "name": "Alcatra Suculenta + SUCO 300ml PROMOCIONAL",
-        "description": "Prato Completo da Casa: arroz solto, farofa saborosa e alcatra suculento, tudo acompanhado de deliciosos complementos. Uma refeição caseira, ideal para satisfazer sua fome com sabor e qualidade.",
-        "price": 41.8,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423442/789f5bbb202606031326_C4I8_i.jpg",
-        "category": "Executivo + Suco 300ml"
-      }
-    ]
-  },
-  {
-    "id": 521248,
-    "name": "Executivo + Coca Lata",
-    "items": [
-      {
-        "id": 4423443,
-        "name": "Estrogonofe de Frango + COCA PROMOCIONAL",
-        "description": "Arroz, strogonoff e batata frita: um prato delicioso e equilibrado. O strogonoff é cremoso e bem temperado, servido com arroz soltinho e batata frita crocante. Uma marmita completa, ideal para o seu almoço!",
-        "price": 32.9,
-        "badge": "offer",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423443/a6850483202606031306_EFYG_i.jpg",
-        "category": "Executivo + Coca Lata"
-      },
-      {
-        "id": 4423445,
-        "name": "Frango Crocante + COCA PROMOCIONAL",
-        "description": "Marmita Especial com arroz soltinho, farofa saborosa e filé de frango empanado crocante, acompanhada de deliciosos complementos. Uma combinação perfeita, crocante e repleta de sabor!",
+        "id": 4308469,
+        "name": "Executivo de Carne Seca com Aipim",
+        "description": "Carne seca desfiada acebolada na manteiga de garrafa, aipim macio frito, arroz soltinho, feijão caseiro e farofa crocante.",
         "price": 32.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423445/3ca92b82202606031327_38J7_i.jpg",
-        "category": "Executivo + Coca Lata"
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308469/03565cf8-57d6-4475-8ce6-a791a84f378a.jpeg",
+        "category": "Pratos Executivos"
       },
       {
-        "id": 4415010,
-        "name": "File de Peixe Empanado + Coca Lata",
-        "description": "🍛 Marmita Peixe Empanado Especial Arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante, dourado no ponto certo. Uma refeição leve, caseira e cheia de sabor!",
+        "id": 4308470,
+        "name": "Executivo de Carré Suíno",
+        "description": "Carré de porco douradinho, arroz branco, feijão preto temperado, couve mineira e farofa crocante tradicional.",
+        "price": 25.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308470/4e626e2a-063f-42da-910a-b68c92a951d3.jpeg",
+        "category": "Pratos Executivos"
+      },
+      {
+        "id": 4308471,
+        "name": "Executivo de Camarão ao Alho e Óleo",
+        "description": "Camarões selecionados salteados no alho dourado e azeite extravirgem, arroz branco e batata frita sequinha.",
         "price": 36.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415010/c7500cfcISCA_PE.jpeg",
-        "category": "Executivo + Coca Lata"
-      },
-      {
-        "id": 4423449,
-        "name": "Alcatra Suculenta + COCA PROMOCIONAL",
-        "description": "Prato Completo da Casa: arroz soltinho, farofa saborosa e alcatra suculento, com deliciosos acompanhamentos. Uma refeição caseira, ideal para saciar a fome de forma satisfatória.",
-        "price": 39.9,
-        "badge": "best_seller",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423449/eb94a7db202606031326_C4I8_i.jpg",
-        "category": "Executivo + Coca Lata"
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308471/0b7784f1-5ae2-498b-90f7-5421ebf3ca13.jpeg",
+        "category": "Pratos Executivos"
       }
     ]
   },
   {
     "id": 507392,
-    "name": "Petiscos com Batata ou Aipim",
+    "name": "Executivo + Suco 300ml",
     "items": [
       {
-        "id": 4308469,
-        "name": "Porção Aipim",
-        "description": "Porção de Aipim Frito (800g) Douradinho por fora e macio por dentro, nosso aipim é frito no ponto perfeito, garantindo sabor e crocância irresistíveis. Acompanhamento ideal para deixar sua refeição completa e deliciosa!",
-        "price": 32,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308469/9fc52bbcPORÇÃO_AIPIM_EDITADA.png",
-        "category": "Petiscos com Batata ou Aipim"
-      },
-      {
-        "id": 4308471,
-        "name": "Porção de Batata Frita",
-        "description": "Porção de Batata frita douradinha e crocante, preparada no ponto certo para garantir muito sabor. O acompanhamento perfeito para qualquer refeição!",
-        "price": 32,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308471/6b7539c2PORÇÃO_DE_BATATA_EDITADA.png",
-        "category": "Petiscos com Batata ou Aipim"
-      },
-      {
         "id": 4308472,
-        "name": "Porção Batata Frita com Aipim",
-        "description": "Batata frita douradinha acompanhada de Aipim Frito crocante, formando uma combinação deliciosa e perfeita para compartilhar.",
-        "price": 35,
+        "name": "Executivo Frango Crocante + Suco 300ml",
+        "description": "Combo completo: marmita de filé de frango empanado crocante com arroz, feijão, farofa e batata + suco natural da fruta 300ml.",
+        "price": 32.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308472/110b04dfBATATA_AIPIM_PORÇÃO_EDITADA.png",
-        "category": "Petiscos com Batata ou Aipim"
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308472/f10c54bfChatGPT_Image_3_de_jun._de_2026__13_23_33.png",
+        "category": "Executivo + Suco 300ml"
       },
       {
         "id": 4308473,
-        "name": "Porção de Calabresa com Batata Frita ou Aipim",
-        "description": "Batatas frita douradinha ou um Aipim crocante acompanhada de uma calabresa suculenta e bem temperada, formando uma combinação deliciosa e irresistível.",
-        "price": 45,
+        "name": "Estrogonofe de Frango + Suco 300ml",
+        "description": "Combo completo: estrogonofe cremoso de frango com arroz soltinho, batata frita sequinha + suco natural 300ml gelado.",
+        "price": 31.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308473/b4359a45ChatGPT_Image_16_de_jun._de_2026__23_25_26.png",
-        "category": "Petiscos com Batata ou Aipim"
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308473/5fd36d29ChatGPT_Image_3_de_jun._de_2026__12_39_42.png",
+        "category": "Executivo + Suco 300ml"
+      },
+      {
+        "id": 4308474,
+        "name": "Executivo Alcatra Grelhada + Suco 300ml",
+        "description": "Combo completo: suculenta alcatra grelhada com arroz, feijão, farofa, batata frita + suco natural 300ml à sua escolha.",
+        "price": 35.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308474/291244ea-58aa-4629-9e8c-55c3c0ec54fa.jpeg",
+        "category": "Executivo + Suco 300ml"
+      },
+      {
+        "id": 4308475,
+        "name": "Executivo Peixe Empanado + Suco 300ml",
+        "description": "Combo completo: filé de peixe crocante com acompanhamentos tradicionais + suco natural de fruta 300ml.",
+        "price": 34.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308475/f26ffab3-a5f1-4fd3-b81b-568eb4194095.jpeg",
+        "category": "Executivo + Suco 300ml"
+      }
+    ]
+  },
+  {
+    "id": 507393,
+    "name": "Executivo + Coca Lata",
+    "items": [
+      {
+        "id": 4308476,
+        "name": "Executivo Frango Crocante + Coca Lata",
+        "description": "Marmita completa de filé de frango empanado crocante acompanhada de Coca-Cola lata 350ml trincando de gelada.",
+        "price": 31.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308476/f10c54bfChatGPT_Image_3_de_jun._de_2026__13_23_33.png",
+        "category": "Executivo + Coca Lata"
+      },
+      {
+        "id": 4308477,
+        "name": "Estrogonofe de Frango + Coca Lata",
+        "description": "Delicioso estrogonofe de frango cremoso com arroz e batata frita acompanhado de Coca-Cola lata 350ml.",
+        "price": 30.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308477/5fd36d29ChatGPT_Image_3_de_jun._de_2026__12_39_42.png",
+        "category": "Executivo + Coca Lata"
+      },
+      {
+        "id": 4308478,
+        "name": "Executivo Alcatra Grelhada + Coca Lata",
+        "description": "Marmita executiva de alcatra grelhada com arroz, feijão, farofa e batata frita + Coca-Cola lata 350ml.",
+        "price": 34.9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308478/291244ea-58aa-4629-9e8c-55c3c0ec54fa.jpeg",
+        "category": "Executivo + Coca Lata"
       },
       {
         "id": 4308479,
-        "name": "Porçao de Frango a Passarinho",
-        "description": "Pedaços de Frango fritos(850 gramas), bem temperados e douradinhos, acompanhados de Batata Frita crocante ou Aipim Frito macio e saboroso. Uma combinação perfeita para quem gosta de petiscos caprichados!",
-        "price": 58,
+        "name": "Executivo Peixe Empanado + Coca Lata",
+        "description": "Peixe crocante dourado acompanhado de todos os complementos caseiros + Coca-Cola lata 350ml bem gelada.",
+        "price": 33.9,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308479/9c21a3c6FRANGO_A_PASSARIN_EDITADO.png",
-        "category": "Petiscos com Batata ou Aipim"
-      },
-      {
-        "id": 4308481,
-        "name": "Porçao de Isca de Alcatra Acebolada",
-        "description": "Iscas de alcatra macias e aceboladas, preparadas no ponto certo, acompanhadas de Batata Frita crocante ou Aipim Frito douradinho. Uma combinação deliciosa e cheia de sabor!",
-        "price": 70,
-        "badge": "recommended",
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308481/d50990b3Contraporção.png",
-        "category": "Petiscos com Batata ou Aipim"
-      },
-      {
-        "id": 4308483,
-        "name": "Porção de Isca de Frango Empanado",
-        "description": "🍗 Iscas de Frango Empanado com Batata ou Aipim Frito - Deliciosas iscas de frango empanadas e crocantes, acompanhadas de batata frita douradinha ou aipim frito macio e saboroso. Uma combinação perfeita para quem ama um bom petisco!",
-        "price": 58,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308483/9a31935eISCA_DE_FRANGO_COM_BATATA_PORÇÃO_EDITADA.png",
-        "category": "Petiscos com Batata ou Aipim"
-      },
-      {
-        "id": 4308486,
-        "name": "Porção de Isca de Peixe",
-        "description": "🐟 Iscas de Peixe Crocantes Douradinhas, sequinhas e cheias de sabor! Nossas iscas de peixe são empanadas na medida certa e fritas até ficarem irresistíveis. Acompanha aipim ou batata.",
-        "price": 70,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308486/21151e75ChatGPT_Image_15_de_jun._de_2026__22_43_54.png",
-        "category": "Petiscos com Batata ou Aipim"
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308479/f26ffab3-a5f1-4fd3-b81b-568eb4194095.jpeg",
+        "category": "Executivo + Coca Lata"
       }
     ]
   },
   {
     "id": 507394,
+    "name": "Petiscos com Batata ou Aipim",
+    "items": [
+      {
+        "id": 4308480,
+        "name": "Contra Filé com Batata ou Aipim",
+        "description": "Contrafilé em tiras na chapa acebolado servido com generosa porção de batatas fritas ou aipim dourado.",
+        "price": 65,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308480/bb8c37d6-3e75-4074-a63b-67df905a8b75.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308481,
+        "name": "Frango à Passarinho com Batata ou Aipim",
+        "description": "Pedaços crocantes de frango à passarinho bem temperados no alho dourado servidos com batata frita ou aipim.",
+        "price": 52,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308481/318029fa-6784-4861-90a6-f2038e124846.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308482,
+        "name": "Isca de Peixe com Batata ou Aipim",
+        "description": "Iscas de filé de peixe empanadas sequinhas servidas com molho tártaro artesanal e batata frita crocante.",
+        "price": 58,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308482/385f0967-df5d-45df-bbba-c9bb49ecff63.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308483,
+        "name": "Isca de Frango com Batata ou Aipim",
+        "description": "Tiras de peito de frango empanadas crocantes acompanhadas de batata frita dourada ou aipim.",
+        "price": 48,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308483/f30fa2be-3c30-4966-8344-964faae6b907.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308484,
+        "name": "Carne Seca com Batata ou Aipim",
+        "description": "Carne seca desfiada acebolada na manteiga de garrafa acompanhada de aipim frito na hora ou batata.",
+        "price": 62,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308484/555e7144-ee7c-4ee3-be12-a1ef6f6fca12.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308485,
+        "name": "Calabresa com Batata ou Aipim",
+        "description": "Calabresa fatiada acebolada servida com porção de batata frita crocante ou aipim douradinho.",
+        "price": 44,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308485/7cbbfa8f-9a99-4c8e-a9b0-9b0d19e830c1.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308486,
+        "name": "Camarão ao Alho e Óleo com Batata",
+        "description": "Camarões frescos refogados com alho laminado e azeite servidos com porção farta de batata frita.",
+        "price": 68,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308486/61908ef9-efc8-47bc-ae1a-a0f5a9e7f5cf.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      },
+      {
+        "id": 4308487,
+        "name": "Misto Natureza (Carne, Frango e Calabresa)",
+        "description": "Super combinação com tiras de carne, isca de frango e calabresa acebolada servida com batata frita ou aipim.",
+        "price": 75,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308487/84ca1c5d-0fa0-4bb5-a3aa-b94f57c5a242.jpeg",
+        "category": "Petiscos com Batata ou Aipim"
+      }
+    ]
+  },
+  {
+    "id": 507395,
     "name": "Petiscos PUROS",
     "items": [
       {
-        "id": 4308488,
-        "name": "Porção de Camarão ao Alho e Óleo",
-        "description": "Camarões(600 gramas) salteados no alho e óleo, bem temperados e preparados no ponto certo. Uma porção deliciosa, cheia de sabor e perfeita para acompanhar sua refeição!",
-        "price": 70,
+        "id": 4308489,
+        "name": "Porção de Batata Frita Grande",
+        "description": "Batata frita palito sequinha, crocante e bem sequinha. Acompanha maionese temperada.",
+        "price": 28,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308488/53252065ChatGPT_Image_3_de_jun._de_2026__13_56_20.png",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308489/e7ca2cb1-6a2c-474c-8519-aa54dbe05ba4.jpeg",
         "category": "Petiscos PUROS"
       },
       {
         "id": 4308490,
-        "name": "Porção de Frango a Passarinho Puro",
-        "description": "Pedaços de Frango a Passarinho(1700 gramas), bem temperados e douradinhos no ponto certo. Uma porção crocante, saborosa e perfeita para acompanhar sua refeição!",
-        "price": 70,
+        "name": "Porção de Aipim Frito",
+        "description": "Aipim macio por dentro e dourado crocante por fora. Uma delícia tradicional brasileira.",
+        "price": 28,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308490/45f5de19WhatsApp_Image_2026-06-03_at_13.16.13__1_.jpeg",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308490/33390c5c-7d9a-41cb-b1b7-7eb7a37213bb.jpeg",
         "category": "Petiscos PUROS"
       },
       {
         "id": 4308491,
-        "name": "Porçao de Isca de Frango Empanado Puro",
-        "description": "Deliciosas iscas de frango empanadas, fritas até ficarem douradas e crocantes por fora, mantendo a suculência por dentro. Uma porção saborosa e irresistível!",
-        "price": 70,
+        "name": "Calabresa Acebolada Pura",
+        "description": "Generosa porção de linguiça calabresa fatiada acebolada na chapa.",
+        "price": 32,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308491/afca0af2WhatsApp_Image_2026-06-03_at_13.53.42__2_.jpeg",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308491/2a9d8cfa-5058-45f8-8bb3-43ef6ff7b1cc.jpeg",
+        "category": "Petiscos PUROS"
+      },
+      {
+        "id": 4308492,
+        "name": "Isca de Frango Pura",
+        "description": "Porção farta de tiras de peito de frango crocantes empanadas com molho à parte.",
+        "price": 36,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308492/6d1cbb0b-48ae-4f76-bc30-ff31bfda44a8.jpeg",
+        "category": "Petiscos PUROS"
+      },
+      {
+        "id": 4308493,
+        "name": "Isca de Peixe Pura",
+        "description": "Filé de peixe em iscas empanadas sequinhas servidas com limão e molho tártaro.",
+        "price": 45,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308493/1770e17f-e23a-4da2-a447-06a0ee59c447.jpeg",
         "category": "Petiscos PUROS"
       },
       {
         "id": 4308494,
-        "name": "Porçao de Isca de Peixe Empanado Puro",
-        "description": "Deliciosas iscas de peixe empanadas, fritas até ficarem douradas e crocantes por fora, mantendo a maciez por dentro. Uma porção leve, saborosa e irresistível!",
-        "price": 85,
+        "name": "Camarão ao Alho e Óleo Puro",
+        "description": "Camarões frescos salteados no alho dourado e azeite extravirgem puro.",
+        "price": 55,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308494/ab7527c5WhatsApp_Image_2026-06-03_at_13.53.42__1_.jpeg",
-        "category": "Petiscos PUROS"
-      },
-      {
-        "id": 4308495,
-        "name": "Porção de Peixe Frito(Tilapia)",
-        "description": "🐟 Tilápia Frita douradinha e bem temperada, preparada no ponto certo para garantir muito sabor. Uma porção deliciosa e perfeita para quem ama peixe!",
-        "price": 53,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308495/febfbe00TILAPIA_PORÇÃO_EDITADA.png",
-        "category": "Petiscos PUROS"
-      },
-      {
-        "id": 4308496,
-        "name": "Porção de Sardinha Frita",
-        "description": "Sardinhas(600 gramas) fritas douradinhas e bem temperadas, preparadas no ponto certo para garantir muito sabor. Uma porção simples, deliciosa e perfeita para petiscar!",
-        "price": 43,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308496/04e12fd3SARDINHA_PORÇÃO_EDITADA.png",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308494/a3aaee42-1e74-4b52-b8ec-fef773cbb7b2.jpeg",
         "category": "Petiscos PUROS"
       }
     ]
@@ -1056,54 +1364,54 @@
     "name": "Guarnições",
     "items": [
       {
-        "id": 4308497,
-        "name": "Porção de Arroz",
-        "description": "",
-        "price": 15,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308497/8a830e9e-7931-4a06-b0c3-3b2418884328.jpeg",
-        "category": "Guarnições"
-      },
-      {
-        "id": 4308498,
-        "name": "Porção de Farofa",
-        "description": "",
-        "price": 15,
-        "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308498/12b75b0d-6c2c-40ff-b12d-d9d2251d3d12.jpeg",
-        "category": "Guarnições"
-      },
-      {
         "id": 4308499,
-        "name": "Porção de Feijao Grande",
-        "description": "",
-        "price": 15,
+        "name": "Arroz Branco Soltinho",
+        "description": "Porção extra de arroz branco soltinho preparado diariamente.",
+        "price": 10,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308499/a00679c3-e69f-486b-996d-055af2b9b08c.jpeg",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308499/1e1763aa-89c0-43ef-b922-bf4ea17ffbdc.jpeg",
         "category": "Guarnições"
       },
       {
         "id": 4308500,
-        "name": "Porção de Feijão Pequena",
-        "description": "",
-        "price": 5,
+        "name": "Feijão Preto Temperado",
+        "description": "Feijão caseiro fresquinho com tempero tradicional da fazenda.",
+        "price": 10,
         "badge": null,
-        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308500/6280bbc9-7fd9-4317-89a5-ffb44747540a.jpeg",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308500/8bc71ff9-efd5-455b-86ea-1a9bf95aa308.jpeg",
+        "category": "Guarnições"
+      },
+      {
+        "id": 4308501,
+        "name": "Farofa Crocante Especial",
+        "description": "Farofa crocante com bacon e temperos da casa.",
+        "price": 9,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308501/3a8cfa5b-7b0f-488f-9a1b-4ec62b08fa19.jpeg",
+        "category": "Guarnições"
+      },
+      {
+        "id": 4308502,
+        "name": "Ovo Frito na Hora",
+        "description": "Ovo estalado na hora com gema no ponto da sua preferência.",
+        "price": 4,
+        "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308502/1f31f90b-04ff-4ea0-a9cf-93a8d9bf1fa1.jpeg",
         "category": "Guarnições"
       },
       {
         "id": 4308503,
-        "name": "Porção de Pirão",
-        "description": "",
-        "price": 15,
+        "name": "Porção de Vinagrete Fresco",
+        "description": "Tomate, cebola e cheiro verde picadinhos com azeite e vinagre suave.",
+        "price": 8,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308503/dd196ed9-d633-4b22-9a54-b2025f7ebea4.jpeg",
         "category": "Guarnições"
       },
       {
         "id": 4308504,
-        "name": "Porção de Salada",
-        "description": "",
+        "name": "Porção de Salada Mista",
+        "description": "Alface fresco, tomate e cebola fatiados para acompanhar qualquer refeição.",
         "price": 19,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308504/6a0e1c79-1467-452a-a2b4-15af00bb3fb2.jpeg",
@@ -1118,7 +1426,7 @@
       {
         "id": 4308505,
         "name": "SUCO MARACUJA 500ml",
-        "description": "500 ml",
+        "description": "Suco natural concentrado da fruta bem gelado 500 ml.",
         "price": 15.9,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308505/062c9ce1Suco_natural_em_fundo_verde_vibrante.png",
@@ -1127,7 +1435,7 @@
       {
         "id": 4308507,
         "name": "Coca-Cola Lata",
-        "description": "350ml",
+        "description": "Lata 350ml gelada.",
         "price": 8,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308507/d9a4931b-827b-4836-ab73-331814774428.jpeg",
@@ -1135,8 +1443,8 @@
       },
       {
         "id": 4308510,
-        "name": "Coca zero lata",
-        "description": "",
+        "name": "Coca-Cola Zero Lata",
+        "description": "Lata 350ml sem açúcar gelada.",
         "price": 8,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308510/099cf9b8-8a33-407b-88fe-e31b51156c64.jpeg",
@@ -1145,7 +1453,7 @@
       {
         "id": 4308512,
         "name": "Guaracamp",
-        "description": "",
+        "description": "Copo tradicional de Guaracamp 285ml bem gelado.",
         "price": 3,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308512/98c97592-1ce4-48f4-92a9-671b98e31bd6.jpeg",
@@ -1154,7 +1462,7 @@
       {
         "id": 4308513,
         "name": "SUCO MARACUJA 300ml",
-        "description": "300ML",
+        "description": "Suco natural concentrado da fruta 300ml geladinho.",
         "price": 11.9,
         "badge": null,
         "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308513/c49dccd9Suco_natural_sobre_grama_artificial.png",
@@ -1218,11 +1526,11 @@
         document.body.classList.remove('force-desktop-mode');
         if (indicator) indicator.classList.remove('hidden');
 
-        if (btnPc) btnPc.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition";
-        if (btnMob) btnMob.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-extrabold transition bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark shadow-sm";
+        if (btnPc) btnPc.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-300 hover:text-white transition";
+        if (btnMob) btnMob.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold transition bg-[#008ed6] text-white shadow-sm";
 
-        if (btnDrawerPc) btnDrawerPc.className = "px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 font-bold";
-        if (btnDrawerMob) btnDrawerMob.className = "px-2.5 py-1 rounded-md bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark font-extrabold";
+        if (btnDrawerPc) btnDrawerPc.className = "px-3 py-1.5 rounded-full text-slate-600 dark:text-slate-300 font-bold";
+        if (btnDrawerMob) btnDrawerMob.className = "px-3 py-1.5 rounded-full bg-[#008ed6] text-white font-extrabold shadow";
 
         document.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1.0');
       } else {
@@ -1231,17 +1539,17 @@
 
         if (window.innerWidth <= 640) {
           document.body.classList.add('force-desktop-mode');
-          document.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=1080, initial-scale=0.35, user-scalable=yes');
+          document.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=1100, initial-scale=0.35, user-scalable=yes');
         } else {
           document.body.classList.remove('force-desktop-mode');
           document.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1.0');
         }
 
-        if (btnPc) btnPc.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-extrabold transition bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark shadow-sm";
-        if (btnMob) btnMob.className = "flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition";
+        if (btnPc) btnPc.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold transition bg-[#008ed6] text-white shadow-sm";
+        if (btnMob) btnMob.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-300 hover:text-white transition";
 
-        if (btnDrawerPc) btnDrawerPc.className = "px-2.5 py-1 rounded-md bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark font-extrabold";
-        if (btnDrawerMob) btnDrawerMob.className = "px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 font-bold";
+        if (btnDrawerPc) btnDrawerPc.className = "px-3 py-1.5 rounded-full bg-[#008ed6] text-white font-extrabold shadow";
+        if (btnDrawerMob) btnDrawerMob.className = "px-3 py-1.5 rounded-full text-slate-600 dark:text-slate-300 font-bold";
       }
       lucide.createIcons();
     }
@@ -1283,44 +1591,44 @@
         const imgUrl = it.image_url || 'assets/hero-bg.jpg';
 
         return `
-          <article onclick="openProductModal(${it.id})" class="group cursor-pointer rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 overflow-hidden backdrop-blur-md transition hover:-translate-y-1 hover:border-emerald-500/50 dark:hover:border-brand-gold/50 hover:shadow-xl flex flex-col justify-between shadow-sm">
+          <article onclick="openProductModal(${it.id})" class="group cursor-pointer rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-white/5 overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-[#008ed6]/50 hover:shadow-[0_20px_35px_rgba(0,142,214,0.12)] flex flex-col justify-between shadow-sm">
             
-            <div class="relative h-44 w-full overflow-hidden bg-slate-100 dark:bg-[#05181c]">
-              <img src="${imgUrl}" alt="${it.name}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='assets/hero-bg.jpg'">
+            <div class="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-[#051826]">
+              <img src="${imgUrl}" alt="${it.name}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='assets/hero-bg.jpg'">
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               
               <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                <span class="rounded-full bg-white/90 dark:bg-[#06181c]/80 backdrop-blur-md px-2.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-emerald-800 dark:text-brand-gold shadow-sm">
+                <span class="rounded-full bg-white/95 dark:bg-[#061826]/90 backdrop-blur-md px-3 py-1 text-[9px] font-extrabold uppercase tracking-wider text-[#008ed6] shadow-sm">
                   ${it.catName}
                 </span>
                 ${isBestSeller ? `
-                  <span class="rounded-full bg-amber-500 text-white dark:bg-amber-500/90 dark:text-[#06181c] px-2 py-0.5 text-[9px] font-extrabold shadow-sm">
+                  <span class="rounded-full bg-amber-500 text-white px-2.5 py-1 text-[9px] font-extrabold shadow-sm">
                     ★ Destaque
                   </span>
                 ` : ''}
               </div>
             </div>
 
-            <div class="p-4 flex-1 flex flex-col justify-between">
+            <div class="p-5 flex-1 flex flex-col justify-between">
               <div>
-                <h3 class="text-sm font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-brand-gold transition leading-snug line-clamp-2">
+                <h3 class="text-sm font-extrabold text-[#0a2540] dark:text-white group-hover:text-[#008ed6] transition leading-snug line-clamp-2">
                   ${it.name}
                 </h3>
                 
-                <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+                <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                   ${it.description || 'Preparo artesanal e saboroso na hora pela equipe do sítio.'}
                 </p>
               </div>
 
-              <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3 flex items-center justify-between">
+              <div class="mt-5 border-t border-slate-100 dark:border-white/10 pt-3.5 flex items-center justify-between">
                 <div>
-                  <span class="text-[10px] text-slate-400">Valor</span>
-                  <div class="text-base font-extrabold text-emerald-700 dark:text-brand-goldLight">
+                  <span class="text-[10px] uppercase font-bold text-slate-400">Valor</span>
+                  <div class="text-base font-black text-[#008ed6]">
                     R$ ${it.price.toFixed(2).replace('.', ',')}
                   </div>
                 </div>
 
-                <button type="button" onclick="event.stopPropagation(); openProductModal(${it.id})" class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-brand-gold px-3.5 py-2 text-xs font-extrabold text-white dark:text-brand-tealDark shadow-sm transition active:scale-95">
+                <button type="button" onclick="event.stopPropagation(); openProductModal(${it.id})" class="inline-flex items-center gap-1.5 rounded-full bg-[#008ed6] hover:bg-[#0077b6] px-4 py-2 text-xs font-extrabold text-white shadow-md shadow-sky-500/20 transition hover:scale-105 active:scale-95">
                   <i data-lucide="plus" class="size-3.5"></i>
                   <span>Pedir</span>
                 </button>
@@ -1339,9 +1647,9 @@
       document.querySelectorAll('.category-btn').forEach(btn => {
         const isMatch = btn.getAttribute('data-cat') === catName;
         if (isMatch) {
-          btn.className = "category-btn active shrink-0 rounded-full px-5 py-2.5 text-xs font-bold transition bg-emerald-700 text-white dark:bg-brand-gold dark:text-brand-tealDark shadow-sm";
+          btn.className = "category-btn active shrink-0 rounded-full px-5 py-2.5 text-xs font-bold transition bg-[#008ed6] text-white shadow-md shadow-sky-500/20";
         } else {
-          btn.className = "category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-white hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-emerald-500/40 dark:hover:border-brand-gold/40";
+          btn.className = "category-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-slate-50 hover:bg-slate-100 dark:bg-white/5 px-5 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#008ed6]";
         }
       });
       renderMenuItems(document.getElementById('menu-search-input').value);
@@ -1453,9 +1761,9 @@
       if (cart.length === 0) {
         container.innerHTML = `
           <div class="py-16 text-center text-slate-400">
-            <i data-lucide="shopping-bag" class="size-12 mx-auto mb-3 opacity-30"></i>
+            <i data-lucide="shopping-bag" class="size-12 mx-auto mb-3 opacity-30 text-[#008ed6]"></i>
             <p class="text-sm font-bold text-slate-800 dark:text-white">Seu pedido está vazio</p>
-            <p class="text-xs mt-1">Navegue pelo cardápio e adicione pratos, petiscos e bebidas.</p>
+            <p class="text-xs mt-1 text-slate-500">Navegue pelo cardápio e adicione pratos, petiscos e bebidas.</p>
           </div>
         `;
         lucide.createIcons();
@@ -1463,18 +1771,18 @@
       }
 
       container.innerHTML = cart.map(it => `
-        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3 flex items-start justify-between gap-3">
-          <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05181c] border border-slate-200 dark:border-white/10">
+        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 p-3.5 flex items-start justify-between gap-3 shadow-sm">
+          <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#051826] border border-slate-200 dark:border-white/10">
             <img src="${it.image_url || 'assets/hero-bg.jpg'}" alt="${it.name}" class="h-full w-full object-cover">
           </div>
 
           <div class="min-w-0 flex-1">
-            <h4 class="text-xs font-extrabold text-slate-900 dark:text-white truncate">${it.name}</h4>
-            <div class="text-[11px] font-bold text-emerald-700 dark:text-brand-gold mt-0.5">
+            <h4 class="text-xs font-extrabold text-[#0a2540] dark:text-white truncate">${it.name}</h4>
+            <div class="text-[11px] font-bold text-[#008ed6] mt-0.5">
               R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}
             </div>
             ${it.notes ? `
-              <p class="mt-1 text-[10px] text-amber-800 dark:text-amber-200/90 italic bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-500/20">
+              <p class="mt-1 text-[10px] text-amber-800 dark:text-amber-200 italic bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-500/20">
                 Obs: ${it.notes}
               </p>
             ` : ''}
@@ -1484,7 +1792,7 @@
             <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/15">
               <i data-lucide="minus" class="size-3"></i>
             </button>
-            <span class="w-5 text-center text-xs font-extrabold text-slate-900 dark:text-white">${it.qty}</span>
+            <span class="w-5 text-center text-xs font-extrabold text-[#0a2540] dark:text-white">${it.qty}</span>
             <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/15">
               <i data-lucide="plus" class="size-3"></i>
             </button>
@@ -1500,7 +1808,6 @@
 
     function toggleCartDrawer() {
       const drawer = document.getElementById('cart-drawer');
-      const overlay = document.getElementById('cart-drawer-overlay');
       const isClosed = drawer.classList.contains('translate-x-full');
       if (isClosed) {
         openCartDrawer();
@@ -1529,13 +1836,13 @@
       const inputLoc = document.getElementById('cart-customer-location');
 
       if (mode === 'delivery') {
-        btnDelivery.className = "rounded-xl border border-emerald-600 bg-emerald-50 text-emerald-800 dark:border-brand-gold dark:bg-brand-gold/20 dark:text-brand-gold py-2.5 text-xs font-extrabold";
-        btnRetirada.className = "rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400";
+        btnDelivery.className = "rounded-full border border-[#008ed6] bg-sky-50 text-[#008ed6] dark:bg-[#008ed6]/20 py-2.5 text-xs font-extrabold";
+        btnRetirada.className = "rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400";
         lblLocation.textContent = "Endereço Completo para Entrega *";
         inputLoc.placeholder = "Ex.: Rua, número, bairro e ponto de referência";
       } else {
-        btnRetirada.className = "rounded-xl border border-emerald-600 bg-emerald-50 text-emerald-800 dark:border-brand-gold dark:bg-brand-gold/20 dark:text-brand-gold py-2.5 text-xs font-extrabold";
-        btnDelivery.className = "rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400";
+        btnRetirada.className = "rounded-full border border-[#008ed6] bg-sky-50 text-[#008ed6] dark:bg-[#008ed6]/20 py-2.5 text-xs font-extrabold";
+        btnDelivery.className = "rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 py-2.5 text-xs font-bold text-slate-500 dark:text-slate-400";
         lblLocation.textContent = "Retirada no Local *";
         inputLoc.placeholder = "Retirar no balcão: Av. Alhambra, 783";
       }
