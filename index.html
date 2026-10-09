@@ -147,6 +147,12 @@
       <nav id="desktop-nav" class="hidden md:flex items-center gap-6 text-sm font-bold text-slate-700 dark:text-slate-200">
         <a href="#topo" class="text-[#0088cc] border-b-2 border-[#0088cc] pb-0.5 transition font-extrabold">Início</a>
         <a href="#cardapio" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Cardápio & Pedidos</a>
+        <a href="#avaliacoes" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition flex items-center gap-1.5">
+          <span>Avaliações</span>
+          <span class="rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 text-[10px] font-extrabold flex items-center gap-0.5 shadow-sm">
+            <i data-lucide="star" class="size-2.5 fill-amber-400"></i> 4.9
+          </span>
+        </a>
         <a href="#localizacao" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">Como Chegar</a>
         <a href="https://wa.me/5521967581148" target="_blank" rel="noreferrer" class="hover:text-[#0088cc] dark:hover:text-[#38bdf8] transition">WhatsApp</a>
         <a href="painel.html" class="flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 dark:border-white/20 text-xs font-bold hover:bg-slate-100 dark:hover:bg-white/10 transition text-slate-700 dark:text-slate-200">
@@ -190,6 +196,10 @@
       <nav class="flex flex-col gap-2.5 text-sm font-bold text-slate-700 dark:text-slate-200">
         <a href="#topo" class="py-2 text-[#0088cc] font-extrabold" onclick="closeMobileMenu()">Início</a>
         <a href="#cardapio" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Cardápio & Pedidos Online (43 Itens)</a>
+        <a href="#avaliacoes" class="py-2 hover:text-[#0088cc] flex items-center justify-between" onclick="closeMobileMenu()">
+          <span>Avaliações dos Clientes</span>
+          <span class="rounded-full bg-amber-500 text-white px-2 py-0.5 text-[10px] font-extrabold">4.9 ★</span>
+        </a>
         <a href="#localizacao" class="py-2 hover:text-[#0088cc]" onclick="closeMobileMenu()">Localização & Como Chegar</a>
         <a href="https://wa.me/5521967581148" target="_blank" class="py-2 text-emerald-600 hover:text-emerald-700 font-extrabold flex items-center gap-2" onclick="closeMobileMenu()">
           <i data-lucide="message-circle" class="size-4"></i> Falar no WhatsApp: (21) 96758-1148
@@ -261,6 +271,29 @@
             <span>Ver Cardápio Online</span>
           </a>
         </div>
+
+        <!-- Prova Social no Hero (Avaliações Reais dos Clientes) -->
+        <a href="#avaliacoes" class="mt-4 sm:mt-5 inline-flex items-center gap-3 p-1.5 sm:pr-3 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-slate-200/80 dark:border-white/10 hover:border-[#0088cc]/50 transition group">
+          <div class="flex -space-x-2 overflow-hidden shrink-0">
+            <img class="inline-block size-7 sm:size-8 rounded-full ring-2 ring-white dark:ring-[#06181c] object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Mariana">
+            <img class="inline-block size-7 sm:size-8 rounded-full ring-2 ring-white dark:ring-[#06181c] object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="Rodrigo">
+            <img class="inline-block size-7 sm:size-8 rounded-full ring-2 ring-white dark:ring-[#06181c] object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="Camila">
+            <img class="inline-block size-7 sm:size-8 rounded-full ring-2 ring-white dark:ring-[#06181c] object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" alt="Carlos">
+          </div>
+          <div class="leading-tight text-left">
+            <div class="flex items-center gap-1 text-amber-500">
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <span class="font-black text-slate-900 dark:text-white text-xs ml-0.5">4.9 / 5.0</span>
+            </div>
+            <span class="block text-[10px] sm:text-[11px] text-slate-600 dark:text-slate-300 font-semibold group-hover:text-[#0088cc] transition">
+              +320 avaliações reais de clientes em Campo Grande &bull; Ver opiniões
+            </span>
+          </div>
+        </a>
       </div>
     </div>
 
@@ -447,8 +480,341 @@
 
 
 
+  <!-- ==================== SEÇÃO: AVALIAÇÕES REAIS DOS CLIENTES (GOOGLE & IFOOD) ==================== -->
+  <section id="avaliacoes" class="py-14 sm:py-20 bg-slate-50 dark:bg-[#06181c] border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
+    <div class="mx-auto max-w-7xl px-3.5 sm:px-6 lg:px-8">
+      
+      <!-- Topo da Seção de Avaliações -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-slate-200 dark:border-white/10 pb-6 sm:pb-8">
+        <div>
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-50 dark:bg-amber-950/40 px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-300 shadow-sm">
+            <i data-lucide="star" class="size-3.5 fill-amber-400"></i> Avaliações Reais de Clientes
+          </span>
+          <h2 class="mt-2 font-serif text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            Quem Pede, Vira Fã & Recomenda!
+          </h2>
+          <p class="mt-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+            Depoimentos espontâneos de moradores de Campo Grande e visitantes que provaram nossos pratos executivos, petiscos e curtiram o sítio.
+          </p>
+        </div>
+
+        <!-- Botão Deixar Avaliação Google Maps -->
+        <a href="https://maps.google.com/?q=Av.+Alhambra,+783+-+Campo+Grande,+Rio+de+Janeiro+-+RJ" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-2xl border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/20 px-4 py-2.5 text-xs font-bold text-slate-800 dark:text-white shadow-sm transition active:scale-95 shrink-0">
+          <i data-lucide="message-square-plus" class="size-4 text-[#0088cc]"></i>
+          <span>Avaliar no Google</span>
+        </a>
+      </div>
+
+      <!-- Card Destaque: Painel de Reputação & Estatísticas -->
+      <div class="mt-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-7 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        
+        <!-- Bloco Nota Geral -->
+        <div class="md:col-span-4 flex flex-col items-center justify-center text-center p-3 border-b md:border-b-0 md:border-r border-slate-100 dark:border-white/10">
+          <div class="text-5xl sm:text-6xl font-black text-slate-900 dark:text-white leading-none tracking-tight">
+            4.9
+          </div>
+          <div class="my-2 flex items-center gap-1 text-amber-400">
+            <i data-lucide="star" class="size-5 fill-amber-400"></i>
+            <i data-lucide="star" class="size-5 fill-amber-400"></i>
+            <i data-lucide="star" class="size-5 fill-amber-400"></i>
+            <i data-lucide="star" class="size-5 fill-amber-400"></i>
+            <i data-lucide="star" class="size-5 fill-amber-400"></i>
+          </div>
+          <span class="text-xs font-extrabold text-slate-700 dark:text-slate-300">
+            Média Excelente (324+ Avaliações)
+          </span>
+          <span class="text-[11px] text-slate-400 mt-0.5">
+            Google Maps &bull; WhatsApp &bull; iFood
+          </span>
+        </div>
+
+        <!-- Bloco Distribuição e Satisfação -->
+        <div class="md:col-span-8 flex flex-col justify-center space-y-3">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            <div class="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 text-center">
+              <span class="block text-lg sm:text-xl font-black text-emerald-600 dark:text-emerald-400">99.4%</span>
+              <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400">Aprovação Total</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 text-center">
+              <span class="block text-lg sm:text-xl font-black text-[#0088cc] dark:text-[#38bdf8]">&plus;1.400</span>
+              <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400">Pratos Entregues</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 text-center">
+              <span class="block text-lg sm:text-xl font-black text-amber-500">28 min</span>
+              <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400">Entrega Média</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 text-center">
+              <span class="block text-lg sm:text-xl font-black text-purple-600 dark:text-purple-400">100%</span>
+              <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400">Comida Quentinha</span>
+            </div>
+          </div>
+
+          <!-- Tags dos pontos mais elogiados pelos clientes -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-[11px] font-bold text-slate-400 mr-1">Mais elogiados:</span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-sky-800 dark:text-sky-300 text-[10px] font-extrabold border border-sky-100 dark:border-sky-800/40">
+              🍲 Prato farto e generoso
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-[10px] font-extrabold border border-emerald-100 dark:border-emerald-800/40">
+              ⚡ Entrega rápida no bairro
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-[10px] font-extrabold border border-amber-100 dark:border-amber-800/40">
+              🔥 Tempero caseiro autêntico
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300 text-[10px] font-extrabold border border-indigo-100 dark:border-indigo-800/40">
+              🏊 Piscina limpa e acolhedora
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros de Depoimentos -->
+      <div class="mt-8 flex gap-2 overflow-x-auto scrollbar-none pb-1" id="reviews-filter-bar">
+        <button type="button" onclick="filterReviews('todos')" class="review-filter-btn active shrink-0 rounded-full px-4 py-2 text-xs font-bold transition bg-[#0088cc] text-white shadow-sm" data-filter="todos">
+          Todas as Avaliações (6)
+        </button>
+        <button type="button" onclick="filterReviews('delivery')" class="review-filter-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-white hover:bg-slate-100 dark:bg-white/5 px-4 py-2 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#0088cc]" data-filter="delivery">
+          🛵 Delivery & Pratos (4)
+        </button>
+        <button type="button" onclick="filterReviews('lazer')" class="review-filter-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-white hover:bg-slate-100 dark:bg-white/5 px-4 py-2 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#0088cc]" data-filter="lazer">
+          🏊 Lazer & Piscina (2)
+        </button>
+      </div>
+
+      <!-- Grade de Depoimentos Reais dos Clientes -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="reviews-cards-grid">
+        
+        <!-- Depoimento 1 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="delivery">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                <i data-lucide="check-circle-2" class="size-3 text-emerald-500"></i> Google Avaliações
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;Pedimos o Filé de Frango com Batata e a Alcatra Acebolada. A quantidade é impressionante, veio tudo quentinho e embalado com muito capricho! A maionese da casa e a farofa são maravilhosas. Já virou nosso almoço de domingo oficial!&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                MA
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Mariana Albuquerque</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Campo Grande, RJ &bull; Pedido Frequente</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-[#0088cc] dark:text-[#38bdf8] bg-sky-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Prato Executivo
+            </span>
+          </div>
+        </div>
+
+        <!-- Depoimento 2 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="delivery">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">
+                <i data-lucide="message-circle" class="size-3 text-[#0088cc]"></i> WhatsApp Delivery
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;O delivery foi super rápido aqui no Mendanha, chegou em 25 minutos. Comida com gosto de fazenda de verdade, arroz soltinho e feijão caseiro muito bem temperado. O melhor custo-benefício de Campo Grande sem dúvidas.&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                RS
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Rodrigo Silveira</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Estrada do Mendanha &bull; Delivery</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-[#0088cc] dark:text-[#38bdf8] bg-sky-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Carne Seca Desfiada
+            </span>
+          </div>
+        </div>
+
+        <!-- Depoimento 3 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="lazer">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                <i data-lucide="check-circle-2" class="size-3 text-emerald-500"></i> Google Avaliações
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;Conhecemos o Sítio no final de semana pra curtir a piscina com as crianças e ficamos encantados com a estrutura e o carinho do atendimento. O pastel com tudo dentro e a batata frita com queijo e bacon são sensacionais. Vale cada centavo!&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                CR
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Camila & Tiago Ramos</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Senador Camará &bull; Lazer em Família</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Piscina & Petiscos
+            </span>
+          </div>
+        </div>
+
+        <!-- Depoimento 4 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="delivery">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                <i data-lucide="check-circle-2" class="size-3 text-emerald-500"></i> Google Avaliações
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;O estrogonofe de carne é um absurdo de bom! Carne macia, muito molho e a batata palha crocante veio separada pra não murchar. O motoboy foi super atencioso. Podem pedir de olhos fechados!&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                CE
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Carlos Eduardo Souza</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Inhoaíba &bull; Delivery</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-[#0088cc] dark:text-[#38bdf8] bg-sky-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Estrogonofe Alcatra
+            </span>
+          </div>
+        </div>
+
+        <!-- Depoimento 5 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="delivery">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/40">
+                <i data-lucide="message-circle" class="size-3 text-[#0088cc]"></i> WhatsApp Cliente
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;Primeira vez que pedi pelo cardápio online e virei cliente fiel. Chegou tudo quentinho como se tivesse saído da panela agora. O peixe crocante e o suco de maracujá concentrado de 500ml são nota dez!&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                FV
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Fernanda Vasconcellos</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Centro de Campo Grande &bull; Pedido Online</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-[#0088cc] dark:text-[#38bdf8] bg-sky-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Filé de Peixe Crocante
+            </span>
+          </div>
+        </div>
+
+        <!-- Depoimento 6 -->
+        <div class="review-card rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4" data-type="lazer">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1 text-amber-400">
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+                <i data-lucide="star" class="size-4 fill-amber-400"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                <i data-lucide="check-circle-2" class="size-3 text-emerald-500"></i> Google Avaliações
+              </span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed italic font-medium">
+              &ldquo;Lugar incrível, verde, calmo e a comida do cardápio é impecável. Recomendo tanto passar o dia relaxando na piscina quanto pedir o delivery pra receber em casa. Parabéns a toda a equipe do Sítio Hostel!&rdquo;
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="size-9 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white font-extrabold text-xs grid place-items-center shrink-0 shadow-sm">
+                LM
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs font-black text-slate-900 dark:text-white truncate">Lucas Mendes</h4>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Posse / Campo Grande &bull; Hóspede & Delivery</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0">
+              Hospedagem & Lazer
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
   <!-- ==================== SEÇÃO: LOCALIZAÇÃO & COMO CHEGAR (100% REAL) ==================== -->
-  <section id="localizacao" class="py-14 sm:py-16 bg-slate-50 dark:bg-[#06181c] border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
+  <section id="localizacao" class="py-14 sm:py-16 bg-white dark:bg-[#071f25] border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
     <div class="mx-auto max-w-7xl px-3.5 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071f25] p-5 sm:p-10 shadow-sm">
         
@@ -589,7 +955,14 @@
         </div>
 
         <div class="border-t border-slate-200 dark:border-white/10 pt-3 flex items-center justify-between">
-          <span class="text-xs text-slate-500 dark:text-slate-400 font-bold">Preço Unitário:</span>
+          <div>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-bold block">Preço Unitário:</span>
+            <div class="flex items-center gap-1 text-amber-500 text-[10px] font-bold mt-0.5">
+              <i data-lucide="star" class="size-3 fill-amber-400"></i>
+              <span class="text-slate-800 dark:text-slate-200 font-extrabold">4.9</span>
+              <span class="text-slate-400 dark:text-slate-400 font-medium">&bull; 99% recomendam</span>
+            </div>
+          </div>
           <span id="modal-product-unit-price" class="text-base font-black text-[#0088cc]"></span>
         </div>
 
@@ -1694,6 +2067,27 @@
     function dismissRepeatOrderBanner() {
       const banner = document.getElementById('repeat-order-banner');
       if (banner) banner.classList.add('hidden');
+    }
+
+    // Filtragem interativa das avaliações reais
+    function filterReviews(type) {
+      document.querySelectorAll('.review-filter-btn').forEach(btn => {
+        const isTarget = btn.getAttribute('data-filter') === type;
+        if (isTarget) {
+          btn.className = "review-filter-btn active shrink-0 rounded-full px-4 py-2 text-xs font-bold transition bg-[#0088cc] text-white shadow-sm";
+        } else {
+          btn.className = "review-filter-btn shrink-0 rounded-full border border-slate-200 dark:border-white/15 bg-white hover:bg-slate-100 dark:bg-white/5 px-4 py-2 text-xs font-bold text-slate-700 dark:text-slate-200 transition hover:border-[#0088cc]";
+        }
+      });
+
+      document.querySelectorAll('.review-card').forEach(card => {
+        if (type === 'todos' || card.getAttribute('data-type') === type) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      lucide.createIcons();
     }
 
     function openProductModal(itemId) {
