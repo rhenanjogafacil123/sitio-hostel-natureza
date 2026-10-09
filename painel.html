@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Gestão & Pedidos | Sítio Hostel Natureza</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0a2540',
+              navyDark: '#061826',
+              azure: '#0088cc',
+              azureHover: '#0077b6',
+              azureLight: '#38bdf8',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Montserrat"', 'sans-serif'],
+            heading: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0088cc; }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    @media print {
+      body * { visibility: hidden; }
+      #printable-receipt, #printable-receipt * { visibility: visible; }
+      #printable-receipt { position: absolute; left: 0; top: 0; width: 80mm; }
+    }
+  </style>
+</head>
+<body class="bg-[#f4f6fa] text-slate-900 font-sans antialiased selection:bg-[#0088cc] selection:text-white">
+
+  <!-- ==================== CONTAINER PRINCIPAL COM SIDEBAR ==================== -->
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- ==================== SIDEBAR LATERAL (DESKTOP) ==================== -->
+    <aside class="w-full lg:w-64 bg-white border-r border-slate-200/80 flex flex-col justify-between shrink-0 z-30 lg:h-screen lg:sticky lg:top-0">
+      
+      <!-- Topo Sidebar: Logo Sítio Hostel Natureza -->
+      <div>
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div class="size-11 rounded-2xl bg-sky-50 grid place-items-center p-1 border border-sky-100 shadow-sm transition group-hover:scale-105">
+              <img src="assets/logo.png" alt="Sítio Hostel Natureza" class="h-full w-full object-contain">
+            </div>
+            <div class="leading-tight">
+              <span class="block text-sm font-extrabold text-[#0a2540]">Sítio Hostel</span>
+              <span class="block text-xs font-bold text-[#0088cc]">Painel de Gestão</span>
+            </div>
+          </a>
+
+          <a href="index.html" class="lg:hidden text-xs font-bold text-slate-500 hover:text-slate-900 border border-slate-200 rounded-lg px-2.5 py-1">
+            Site Oficial
+          </a>
+        </div>
+
+        <!-- Status da Loja (Aberta/Fechada) -->
+        <div class="px-5 py-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span id="store-status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span id="store-status-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span id="store-status-text" class="text-xs font-extrabold text-slate-700">Restaurante Aberto</span>
+          </div>
+          <button type="button" onclick="toggleStoreStatus()" class="text-[11px] font-bold text-[#0088cc] hover:underline">
+            Alterar
+          </button>
+        </div>
+
+        <!-- Menu de Navegação do Painel (Tabs) -->
+        <nav class="p-3 space-y-1 overflow-x-auto lg:overflow-visible flex lg:flex-col scrollbar-none">
+          
+          <button type="button" onclick="switchTab('dashboard')" class="nav-tab-btn active w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-extrabold transition bg-sky-50 text-[#0088cc]" data-tab="dashboard">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="layout-dashboard" class="size-4"></i>
+              <span>Dashboard</span>
+            </div>
+          </button>
+
+          <button type="button" onclick="switchTab('pedidos')" class="nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" data-tab="pedidos">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="clipboard-list" class="size-4"></i>
+              <span>Central de Pedidos</span>
+            </div>
+            <span id="tab-orders-badge" class="rounded-full bg-[#0088cc] text-white px-2 py-0.5 text-[10px] font-extrabold">
+              10
+            </span>
+          </button>
+
+          <button type="button" onclick="switchTab('produtos')" class="nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" data-tab="produtos">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="package" class="size-4"></i>
+              <span>Produtos (43 Itens)</span>
+            </div>
+          </button>
+
+          <button type="button" onclick="switchTab('motoboy')" class="nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" data-tab="motoboy">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="bike" class="size-4"></i>
+              <span>App do Motoboy</span>
+            </div>
+            <span class="rounded-full bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[9px] font-extrabold">
+              Mobile
+            </span>
+          </button>
+
+          <button type="button" onclick="switchTab('financeiro')" class="nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" data-tab="financeiro">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="circle-dollar-sign" class="size-4"></i>
+              <span>Financeiro & Caixa</span>
+            </div>
+          </button>
+
+          <button type="button" onclick="switchTab('configuracoes')" class="nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" data-tab="configuracoes">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="settings" class="size-4"></i>
+              <span>Configurações</span>
+            </div>
+          </button>
+
+        </nav>
+      </div>
+
+      <!-- Rodapé Sidebar: Retornar ao Site Oficial -->
+      <div class="p-4 border-t border-slate-100 hidden lg:block">
+        <a href="index.html" class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-extrabold transition">
+          <i data-lucide="arrow-left" class="size-4"></i>
+          <span>Voltar para o Cardápio</span>
+        </a>
+        <div class="mt-3 text-center text-[10px] text-slate-400">
+          Sítio Hostel Natureza • v2.0
+        </div>
+      </div>
+
+    </aside>
+
+
+
+    <!-- ==================== ÁREA DE CONTEÚDO PRINCIPAL ==================== -->
+    <main class="flex-1 flex flex-col min-w-0">
+
+      <!-- Topbar Header -->
+      <header class="bg-white border-b border-slate-200/80 px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 sticky top-0 z-20 shadow-sm">
+        <div class="flex items-center gap-3">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider hidden sm:block">
+            Painel Administrativo
+          </div>
+          <span class="text-slate-300 hidden sm:block">•</span>
+          <div class="text-xs sm:text-sm font-extrabold text-[#0a2540] flex items-center gap-2">
+            <i data-lucide="clock" class="size-4 text-[#0088cc]"></i>
+            <span id="live-clock">14:45</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <button type="button" onclick="openNewOrderModal()" class="inline-flex items-center gap-1.5 rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-extrabold shadow-sm transition active:scale-95">
+            <i data-lucide="plus" class="size-3.5"></i>
+            <span>+ Novo Pedido Manual</span>
+          </button>
+
+          <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3.5 py-1.5 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">
+            <i data-lucide="external-link" class="size-3.5"></i>
+            <span>Ver Site</span>
+          </a>
+        </div>
+      </header>
+
+
+
+      <!-- ==================== TAB 1: DASHBOARD GERAL ==================== -->
+      <section id="tab-dashboard" class="p-4 sm:p-8 space-y-6 flex-1">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-black text-[#0a2540]">Dashboard do Estabelecimento</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Visão consolidada das vendas, entregas e operação de hoje em Campo Grande.</p>
+          </div>
+          <div class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-extrabold text-slate-600 shadow-sm">
+            <i data-lucide="calendar" class="size-4 text-[#0088cc]"></i>
+            <span id="current-date-text">Hoje • 09 de Outubro</span>
+          </div>
+        </div>
+
+        <!-- 4 Cards de Métricas Principais -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">Faturamento Hoje</span>
+              <div class="size-9 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+                <i data-lucide="trending-up" class="size-4.5"></i>
+              </div>
+            </div>
+            <div class="mt-3 text-xl sm:text-2xl font-black text-slate-900" id="dash-revenue-today">R$ 1.842,50</div>
+            <p class="mt-1 text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+              <span>+18.4%</span> vs. média diária
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">Pedidos de Hoje</span>
+              <div class="size-9 rounded-xl bg-sky-50 text-[#0088cc] grid place-items-center">
+                <i data-lucide="shopping-bag" class="size-4.5"></i>
+              </div>
+            </div>
+            <div class="mt-3 text-xl sm:text-2xl font-black text-slate-900" id="dash-orders-count">28</div>
+            <p class="mt-1 text-[11px] font-semibold text-slate-500">
+              Ticket Médio: <strong class="text-slate-800">R$ 65,80</strong>
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">Tempo de Cozinha</span>
+              <div class="size-9 rounded-xl bg-amber-50 text-amber-600 grid place-items-center">
+                <i data-lucide="clock" class="size-4.5"></i>
+              </div>
+            </div>
+            <div class="mt-3 text-xl sm:text-2xl font-black text-slate-900">22 min</div>
+            <p class="mt-1 text-[11px] font-semibold text-emerald-600">
+              Dentro da meta (25m)
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-500">Motoboys Ativos</span>
+              <div class="size-9 rounded-xl bg-purple-50 text-purple-600 grid place-items-center">
+                <i data-lucide="bike" class="size-4.5"></i>
+              </div>
+            </div>
+            <div class="mt-3 text-xl sm:text-2xl font-black text-slate-900">4 na rua</div>
+            <p class="mt-1 text-[11px] font-semibold text-purple-600">
+              Campo Grande & arredores
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Bloco: Recuperação de Clientes (Feature do Bora de Batata) -->
+        <div class="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50/70 via-white to-blue-50/40 p-6 sm:p-7 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-[#0088cc] text-white px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider">
+                <i data-lucide="users" class="size-3"></i> Inteligência de Clientes
+              </span>
+              <h3 class="mt-2 text-lg sm:text-xl font-black text-[#0a2540]">Recuperação de Clientes Inativos</h3>
+              <p class="mt-1 text-xs sm:text-sm text-slate-600 max-w-xl">
+                14 clientes habituais estão há mais de 20 dias sem fazer pedidos no Sítio. Dispare uma mensagem com cupom de cortesia no WhatsApp com 1 clique.
+              </p>
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+              <div class="text-right">
+                <div class="text-2xl font-black text-[#0088cc]">R$ 1.940,00</div>
+                <div class="text-[10px] text-slate-500">potencial de recompra</div>
+              </div>
+              <button type="button" onclick="notifyRecoverySuccess()" class="rounded-full bg-[#0088cc] hover:bg-[#0077b6] text-white px-5 py-2.5 text-xs font-extrabold shadow-md transition active:scale-95">
+                Chamar no WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade Dupla: Mais Vendidos & Canais de Venda -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Mais Vendidos (2 Colunas) -->
+          <div class="lg:col-span-2 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm">
+            <h3 class="text-sm font-extrabold text-[#0a2540] flex items-center justify-between">
+              <span>Top 5 Pratos Mais Pedidos</span>
+              <span class="text-xs font-bold text-slate-400">Total Vendas</span>
+            </h3>
+
+            <div class="mt-4 space-y-3" id="dash-top-products-list">
+              <!-- Preenchido via JS -->
+            </div>
+          </div>
+
+          <!-- Distribuição por Canal (1 Coluna) -->
+          <div class="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm">
+            <h3 class="text-sm font-extrabold text-[#0a2540] mb-4">Pedidos por Canal</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-700">WhatsApp Oficial</span>
+                  <span class="text-emerald-600 font-extrabold">64% (18 pedidos)</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div class="h-full bg-emerald-500 rounded-full" style="width: 64%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-700">Consumo Balcão / Piscina</span>
+                  <span class="text-[#0088cc] font-extrabold">25% (7 pedidos)</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div class="h-full bg-[#0088cc] rounded-full" style="width: 25%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span class="text-slate-700">Delivery Direto</span>
+                  <span class="text-amber-600 font-extrabold">11% (3 pedidos)</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+                  <div class="h-full bg-amber-500 rounded-full" style="width: 11%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 p-3.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
+              💡 <strong>Dica da Cozinha:</strong> O pico de pedidos ocorre aos domingos das 12h às 15h. Prepare o mise-en-place das batatas e executivos com antecedência.
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================== TAB 2: CENTRAL DE PEDIDOS (KANBAN DE COZINHA) ==================== -->
+      <section id="tab-pedidos" class="p-4 sm:p-6 space-y-4 flex-1 hidden">
+        
+        <!-- Header da Central de Pedidos -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h1 class="text-xl sm:text-2xl font-black text-[#0a2540]">Central de Pedidos (Kanban)</h1>
+            <p class="text-xs text-slate-500">Arraste ou clique nos botões para avançar os pedidos pelo fluxo da cozinha.</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <i data-lucide="search" class="size-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input type="text" id="kanban-search" oninput="renderKanban()" placeholder="Buscar cliente, prato..." class="rounded-xl border border-slate-200 bg-white pl-8 pr-3 py-1.5 text-xs outline-none focus:border-[#0088cc] w-48 sm:w-60 shadow-sm">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Colunas do Kanban -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 items-start">
+          
+          <!-- Coluna 1: RECEBIDO -->
+          <div class="rounded-2xl border border-slate-200 bg-slate-100/70 p-3 flex flex-col min-h-[500px]">
+            <div class="flex items-center justify-between pb-2.5 mb-2 border-b border-slate-200">
+              <div class="flex items-center gap-2">
+                <span class="size-2.5 rounded-full bg-slate-400"></span>
+                <span class="text-xs font-black uppercase text-slate-700">Recebido</span>
+              </div>
+              <span id="col-count-recebido" class="size-5 rounded-full bg-white text-slate-700 font-bold text-[11px] grid place-items-center shadow-sm">0</span>
+            </div>
+            <div class="space-y-3 flex-1 overflow-y-auto" id="kanban-col-recebido"></div>
+          </div>
+
+          <!-- Coluna 2: PREPARANDO -->
+          <div class="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-3 flex flex-col min-h-[500px]">
+            <div class="flex items-center justify-between pb-2.5 mb-2 border-b border-amber-200">
+              <div class="flex items-center gap-2">
+                <span class="size-2.5 rounded-full bg-amber-500"></span>
+                <span class="text-xs font-black uppercase text-amber-800">Em Preparo</span>
+              </div>
+              <span id="col-count-preparando" class="size-5 rounded-full bg-white text-amber-800 font-bold text-[11px] grid place-items-center shadow-sm">0</span>
+            </div>
+            <div class="space-y-3 flex-1 overflow-y-auto" id="kanban-col-preparando"></div>
+          </div>
+
+          <!-- Coluna 3: PRONTO -->
+          <div class="rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-3 flex flex-col min-h-[500px]">
+            <div class="flex items-center justify-between pb-2.5 mb-2 border-b border-emerald-200">
+              <div class="flex items-center gap-2">
+                <span class="size-2.5 rounded-full bg-emerald-500"></span>
+                <span class="text-xs font-black uppercase text-emerald-800">Pronto no Balcão</span>
+              </div>
+              <span id="col-count-pronto" class="size-5 rounded-full bg-white text-emerald-800 font-bold text-[11px] grid place-items-center shadow-sm">0</span>
+            </div>
+            <div class="space-y-3 flex-1 overflow-y-auto" id="kanban-col-pronto"></div>
+          </div>
+
+          <!-- Coluna 4: ENTREGA / CONCLUÍDO -->
+          <div class="rounded-2xl border border-sky-200/80 bg-sky-50/40 p-3 flex flex-col min-h-[500px]">
+            <div class="flex items-center justify-between pb-2.5 mb-2 border-b border-sky-200">
+              <div class="flex items-center gap-2">
+                <span class="size-2.5 rounded-full bg-[#0088cc]"></span>
+                <span class="text-xs font-black uppercase text-sky-800">Em Rota / Concluído</span>
+              </div>
+              <span id="col-count-entrega" class="size-5 rounded-full bg-white text-sky-800 font-bold text-[11px] grid place-items-center shadow-sm">0</span>
+            </div>
+            <div class="space-y-3 flex-1 overflow-y-auto" id="kanban-col-entrega"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================== TAB 3: GESTÃO DE PRODUTOS ==================== -->
+      <section id="tab-produtos" class="p-4 sm:p-8 space-y-6 flex-1 hidden">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-black text-[#0a2540]">Produtos Cadastrados (43 Itens)</h1>
+            <p class="text-xs sm:text-sm text-slate-500">Pause produtos esgotados no dia, altere preços ou cadastre novos pratos.</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input type="text" id="prod-search" oninput="renderProductsTable()" placeholder="Buscar prato..." class="rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs outline-none focus:border-[#0088cc] w-48 shadow-sm">
+            <select id="prod-category-filter" onchange="renderProductsTable()" class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs outline-none focus:border-[#0088cc]">
+              <option value="todos">Todas Categorias</option>
+              <option value="Mais Pedidos do Natureza">Mais Pedidos</option>
+              <option value="Pratos Executivos">Pratos Executivos</option>
+              <option value="Executivo + Suco 300ml">Combos Suco</option>
+              <option value="Executivo + Coca Lata">Combos Coca</option>
+              <option value="Petiscos com Batata ou Aipim">Petiscos c/ Batata/Aipim</option>
+              <option value="Petiscos PUROS">Petiscos PUROS</option>
+              <option value="Guarnições">Guarnições</option>
+              <option value="Bebidas">Bebidas</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tabela de Produtos -->
+        <div class="rounded-2xl border border-slate-200/90 bg-white overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-extrabold border-b border-slate-200">
+                <tr>
+                  <th class="py-3.5 px-4">Prato / Foto</th>
+                  <th class="py-3.5 px-4">Categoria</th>
+                  <th class="py-3.5 px-4">Preço (R$)</th>
+                  <th class="py-3.5 px-4">Disponibilidade</th>
+                  <th class="py-3.5 px-4 text-right">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body" class="divide-y divide-slate-100 font-medium">
+                <!-- Renderizado via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================== TAB 4: APP DO MOTOBOY ==================== -->
+      <section id="tab-motoboy" class="p-4 sm:p-8 space-y-6 flex-1 hidden">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-[10px] font-extrabold uppercase">
+              <i data-lucide="bike" class="size-3"></i> Módulo de Entregas Campo Grande
+            </span>
+            <h1 class="mt-1 text-2xl font-black text-[#0a2540]">Aplicativo do Motoboy</h1>
+            <p class="text-xs text-slate-500">Visualização rápida de corridas em andamento, rotas e confirmação de entrega.</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs font-black text-emerald-700">
+              Ganhos do Dia: R$ 68,00 (8 corridas)
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="motoboy-deliveries-grid">
+          <!-- Renderizado via JS com entregas reais de Campo Grande -->
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================== TAB 5: FINANCEIRO & CAIXA ==================== -->
+      <section id="tab-financeiro" class="p-4 sm:p-8 space-y-6 flex-1 hidden">
+        
+        <div>
+          <h1 class="text-2xl font-black text-[#0a2540]">Financeiro & Fechamento de Caixa</h1>
+          <p class="text-xs text-slate-500">Entradas consolidadas por modalidade de pagamento do Sítio Hostel Natureza.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <span class="text-xs font-bold text-slate-500">Total Pix (Oficial)</span>
+            <div class="text-2xl font-black text-emerald-600 mt-2">R$ 1.180,00</div>
+            <p class="text-[11px] text-slate-400 mt-1">16 pedidos via Chave Pix</p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <span class="text-xs font-bold text-slate-500">Cartão Maquininha</span>
+            <div class="text-2xl font-black text-[#0088cc] mt-2">R$ 498,50</div>
+            <p class="text-[11px] text-slate-400 mt-1">9 pedidos Crédito / Débito</p>
+          </div>
+
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <span class="text-xs font-bold text-slate-500">Dinheiro no Balcão</span>
+            <div class="text-2xl font-black text-amber-600 mt-2">R$ 164,00</div>
+            <p class="text-[11px] text-slate-400 mt-1">3 pedidos em espécie</p>
+          </div>
+
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="text-base font-extrabold text-[#0a2540] mb-4">Detalhamento das Vendas de Hoje</h3>
+          <div class="space-y-3" id="finance-orders-list">
+            <!-- Inserido dinamicamente via JS -->
+          </div>
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================== TAB 6: CONFIGURAÇÕES DA LOJA ==================== -->
+      <section id="tab-configuracoes" class="p-4 sm:p-8 space-y-6 flex-1 hidden">
+        
+        <div>
+          <h1 class="text-2xl font-black text-[#0a2540]">Configurações da Operação</h1>
+          <p class="text-xs text-slate-500">Ajuste dados de contato, taxas de entrega e tempos estimados.</p>
+        </div>
+
+        <div class="max-w-2xl bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
+          
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp de Pedidos</label>
+            <input type="text" id="cfg-whatsapp" value="(21) 96758-1148" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-xs font-bold outline-none focus:border-[#0088cc]">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Chave Pix Oficial</label>
+            <input type="text" id="cfg-pix" value="65.616.181/0001-20 (CNPJ)" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-xs font-bold outline-none focus:border-[#0088cc]">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Tempo Médio Cozinha</label>
+              <input type="text" value="20 a 35 min" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-xs font-bold outline-none focus:border-[#0088cc]">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Taxa Entrega Padrão</label>
+              <input type="text" value="R$ 8,00" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-xs font-bold outline-none focus:border-[#0088cc]">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Endereço do Sítio</label>
+            <input type="text" value="Av. Alhambra, 783 - Campo Grande, Rio de Janeiro - RJ" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-xs font-bold outline-none focus:border-[#0088cc]">
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" onclick="alert('Configurações salvas com sucesso!')" class="rounded-full bg-[#0088cc] text-white px-6 py-2.5 text-xs font-extrabold hover:bg-[#0077b6]">
+              Salvar Alterações
+            </button>
+            <button type="button" onclick="resetDemoOrders()" class="text-xs text-rose-500 font-bold hover:underline">
+              Restaurar Pedidos de Exemplo
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+
+
+  <!-- ==================== MODAL: NOVO PEDIDO MANUAL ==================== -->
+  <div id="modal-new-order" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-black text-[#0a2540]">Lançar Pedido Manual (Balcão / Telefone)</h3>
+        <button type="button" onclick="closeNewOrderModal()" class="text-slate-400 hover:text-slate-700"><i data-lucide="x" class="size-5"></i></button>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Nome do Cliente *</label>
+        <input type="text" id="manual-customer" placeholder="Ex.: Rodrigo Silva" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none focus:border-[#0088cc]">
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Canal</label>
+          <select id="manual-channel" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none">
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Balcão">Balcão / Piscina</option>
+            <option value="Telefone">Telefone</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Pagamento</label>
+          <select id="manual-payment" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none">
+            <option value="Pix">Pix</option>
+            <option value="Cartão">Cartão</option>
+            <option value="Dinheiro">Dinheiro</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Prato / Item do Cardápio *</label>
+        <select id="manual-product-select" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none">
+          <option value="1x Executivo Frango Crocante • R$ 26,90">Executivo Frango Crocante (R$ 26,90)</option>
+          <option value="1x Estrogonofe de Frango • R$ 25,90">Estrogonofe de Frango (R$ 25,90)</option>
+          <option value="1x Executivo Alcatra Grelhada • R$ 29,90">Executivo Alcatra Grelhada (R$ 29,90)</option>
+          <option value="1x Porção Alcatra com Batata • R$ 60,00">Porção Alcatra com Batata (R$ 60,00)</option>
+          <option value="1x Porção Batata Frita Grande • R$ 28,00">Porção Batata Frita Grande (R$ 28,00)</option>
+          <option value="1x Porção Frango Passarinho • R$ 52,00">Porção Frango Passarinho (R$ 52,00)</option>
+          <option value="1x Suco de Maracujá 500ml • R$ 15,90">Suco de Maracujá 500ml (R$ 15,90)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Endereço de Entrega (ou 'Retirada no Balcão')</label>
+        <input type="text" id="manual-address" placeholder="Ex.: Estrada do Mendanha, 840 - Campo Grande" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none">
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">Observações da Cozinha</label>
+        <input type="text" id="manual-notes" placeholder="Ex.: Sem cebola, salada à parte" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none">
+      </div>
+
+      <div class="pt-2 flex gap-3">
+        <button type="button" onclick="closeNewOrderModal()" class="flex-1 rounded-xl border border-slate-200 py-2.5 text-xs font-bold text-slate-600">Cancelar</button>
+        <button type="button" onclick="saveManualOrder()" class="flex-1 rounded-xl bg-[#0088cc] hover:bg-[#0077b6] text-white py-2.5 text-xs font-extrabold shadow-sm">Salvar Pedido</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ==================== COMANDA TÉRMICA PARA IMPRESSÃO (80mm) ==================== -->
+  <div id="printable-receipt" class="hidden p-4 bg-white font-mono text-[11px] leading-tight text-black max-w-[80mm] border border-dashed border-slate-300">
+    <div class="text-center font-bold text-sm mb-1">SÍTIO HOSTEL NATUREZA</div>
+    <div class="text-center text-[10px] mb-2">Av. Alhambra, 783 - Campo Grande, RJ</div>
+    <div class="border-b border-black border-dashed mb-2"></div>
+    <div class="flex justify-between font-bold">
+      <span id="print-order-num">#1048</span>
+      <span id="print-order-time">14:32</span>
+    </div>
+    <div class="mt-1">CLIENTE: <span id="print-order-customer" class="font-bold">João Silva</span></div>
+    <div>CANAL: <span id="print-order-channel">WhatsApp</span></div>
+    <div>PAGTO: <span id="print-order-payment">Pix</span></div>
+    <div class="border-b border-black border-dashed my-2"></div>
+    <div class="font-bold mb-1">ITENS DO PEDIDO:</div>
+    <div id="print-order-items" class="space-y-1 mb-2"></div>
+    <div id="print-order-notes" class="text-[10px] italic border-t border-dotted border-black pt-1 mb-2"></div>
+    <div class="border-b border-black border-dashed my-2"></div>
+    <div class="flex justify-between font-bold text-sm">
+      <span>TOTAL:</span>
+      <span id="print-order-total">R$ 0,00</span>
+    </div>
+    <div class="text-center text-[9px] mt-3">COZINHA / BAR SÍTIO NATUREZA</div>
+  </div>
+
+
+
+  <!-- ==================== JAVASCRIPT DO PAINEL ==================== -->
+  <script>
+    // Pedidos Iniciais de Exemplo com Produtos do Sítio Natureza em Campo Grande
+    const defaultOrders = [
+      { id: 1048, customer: "João Silva", channel: "WhatsApp", items: ["1x Executivo Frango Crocante • R$ 26,90", "1x Suco Maracujá 500ml • R$ 15,90"], payment: "Pix", price: "R$ 42,80", minutes: 3, status: "recebido", phone: "(21) 99142-7730", address: "Rua das Flores, 123", neighborhood: "Campo Grande", notes: "Sem cebola. Farofa bem crocante.", createdAt: "14:42" },
+      { id: 1049, customer: "Mariana Costa", channel: "WhatsApp", items: ["2x Estrogonofe de Frango • R$ 25,90", "1x Coca-Cola Lata • R$ 8,00"], payment: "Cartão", price: "R$ 59,80", minutes: 8, status: "recebido", phone: "(21) 98821-4452", address: "Estrada do Mendanha, 840", neighborhood: "Campo Grande", notes: "Interfone 204.", createdAt: "14:37" },
+      { id: 1050, customer: "Carlos Ribeiro", channel: "Balcão", items: ["1x Porção Alcatra com Batata • R$ 60,00", "2x Guaracamp • R$ 3,00"], payment: "Dinheiro", price: "R$ 66,00", minutes: 12, status: "preparando", phone: "(21) 98044-5012", address: "Mesa 4 (Piscina)", neighborhood: "Deck Sítio", notes: "Carne ao ponto para bem passada.", createdAt: "14:33" },
+      { id: 1047, customer: "Lucas Mendes", channel: "WhatsApp", items: ["1x Executivo Alcatra Grelhada • R$ 29,90", "1x Coca zero lata • R$ 8,00"], payment: "Pix", price: "R$ 37,90", minutes: 18, status: "preparando", phone: "(21) 98211-8301", address: "Av. Cesário de Melo, 1400", neighborhood: "Campo Grande", createdAt: "14:27" },
+      { id: 1045, customer: "Ana Paula", channel: "Delivery", items: ["1x Filé de Peixe Empanado • R$ 28,90", "1x Suco Maracujá 300ml • R$ 11,90"], payment: "Cartão", price: "R$ 40,80", minutes: 5, status: "pronto", courier: "Matheus Alves", phone: "(21) 97420-1188", address: "Estrada da Posse, 320", neighborhood: "Campo Grande", createdAt: "14:20" },
+      { id: 1046, customer: "Pedro Santos", channel: "Balcão", items: ["1x Porção de Frango a Passarinho • R$ 52,00", "1x Porção Aipim Frito • R$ 28,00"], payment: "Pix", price: "R$ 80,00", minutes: 7, status: "pronto", phone: "(21) 99280-1477", address: "Quiosque 2", neighborhood: "Piscina Sítio", createdAt: "14:18" },
+      { id: 1042, customer: "Amanda Rocha", channel: "Delivery", items: ["1x Camarão ao Alho e Óleo • R$ 68,00", "1x Porção Batata Frita • R$ 28,00"], payment: "Pix", price: "R$ 96,00", minutes: 14, status: "entrega", courier: "Rafael Lima", phone: "(21) 99812-3381", address: "Rua Viúva Dantas, 250", neighborhood: "Campo Grande", notes: "Portão branco.", createdAt: "14:11" },
+      { id: 1043, customer: "Gabriel Martins", channel: "Delivery", items: ["2x Executivo Frango Crocante • R$ 26,90"], payment: "Cartão", price: "R$ 53,80", minutes: 22, status: "entrega", courier: "Diego Souza", phone: "(21) 97642-2230", address: "Estrada do Cabuçu, 510", neighborhood: "Campo Grande", createdAt: "14:03" }
+    ];
+
+    let orders = JSON.parse(localStorage.getItem('sitio_panel_orders') || 'null') || defaultOrders;
+    let storeOpen = localStorage.getItem('sitio_store_status') !== 'closed';
+
+    // Top 5 Produtos do Sítio
+    const topProducts = [
+      { name: "Executivo Frango Crocante", sales: 42, value: "R$ 1.129,80", cat: "Pratos Executivos" },
+      { name: "Estrogonofe de Frango Cremoso", sales: 38, value: "R$ 984,20", cat: "Mais Pedidos" },
+      { name: "Executivo de Alcatra Grelhada", sales: 31, value: "R$ 926,90", cat: "Pratos Executivos" },
+      { name: "Porção Alcatra com Batata", sales: 28, value: "R$ 1.680,00", cat: "Petiscos" },
+      { name: "Suco de Maracujá 500ml", sales: 45, value: "R$ 715,50", cat: "Bebidas" }
+    ];
+
+    function saveOrders() {
+      localStorage.setItem('sitio_panel_orders', JSON.stringify(orders));
+    }
+
+    function toggleStoreStatus() {
+      storeOpen = !storeOpen;
+      localStorage.setItem('sitio_store_status', storeOpen ? 'open' : 'closed');
+      updateStoreStatusUI();
+    }
+
+    function updateStoreStatusUI() {
+      const ping = document.getElementById('store-status-ping');
+      const dot = document.getElementById('store-status-dot');
+      const text = document.getElementById('store-status-text');
+      if (storeOpen) {
+        ping.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
+        dot.className = "relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500";
+        text.textContent = "Restaurante Aberto";
+        text.className = "text-xs font-extrabold text-emerald-800";
+      } else {
+        ping.className = "hidden";
+        dot.className = "relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500";
+        text.textContent = "Restaurante Fechado";
+        text.className = "text-xs font-extrabold text-rose-700";
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('section[id^="tab-"]').forEach(s => s.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        const isTarget = btn.getAttribute('data-tab') === tabId;
+        if (isTarget) {
+          btn.className = "nav-tab-btn active w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-extrabold transition bg-sky-50 text-[#0088cc]";
+        } else {
+          btn.className = "nav-tab-btn w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition";
+        }
+      });
+
+      const targetSection = document.getElementById(`tab-${tabId}`);
+      if (targetSection) targetSection.classList.remove('hidden');
+
+      if (tabId === 'pedidos') renderKanban();
+      if (tabId === 'produtos') renderProductsTable();
+      if (tabId === 'motoboy') renderMotoboyTab();
+      if (tabId === 'financeiro') renderFinanceTab();
+      lucide.createIcons();
+    }
+
+    function renderDashboard() {
+      const topList = document.getElementById('dash-top-products-list');
+      topList.innerHTML = topProducts.map((p, i) => `
+        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+          <div class="flex items-center gap-3">
+            <span class="size-6 rounded-lg bg-white border text-[#0088cc] font-extrabold text-xs grid place-items-center">${i + 1}</span>
+            <div>
+              <div class="text-xs font-extrabold text-slate-900">${p.name}</div>
+              <div class="text-[10px] text-slate-400">${p.cat}</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs font-black text-slate-900">${p.value}</div>
+            <div class="text-[10px] text-emerald-600 font-bold">${p.sales} pedidos</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ==================== KANBAN LOGIC ====================
+    function renderKanban() {
+      const q = (document.getElementById('kanban-search')?.value || '').trim().toLowerCase();
+      const cols = {
+        recebido: document.getElementById('kanban-col-recebido'),
+        preparando: document.getElementById('kanban-col-preparando'),
+        pronto: document.getElementById('kanban-col-pronto'),
+        entrega: document.getElementById('kanban-col-entrega')
+      };
+
+      Object.values(cols).forEach(c => c.innerHTML = '');
+
+      const counts = { recebido: 0, preparando: 0, pronto: 0, entrega: 0 };
+
+      const filtered = orders.filter(o => {
+        if (!q) return true;
+        return o.customer.toLowerCase().includes(q) ||
+               String(o.id).includes(q) ||
+               o.items.some(it => it.toLowerCase().includes(q)) ||
+               (o.address && o.address.toLowerCase().includes(q));
+      });
+
+      filtered.forEach(o => {
+        counts[o.status] = (counts[o.status] || 0) + 1;
+        const col = cols[o.status];
+        if (!col) return;
+
+        let nextBtn = '';
+        if (o.status === 'recebido') {
+          nextBtn = `<button onclick="advanceOrder(${o.id}, 'preparando')" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs transition">✓ Confirmar p/ Cozinha</button>`;
+        } else if (o.status === 'preparando') {
+          nextBtn = `<button onclick="advanceOrder(${o.id}, 'pronto')" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs transition">🍲 Marcar como Pronto</button>`;
+        } else if (o.status === 'pronto') {
+          nextBtn = `<button onclick="advanceOrder(${o.id}, 'entrega')" class="w-full py-2 rounded-xl bg-[#0088cc] hover:bg-[#0077b6] text-white font-extrabold text-xs transition">🛵 Despachar c/ Motoboy</button>`;
+        } else if (o.status === 'entrega') {
+          nextBtn = `<button onclick="advanceOrder(${o.id}, 'concluido')" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-black text-white font-extrabold text-xs transition">🏁 Concluir Entrega</button>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = "rounded-2xl border border-slate-200/90 bg-white p-3.5 shadow-sm space-y-2.5 hover:shadow-md transition";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black text-[#0a2540]">#${o.id} • ${o.customer}</span>
+            <span class="rounded-full bg-slate-100 text-slate-600 px-2 py-0.5 text-[9px] font-bold">${o.channel}</span>
+          </div>
+
+          <div class="text-[11px] text-slate-700 space-y-1 bg-slate-50 p-2 rounded-xl border border-slate-100">
+            ${o.items.map(it => `<div class="font-bold">• ${it}</div>`).join('')}
+            ${o.notes ? `<div class="text-[10px] text-amber-800 italic mt-1 bg-amber-50 p-1 rounded">Obs: ${o.notes}</div>` : ''}
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] text-slate-500">
+            <span>${o.payment} • <strong class="text-slate-900">${o.price}</strong></span>
+            <span>${o.createdAt} (${o.minutes}m atrás)</span>
+          </div>
+
+          ${o.address ? `<div class="text-[10px] text-slate-500 truncate flex items-center gap-1"><i data-lucide="map-pin" class="size-3 text-[#0088cc]"></i> ${o.address}</div>` : ''}
+
+          <div class="pt-1 flex items-center gap-2">
+            <button type="button" onclick="printReceipt(${o.id})" class="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50" title="Imprimir Comanda">
+              <i data-lucide="printer" class="size-3.5"></i>
+            </button>
+            <a href="https://wa.me/55${o.phone.replace(/\\D/g, '')}" target="_blank" class="p-2 rounded-xl border border-slate-200 text-emerald-600 hover:bg-emerald-50" title="Chamar no WhatsApp">
+              <i data-lucide="message-circle" class="size-3.5"></i>
+            </a>
+            <div class="flex-1">${nextBtn}</div>
+          </div>
+        `;
+        col.appendChild(card);
+      });
+
+      document.getElementById('col-count-recebido').textContent = counts.recebido;
+      document.getElementById('col-count-preparando').textContent = counts.preparando;
+      document.getElementById('col-count-pronto').textContent = counts.pronto;
+      document.getElementById('col-count-entrega').textContent = counts.entrega;
+      document.getElementById('tab-orders-badge').textContent = orders.length;
+
+      lucide.createIcons();
+    }
+
+    function advanceOrder(id, nextStatus) {
+      if (nextStatus === 'concluido') {
+        orders = orders.filter(o => o.id !== id);
+      } else {
+        const order = orders.find(o => o.id === id);
+        if (order) order.status = nextStatus;
+      }
+      saveOrders();
+      renderKanban();
+    }
+
+    function printReceipt(id) {
+      const order = orders.find(o => o.id === id);
+      if (!order) return;
+
+      document.getElementById('print-order-num').textContent = `#${order.id}`;
+      document.getElementById('print-order-time').textContent = order.createdAt;
+      document.getElementById('print-order-customer').textContent = order.customer;
+      document.getElementById('print-order-channel').textContent = order.channel;
+      document.getElementById('print-order-payment').textContent = order.payment;
+      document.getElementById('print-order-total').textContent = order.price;
+      document.getElementById('print-order-items').innerHTML = order.items.map(it => `<div>${it}</div>`).join('');
+      document.getElementById('print-order-notes').textContent = order.notes ? `OBS: ${order.notes}` : '';
+
+      window.print();
+    }
+
+    // ==================== GESTÃO DE PRODUTOS ====================
+    // Carrega os 43 produtos do sítio
+    let productsList = [
+      { id: 4308453, name: "Executivo de Filé de Frango Crocante", cat: "Mais Pedidos do Natureza", price: 26.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308453/f10c54bfChatGPT_Image_3_de_jun._de_2026__13_23_33.png" },
+      { id: 4308458, name: "Estrogonofe de Frango Cremoso", cat: "Mais Pedidos do Natureza", price: 25.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308458/5fd36d29ChatGPT_Image_3_de_jun._de_2026__12_39_42.png" },
+      { id: 4308463, name: "Executivo File de Peixe Empanado", cat: "Mais Pedidos do Natureza", price: 31.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308463/dbf333ccChatGPT_Image_3_de_jun._de_2026__13_31_09.png" },
+      { id: 4308457, name: "Executivo de Alcatra acebolada", cat: "Mais Pedidos do Natureza", price: 34.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308457/446891b0ChatGPT_Image_3_de_jun._de_2026__13_25_49.png" },
+      { id: 4469478, name: "Executivo Frango à Passarinho Crocante", cat: "Pratos Executivos", price: 26.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4469478/8eaf17a834b42cc6-427b-495c-865c-49ef0b9c3522.jpg" },
+      { id: 4308460, name: "Executivo de Filé de Frango Grelhado", cat: "Pratos Executivos", price: 26.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308460/enhanced-image-4308460-2026-06-03T16-11-58-713Z.jpg" },
+      { id: 4308464, name: "Executivo de Frango à Parmegiana", cat: "Pratos Executivos", price: 31.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308464/2f3ab8caChatGPT_Image_3_de_jun._de_2026__13_35_24.png" },
+      { id: 4308466, name: "Executivo Tilapia em Posta", cat: "Pratos Executivos", price: 31.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308466/c0536813ChatGPT_Image_3_de_jun._de_2026__13_37_25.png" },
+      { id: 4308462, name: "Executivo de File de Peixe Ao Molho de Camarão", cat: "Pratos Executivos", price: 37.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308462/1f2ee98ba6cb6423-a8f0-426b-9ece-d1f3d6b7b27b.png" },
+      { id: 5280957, name: "Parmegiana de carne", cat: "Pratos Executivos", price: 38.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/5280957/e96d0bea11b98800-7e7c-47f7-a1fa-7779e4c46561.jpg" },
+      { id: 4423438, name: "Estrogonofe de Frango + SUCO DE 300ml PROMOCIONAL", cat: "Executivo + Suco 300ml", price: 34.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423438/458a215d202606031306_EFYG_i.jpg" },
+      { id: 4423435, name: "Frango Crocante + Suco de 300ml PROMOCIONAL", cat: "Executivo + Suco 300ml", price: 35.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423435/d04f553e202606031327_38J7_i.jpg" },
+      { id: 4415021, name: "File de Peixe Empanado + Suco 300ml PROMOCIONAL", cat: "Executivo + Suco 300ml", price: 39.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415021/ca02d5cdISCA_PE.jpeg" },
+      { id: 4423442, name: "Alcatra Suculenta + SUCO 300ml PROMOCIONAL", cat: "Executivo + Suco 300ml", price: 41.8, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423442/789f5bbb202606031326_C4I8_i.jpg" },
+      { id: 4423443, name: "Estrogonofe de Frango + COCA PROMOCIONAL", cat: "Executivo + Coca Lata", price: 32.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423443/a6850483202606031306_EFYG_i.jpg" },
+      { id: 4423445, name: "Frango Crocante + COCA PROMOCIONAL", cat: "Executivo + Coca Lata", price: 32.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423445/3ca92b82202606031327_38J7_i.jpg" },
+      { id: 4415010, name: "File de Peixe Empanado + Coca Lata", cat: "Executivo + Coca Lata", price: 36.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415010/c7500cfcISCA_PE.jpeg" },
+      { id: 4423449, name: "Alcatra Suculenta + COCA PROMOCIONAL", cat: "Executivo + Coca Lata", price: 39.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423449/eb94a7db202606031326_C4I8_i.jpg" },
+      { id: 4308469, name: "Porção Aipim", cat: "Petiscos com Batata ou Aipim", price: 32, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308469/9fc52bbcPORÇÃO_AIPIM_EDITADA.png" },
+      { id: 4308471, name: "Porção de Batata Frita", cat: "Petiscos com Batata ou Aipim", price: 32, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308471/6b7539c2PORÇÃO_DE_BATATA_EDITADA.png" },
+      { id: 4308472, name: "Porção Batata Frita com Aipim", cat: "Petiscos com Batata ou Aipim", price: 35, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308472/110b04dfBATATA_AIPIM_PORÇÃO_EDITADA.png" },
+      { id: 4308473, name: "Porção de Calabresa com Batata Frita ou Aipim", cat: "Petiscos com Batata ou Aipim", price: 45, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308473/b4359a45ChatGPT_Image_16_de_jun._de_2026__23_25_26.png" },
+      { id: 4308479, name: "Porçao de Frango a Passarinho", cat: "Petiscos com Batata ou Aipim", price: 58, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308479/9c21a3c6FRANGO_A_PASSARIN_EDITADO.png" },
+      { id: 4308481, name: "Porçao de Isca de Alcatra Acebolada", cat: "Petiscos com Batata ou Aipim", price: 70, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308481/d50990b3Contraporção.png" },
+      { id: 4308483, name: "Porção de Isca de Frango Empanado", cat: "Petiscos com Batata ou Aipim", price: 58, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308483/9a31935eISCA_DE_FRANGO_COM_BATATA_PORÇÃO_EDITADA.png" },
+      { id: 4308486, name: "Porção de Isca de Peixe", cat: "Petiscos com Batata ou Aipim", price: 70, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308486/21151e75ChatGPT_Image_15_de_jun._de_2026__22_43_54.png" },
+      { id: 4308488, name: "Porção de Camarão ao Alho e Óleo", cat: "Petiscos PUROS", price: 70, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308488/53252065ChatGPT_Image_3_de_jun._de_2026__13_56_20.png" },
+      { id: 4308490, name: "Porção de Frango a Passarinho Puro", cat: "Petiscos PUROS", price: 70, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308490/45f5de19WhatsApp_Image_2026-06-03_at_13.16.13__1_.jpeg" },
+      { id: 4308491, name: "Porçao de Isca de Frango Empanado Puro", cat: "Petiscos PUROS", price: 70, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308491/afca0af2WhatsApp_Image_2026-06-03_at_13.53.42__2_.jpeg" },
+      { id: 4308494, name: "Porçao de Isca de Peixe Empanado Puro", cat: "Petiscos PUROS", price: 85, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308494/ab7527c5WhatsApp_Image_2026-06-03_at_13.53.42__1_.jpeg" },
+      { id: 4308495, name: "Porção de Peixe Frito(Tilapia)", cat: "Petiscos PUROS", price: 53, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308495/febfbe00TILAPIA_PORÇÃO_EDITADA.png" },
+      { id: 4308496, name: "Porção de Sardinha Frita", cat: "Petiscos PUROS", price: 43, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308496/04e12fd3SARDINHA_PORÇÃO_EDITADA.png" },
+      { id: 4308497, name: "Porção de Arroz", cat: "Guarnições", price: 15, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308497/8a830e9e-7931-4a06-b0c3-3b2418884328.jpeg" },
+      { id: 4308498, name: "Porção de Farofa", cat: "Guarnições", price: 15, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308498/12b75b0d-6c2c-40ff-b12d-d9d2251d3d12.jpeg" },
+      { id: 4308499, name: "Porção de Feijao Grande", cat: "Guarnições", price: 15, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308499/a00679c3-e69f-486b-996d-055af2b9b08c.jpeg" },
+      { id: 4308500, name: "Porção de Feijão Pequena", cat: "Guarnições", price: 5, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308500/6280bbc9-7fd9-4317-89a5-ffb44747540a.jpeg" },
+      { id: 4308503, name: "Porção de Pirão", cat: "Guarnições", price: 15, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308503/dd196ed9-d633-4b22-9a54-b2025f7ebea4.jpeg" },
+      { id: 4308504, name: "Porção de Salada", cat: "Guarnições", price: 19, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308504/6a0e1c79-1467-452a-a2b4-15af00bb3fb2.jpeg" },
+      { id: 4308505, name: "SUCO MARACUJA 500ml", cat: "Bebidas", price: 15.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308505/062c9ce1Suco_natural_em_fundo_verde_vibrante.png" },
+      { id: 4308507, name: "Coca-Cola Lata", cat: "Bebidas", price: 8, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308507/d9a4931b-827b-4836-ab73-331814774428.jpeg" },
+      { id: 4308510, name: "Coca zero lata", cat: "Bebidas", price: 8, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308510/099cf9b8-8a33-407b-88fe-e31b51156c64.jpeg" },
+      { id: 4308512, name: "Guaracamp", cat: "Bebidas", price: 3, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308512/98c97592-1ce4-48f4-92a9-671b98e31bd6.jpeg" },
+      { id: 4308513, name: "SUCO MARACUJA 300ml", cat: "Bebidas", price: 11.9, active: true, img: "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308513/c49dccd9Suco_natural_sobre_grama_artificial.png" }
+    ];
+
+    function renderProductsTable() {
+      const q = (document.getElementById('prod-search')?.value || '').trim().toLowerCase();
+      const cat = document.getElementById('prod-category-filter')?.value || 'todos';
+      const tbody = document.getElementById('products-table-body');
+
+      const filtered = productsList.filter(p => {
+        const matchesCat = cat === 'todos' || p.cat === cat;
+        const matchesQ = !q || p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
+        return matchesCat && matchesQ;
+      });
+
+      tbody.innerHTML = filtered.map(p => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3 px-4 flex items-center gap-3">
+            <img src="${p.img}" alt="${p.name}" class="size-10 rounded-xl object-cover bg-slate-100 border border-slate-200">
+            <div>
+              <div class="font-extrabold text-slate-900">${p.name}</div>
+              <div class="text-[10px] text-slate-400">Cód: #${p.id}</div>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-slate-600 font-bold">${p.cat}</td>
+          <td class="py-3 px-4 font-black text-slate-900">R$ ${p.price.toFixed(2).replace('.', ',')}</td>
+          <td class="py-3 px-4">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold ${p.active ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}">
+              <span class="size-1.5 rounded-full ${p.active ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+              ${p.active ? 'Disponível' : 'Pausado/Esgotado'}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <button type="button" onclick="toggleProductStock(${p.id})" class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100">
+              ${p.active ? 'Pausar' : 'Ativar'}
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function toggleProductStock(id) {
+      const p = productsList.find(x => x.id === id);
+      if (p) p.active = !p.active;
+      renderProductsTable();
+    }
+
+    // ==================== MOTOBOY TAB ====================
+    function renderMotoboyTab() {
+      const container = document.getElementById('motoboy-deliveries-grid');
+      const activeDeliveries = orders.filter(o => o.status === 'entrega' || o.status === 'pronto');
+
+      if (activeDeliveries.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 font-bold text-sm">Nenhuma corrida pendente no momento.</div>`;
+        return;
+      }
+
+      container.innerHTML = activeDeliveries.map(o => `
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black text-[#0a2540]">#${o.id} • ${o.customer}</span>
+            <span class="rounded-full bg-blue-50 text-blue-700 px-2 py-0.5 text-[10px] font-extrabold">Taxa: R$ 8,50</span>
+          </div>
+          <div class="text-xs font-semibold text-slate-700">
+            <i data-lucide="map-pin" class="size-3.5 inline text-[#0088cc]"></i>
+            ${o.address || 'Av. Cesário de Melo - Campo Grande'}
+          </div>
+          <div class="text-[11px] text-slate-500">
+            Itens: ${o.items.join(', ')}
+          </div>
+          <div class="pt-2 flex gap-2">
+            <a href="https://maps.google.com/?q=${encodeURIComponent(o.address || 'Campo Grande RJ')}" target="_blank" class="flex-1 text-center py-2 rounded-xl bg-slate-900 text-white font-extrabold text-xs">
+              Abrir GPS
+            </a>
+            <button onclick="advanceOrder(${o.id}, 'concluido')" class="flex-1 py-2 rounded-xl bg-emerald-600 text-white font-extrabold text-xs">
+              Entregue ✓
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // ==================== FINANCEIRO TAB ====================
+    function renderFinanceTab() {
+      const container = document.getElementById('finance-orders-list');
+      container.innerHTML = orders.map(o => `
+        <div class="flex items-center justify-between p-3 rounded-xl border border-slate-100 bg-slate-50 text-xs">
+          <div>
+            <span class="font-extrabold text-slate-900">#${o.id} • ${o.customer}</span>
+            <span class="text-slate-400 ml-2">(${o.payment})</span>
+          </div>
+          <span class="font-black text-emerald-600">${o.price}</span>
+        </div>
+      `).join('');
+    }
+
+    // ==================== MODAL NOVO PEDIDO ====================
+    
+    function populateManualProductSelect() {
+      const sel = document.getElementById('manual-product-select');
+      if (!sel) return;
+      sel.innerHTML = productsList.map(p => 
+        `<option value="1x ${p.name} • R$ ${p.price.toFixed(2).replace('.', ',')}">${p.name} (R$ ${p.price.toFixed(2).replace('.', ',')})</option>`
+      ).join('');
+    }
+    function openNewOrderModal() {
+      document.getElementById('modal-new-order').classList.remove('hidden');
+    }
+    function closeNewOrderModal() {
+      document.getElementById('modal-new-order').classList.add('hidden');
+    }
+
+    function saveManualOrder() {
+      const cust = document.getElementById('manual-customer').value.trim();
+      if (!cust) return alert("Informe o nome do cliente!");
+      const ch = document.getElementById('manual-channel').value;
+      const pay = document.getElementById('manual-payment').value;
+      const prod = document.getElementById('manual-product-select').value;
+      const addr = document.getElementById('manual-address').value.trim();
+      const obs = document.getElementById('manual-notes').value.trim();
+
+      const priceMatch = prod.match(/R\$\s*([\d,]+)/);
+      const priceStr = priceMatch ? `R$ ${priceMatch[1]}` : "R$ 30,00";
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      const newOrder = {
+        id: Math.floor(1000 + Math.random() * 9000),
+        customer: cust,
+        channel: ch,
+        items: [prod],
+        payment: pay,
+        price: priceStr,
+        minutes: 1,
+        status: "recebido",
+        phone: "(21) 99999-9999",
+        address: addr || "Balcão",
+        neighborhood: "Campo Grande",
+        notes: obs,
+        createdAt: timeStr
+      };
+
+      orders.unshift(newOrder);
+      saveOrders();
+      closeNewOrderModal();
+      renderKanban();
+      alert(`Pedido #${newOrder.id} cadastrado com sucesso!`);
+    }
+
+    function resetDemoOrders() {
+      if (confirm("Deseja restaurar a lista inicial de pedidos de demonstração?")) {
+        orders = [...defaultOrders];
+        saveOrders();
+        renderKanban();
+        alert("Pedidos restaurados!");
+      }
+    }
+
+    function notifyRecoverySuccess() {
+      alert("Mensagem pré-formatada pronta para envio no WhatsApp com cupom exclusivo!");
+    }
+
+    // Relógio ao Vivo
+    setInterval(() => {
+      const now = new Date();
+      document.getElementById('live-clock').textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    }, 1000);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDashboard();
+      renderKanban();
+      updateStoreStatusUI();
+      populateManualProductSelect();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
+
+
