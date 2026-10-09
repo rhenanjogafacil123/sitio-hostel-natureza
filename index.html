@@ -36,21 +36,36 @@
   </script>
   <style>
     .glass-card {
-      background: rgba(8, 30, 36, 0.70);
+      background: rgba(8, 30, 36, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.16);
     }
     .glass-header {
-      background: rgba(6, 25, 30, 0.82);
+      background: rgba(6, 25, 30, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     }
     .badge-toboga {
-      background: rgba(7, 45, 54, 0.85);
+      background: rgba(7, 45, 54, 0.88);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+    /* Estilização da barra de rolagem */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06181c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #134752;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e2ba7d;
     }
   </style>
 </head>
@@ -83,13 +98,12 @@
         <a href="#cardapio" class="hover:text-brand-gold transition text-brand-gold flex items-center gap-1.5 font-bold">
           <i data-lucide="utensils" class="size-4"></i> Cardápio
         </a>
-        <a href="#galeria" class="hover:text-brand-gold transition">Galeria</a>
         <a href="#contato" class="hover:text-brand-gold transition">Contato</a>
       </nav>
 
-      <!-- Botões de Ação Topo -->
+      <!-- Botões Topo -->
       <div class="flex items-center gap-3">
-        <!-- Botão Carrinho -->
+        <!-- Botão Carrinho com contador -->
         <button id="btn-toggle-cart" type="button" aria-label="Abrir carrinho" class="relative grid size-10 place-items-center rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 transition active:scale-95">
           <i data-lucide="shopping-bag" class="size-5"></i>
           <span id="cart-badge" class="hidden absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-brand-gold text-[#06181c] text-[11px] font-extrabold shadow">
@@ -120,7 +134,6 @@
         <a href="#cardapio" class="py-2 text-brand-gold font-bold flex items-center gap-2" onclick="closeMobileMenu()">
           <i data-lucide="utensils" class="size-4"></i> Cardápio do Sítio
         </a>
-        <a href="#galeria" class="py-2 hover:text-brand-gold" onclick="closeMobileMenu()">Galeria</a>
         <a href="#contato" class="py-2 hover:text-brand-gold" onclick="closeMobileMenu()">Contato & Localização</a>
         <a href="https://wa.me/5521967581148" target="_blank" class="mt-2 flex items-center justify-center gap-2 rounded-xl bg-brand-gold px-4 py-3 text-xs font-bold uppercase text-brand-tealDark">
           <i data-lucide="message-circle" class="size-4"></i> Falar no WhatsApp
@@ -129,19 +142,18 @@
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION (REPLICA DO DESIGN MOCKUP) ==================== -->
+  <!-- ==================== HERO SECTION ==================== -->
   <section id="topo" class="relative isolate min-h-[96vh] sm:min-h-screen flex flex-col justify-end overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-16">
     <!-- Imagem de Fundo Fotográfica em Alta Resolução -->
     <div class="absolute inset-0 -z-20 overflow-hidden">
       <img src="assets/hero-bg.jpg" alt="Piscina com tobogã do Sítio Hostel Natureza" class="h-full w-full object-cover object-center brightness-95 scale-[1.01] transition-transform duration-1000">
-      <!-- Gradientes cinematográficos de fusão e legibilidade -->
       <div class="absolute inset-0 bg-gradient-to-t from-[#06181c] via-[#06181c]/35 to-black/30"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-[#06181c]/80 via-transparent to-transparent"></div>
     </div>
 
-    <!-- Badge Flutuante "Piscina com tobogã" (lado direito sobre o tobogã) -->
+    <!-- Badge Flutuante "Piscina com tobogã" -->
     <div class="hidden lg:flex absolute right-16 top-48 z-10 items-center justify-center">
-      <div class="badge-toboga flex flex-col items-center justify-center size-32 rounded-full p-4 text-center shadow-2xl animate-bounce-slow">
+      <div class="badge-toboga flex flex-col items-center justify-center size-32 rounded-full p-4 text-center shadow-2xl">
         <i data-lucide="waves" class="size-8 text-cyan-300"></i>
         <span class="mt-1 text-xs font-extrabold uppercase tracking-wide text-white leading-tight">
           Piscina com tobogã
@@ -165,32 +177,29 @@
 
       <!-- Subtítulo -->
       <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg lg:text-xl drop-shadow-md">
-        Hospedagem aconchegante, piscina com tobogã e momentos inesquecíveis para viver em família, cercado pela natureza.
+        Hospedagem aconchegante, piscina com tobogã e momentos inesquecíveis para viver em família, cercado pela natureza em Campo Grande - RJ.
       </p>
 
       <!-- Botões de Ação Principais -->
       <div class="mt-7 flex flex-wrap items-center gap-4">
-        <!-- Ver Acomodações -->
         <a href="#acomodacoes" class="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldLight px-7 py-4 text-sm font-extrabold text-brand-tealDark shadow-xl shadow-black/40 transition hover:brightness-105 active:scale-95">
           <i data-lucide="bed-double" class="size-4.5"></i>
           <span>Ver acomodações</span>
           <i data-lucide="arrow-right" class="size-4"></i>
         </a>
 
-        <!-- Falar no WhatsApp -->
         <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20S%C3%ADtio%20Hostel%20Natureza." target="_blank" rel="noreferrer" class="inline-flex items-center gap-2.5 rounded-full border border-white/30 bg-black/40 px-7 py-4 text-sm font-extrabold text-white backdrop-blur-md transition hover:bg-black/60 hover:border-emerald-400 active:scale-95 shadow-xl">
           <i data-lucide="message-circle" class="size-4.5 text-emerald-400"></i>
           <span>Falar no WhatsApp</span>
         </a>
 
-        <!-- Ver Cardápio Direto -->
         <a href="#cardapio" class="inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/15 px-6 py-4 text-sm font-bold text-brand-gold backdrop-blur-md hover:bg-brand-gold/25 transition">
           <i data-lucide="utensils-crossed" class="size-4"></i>
-          <span>Ver Cardápio do Sítio</span>
+          <span>Ver Cardápio Oficial</span>
         </a>
       </div>
 
-      <!-- ==================== WIDGET DE CONSULTAR DISPONIBILIDADE ==================== -->
+      <!-- Barra Interativa de Consultar Disponibilidade -->
       <div class="mt-10 glass-card rounded-3xl p-4 sm:p-5 shadow-2xl">
         <form id="form-disponibilidade" onsubmit="consultarDisponibilidade(event)" class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:items-center">
           
@@ -200,16 +209,16 @@
               <i data-lucide="calendar" class="size-4 text-brand-gold"></i>
               <span>Check-in</span>
             </div>
-            <input type="date" id="input-checkin" required class="mt-1.5 w-full bg-transparent text-sm font-extrabold text-white outline-none cursor-pointer">
+            <input type="date" id="input-checkin" required class="mt-1.5 w-full bg-transparent text-sm font-semibold text-white outline-none cursor-pointer">
           </div>
 
           <!-- Check-out -->
           <div class="rounded-2xl border border-white/10 bg-white/5 p-3 hover:border-white/20 transition">
             <div class="flex items-center gap-2 text-xs font-bold text-slate-300">
-              <i data-lucide="calendar-check" class="size-4 text-brand-gold"></i>
+              <i data-lucide="calendar" class="size-4 text-brand-gold"></i>
               <span>Check-out</span>
             </div>
-            <input type="date" id="input-checkout" required class="mt-1.5 w-full bg-transparent text-sm font-extrabold text-white outline-none cursor-pointer">
+            <input type="date" id="input-checkout" required class="mt-1.5 w-full bg-transparent text-sm font-semibold text-white outline-none cursor-pointer">
           </div>
 
           <!-- Hóspedes -->
@@ -218,68 +227,71 @@
               <i data-lucide="users" class="size-4 text-brand-gold"></i>
               <span>Hóspedes</span>
             </div>
-            <select id="input-hospedes" class="mt-1.5 w-full bg-transparent text-sm font-extrabold text-white outline-none cursor-pointer">
-              <option value="1 hóspede" class="bg-[#0a2e36] text-white">1 hóspede</option>
-              <option value="2 hóspedes" selected class="bg-[#0a2e36] text-white">2 hóspedes</option>
-              <option value="3 hóspedes" class="bg-[#0a2e36] text-white">3 hóspedes</option>
-              <option value="4 hóspedes" class="bg-[#0a2e36] text-white">4 hóspedes</option>
-              <option value="5 a 10 hóspedes" class="bg-[#0a2e36] text-white">5 a 10 hóspedes (Grupo/Família)</option>
-              <option value="Mais de 10 hóspedes" class="bg-[#0a2e36] text-white">10+ hóspedes (Excursão/Evento)</option>
+            <select id="input-hospedes" class="mt-1.5 w-full bg-transparent text-sm font-semibold text-white outline-none cursor-pointer">
+              <option value="1 adulto" class="bg-[#071f25]">1 adulto</option>
+              <option value="2 adultos (Casal)" selected class="bg-[#071f25]">2 adultos (Casal)</option>
+              <option value="Família (3 a 4 pessoas)" class="bg-[#071f25]">Família (3 a 4 pessoas)</option>
+              <option value="Grupo (5+ pessoas)" class="bg-[#071f25]">Grupo (5+ pessoas)</option>
+              <option value="Day Use (Apenas o dia)" class="bg-[#071f25]">Day Use (Piscina e lazer)</option>
             </select>
           </div>
 
-          <!-- Botão Consultar Disponibilidade -->
-          <button type="submit" class="flex h-full min-h-[58px] items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand-gold to-brand-goldLight px-6 py-4 text-sm font-extrabold text-brand-tealDark shadow-lg shadow-brand-gold/20 transition hover:brightness-105 active:scale-95">
-            <i data-lucide="search" class="size-4.5"></i>
-            <span>Consultar disponibilidade</span>
+          <!-- Botão Consultar -->
+          <button type="submit" class="flex h-full min-h-[58px] items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand-gold to-brand-goldLight px-6 font-extrabold text-brand-tealDark shadow-lg transition hover:brightness-105 active:scale-95">
+            <i data-lucide="search" class="size-5"></i>
+            <span>Consultar Valores</span>
           </button>
         </form>
       </div>
 
-      <!-- ==================== 4 CARDS DESTAQUES INFERIORES ==================== -->
-      <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+      <!-- 4 Cards Diferenciais do Mockup -->
+      <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         
-        <!-- Destaque 1 -->
-        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/35 p-3.5 backdrop-blur-md">
-          <div class="grid size-10 shrink-0 place-items-center rounded-xl border border-cyan-400/30 bg-cyan-950/60 text-cyan-300">
-            <i data-lucide="waves" class="size-5"></i>
-          </div>
-          <div>
-            <div class="text-xs font-extrabold text-white">Piscina com tobogã</div>
-            <div class="text-[10px] text-slate-300">Diversão para todas as idades</div>
-          </div>
-        </div>
-
-        <!-- Destaque 2 -->
-        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/35 p-3.5 backdrop-blur-md">
-          <div class="grid size-10 shrink-0 place-items-center rounded-xl border border-amber-400/30 bg-amber-950/60 text-brand-gold">
-            <i data-lucide="bed" class="size-5"></i>
-          </div>
-          <div>
-            <div class="text-xs font-extrabold text-white">Acomodações aconchegantes</div>
-            <div class="text-[10px] text-slate-300">Conforto em meio à natureza</div>
+        <div class="glass-card rounded-2xl p-4 transition hover:border-brand-gold/50">
+          <div class="flex items-center gap-3">
+            <div class="grid size-10 place-items-center rounded-xl bg-cyan-400/20 text-cyan-300">
+              <i data-lucide="waves" class="size-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-white sm:text-sm">Piscina com Tobogã</h3>
+              <p class="text-[11px] text-slate-300">Diversão para todas as idades</p>
+            </div>
           </div>
         </div>
 
-        <!-- Destaque 3 -->
-        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/35 p-3.5 backdrop-blur-md">
-          <div class="grid size-10 shrink-0 place-items-center rounded-xl border border-emerald-400/30 bg-emerald-950/60 text-emerald-300">
-            <i data-lucide="trees" class="size-5"></i>
-          </div>
-          <div>
-            <div class="text-xs font-extrabold text-white">Área verde preservada</div>
-            <div class="text-[10px] text-slate-300">Tranquilidade e bem-estar</div>
+        <div class="glass-card rounded-2xl p-4 transition hover:border-brand-gold/50">
+          <div class="flex items-center gap-3">
+            <div class="grid size-10 place-items-center rounded-xl bg-emerald-400/20 text-emerald-300">
+              <i data-lucide="trees" class="size-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-white sm:text-sm">Área Verde</h3>
+              <p class="text-[11px] text-slate-300">Natureza preservada e ar puro</p>
+            </div>
           </div>
         </div>
 
-        <!-- Destaque 4 -->
-        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/35 p-3.5 backdrop-blur-md">
-          <div class="grid size-10 shrink-0 place-items-center rounded-xl border border-violet-400/30 bg-violet-950/60 text-violet-300">
-            <i data-lucide="users" class="size-5"></i>
+        <div class="glass-card rounded-2xl p-4 transition hover:border-brand-gold/50">
+          <div class="flex items-center gap-3">
+            <div class="grid size-10 place-items-center rounded-xl bg-amber-400/20 text-amber-300">
+              <i data-lucide="utensils" class="size-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-white sm:text-sm">Gastronomia Farta</h3>
+              <p class="text-[11px] text-slate-300">Pratos executivos e petiscos</p>
+            </div>
           </div>
-          <div>
-            <div class="text-xs font-extrabold text-white">Ideal para famílias</div>
-            <div class="text-[10px] text-slate-300">Momentos que ficam para sempre</div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-4 transition hover:border-brand-gold/50">
+          <div class="flex items-center gap-3">
+            <div class="grid size-10 place-items-center rounded-xl bg-indigo-400/20 text-indigo-300">
+              <i data-lucide="home" class="size-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-white sm:text-sm">Hospedagem Completa</h3>
+              <p class="text-[11px] text-slate-300">Chalés e quartos confortáveis</p>
+            </div>
           </div>
         </div>
 
@@ -289,80 +301,73 @@
   </section>
 
   <!-- ==================== SEÇÃO: ESTRUTURA E LAZER ==================== -->
-  <section id="lazer" class="py-20 bg-gradient-to-b from-[#06181c] via-[#092228] to-[#06181c]">
+  <section id="lazer" class="py-20 bg-[#06181c] border-t border-white/10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto">
         <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-[0.2em] text-brand-gold">
-          <i data-lucide="sparkles" class="size-3.5"></i> Um paraíso em Campo Grande - RJ
+          <i data-lucide="sparkles" class="size-3.5"></i> Experiência & Conexão
         </span>
         <h2 class="mt-2 font-serif text-3xl font-bold sm:text-4xl text-white">
-          Ampla Área de Lazer e Conforto
+          Ampla Estrutura de Lazer
         </h2>
-        <p class="mt-3 text-sm leading-relaxed text-slate-300">
-          Mais de 10.000m² com piscina com tobogã, área gourmet com churrasqueira, campo e chalés para você relaxar e se divertir com quem ama.
+        <p class="mt-3 text-sm text-slate-300">
+          O refúgio ideal em Campo Grande. Um ambiente espaçoso, seguro e cercado pelo verde, planejado para descanso e confraternização.
         </p>
       </div>
 
-      <!-- Grade de Lazer -->
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         
-        <!-- Card 1 -->
         <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
           <div class="grid size-12 place-items-center rounded-2xl bg-cyan-950 text-cyan-300 border border-cyan-400/30">
             <i data-lucide="waves" class="size-6"></i>
           </div>
-          <h3 class="mt-5 text-xl font-extrabold text-white">Piscina com Tobogã</h3>
+          <h3 class="mt-5 text-xl font-extrabold text-white">Piscina com Tobogã Gigante</h3>
           <p class="mt-2 text-sm leading-6 text-slate-300">
-            Água cristalina, cascata relaxante e um super tobogã que garante a alegria de crianças e adultos durante todo o dia.
+            A principal atração do sítio! Água cristalina, área rasa para crianças e um tobogã radical para momentos de muita alegria.
           </p>
         </div>
 
-        <!-- Card 2 -->
-        <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
-          <div class="grid size-12 place-items-center rounded-2xl bg-amber-950 text-brand-gold border border-brand-gold/30">
-            <i data-lucide="utensils" class="size-6"></i>
-          </div>
-          <h3 class="mt-5 text-xl font-extrabold text-white">Restaurante & Bar de Piscina</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-300">
-            Pratos executivos fartos, petiscos clássicos de boteco (calabresa com aipim, iscas de peixe crocante, camarão) e sucos naturais.
-          </p>
-        </div>
-
-        <!-- Card 3 -->
         <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
           <div class="grid size-12 place-items-center rounded-2xl bg-emerald-950 text-emerald-300 border border-emerald-400/30">
-            <i data-lucide="flame" class="size-6"></i>
+            <i data-lucide="trees" class="size-6"></i>
           </div>
-          <h3 class="mt-5 text-xl font-extrabold text-white">Área Gourmet & Churrasqueira</h3>
+          <h3 class="mt-5 text-xl font-extrabold text-white">Área Verde Preservada</h3>
           <p class="mt-2 text-sm leading-6 text-slate-300">
-            Estrutura completa para aniversários, churrascos e confraternizações em família com mesas sob a sombra das árvores.
+            Mais de milhares de metros quadrados com árvores frutíferas, gramado impecável, sombra fresca e ar puro da serra.
           </p>
         </div>
 
-        <!-- Card 4 -->
         <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
-          <div class="grid size-12 place-items-center rounded-2xl bg-blue-950 text-blue-300 border border-blue-400/30">
+          <div class="grid size-12 place-items-center rounded-2xl bg-amber-950 text-amber-300 border border-amber-400/30">
+            <i data-lucide="beer" class="size-6"></i>
+          </div>
+          <h3 class="mt-5 text-xl font-extrabold text-white">Bar de Piscina & Restaurante</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-300">
+            Cervejas artesanais, sucos naturais e pratos preparados na hora, servidos diretamente na sua mesa ou espreguiçadeira.
+          </p>
+        </div>
+
+        <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
+          <div class="grid size-12 place-items-center rounded-2xl bg-indigo-950 text-indigo-300 border border-indigo-400/30">
             <i data-lucide="bed-double" class="size-6"></i>
           </div>
-          <h3 class="mt-5 text-xl font-extrabold text-white">Chalés & Quartos Hostel</h3>
+          <h3 class="mt-5 text-xl font-extrabold text-white">Acomodações Climatizadas</h3>
           <p class="mt-2 text-sm leading-6 text-slate-300">
             Quartos privativos e compartilhados com ar-condicionado, roupa de cama limpa e o som relaxante dos pássaros.
           </p>
         </div>
 
-        <!-- Card 5 -->
         <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
           <div class="grid size-12 place-items-center rounded-2xl bg-lime-950 text-lime-300 border border-lime-400/30">
             <i data-lucide="trophy" class="size-6"></i>
           </div>
           <h3 class="mt-5 text-xl font-extrabold text-white">Campo & Recreação</h3>
           <p class="mt-2 text-sm leading-6 text-slate-300">
-            Espaço para futebol, vôlei, caminhadas ao ar livre e muita área livre gramada para as crianças correrem em segurança.
+            Espaço para futebol, caminhadas ao ar livre e muita área livre gramada para as crianças correrem em segurança.
           </p>
         </div>
 
-        <!-- Card 6 -->
         <div class="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40">
           <div class="grid size-12 place-items-center rounded-2xl bg-violet-950 text-violet-300 border border-violet-400/30">
             <i data-lucide="shield-check" class="size-6"></i>
@@ -392,7 +397,7 @@
             Sabores da Cozinha do Sítio
           </h2>
           <p class="mt-2 text-sm text-slate-300 max-w-xl">
-            Pratos executivos frescos, petiscos crocantes para acompanhar a piscina e bebidas geladas. Faça seu pedido online e receba com rapidez!
+            Pratos executivos frescos, petiscos crocantes para acompanhar a piscina e bebidas geladas. Clique no prato para personalizar observações e pedir no WhatsApp!
           </p>
         </div>
 
@@ -444,8 +449,8 @@
       </div>
 
       <!-- Grade de Itens do Cardápio -->
-      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="menu-items-grid">
-        <!-- Renderizado dinamicamente pelo JavaScript -->
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="menu-items-grid">
+        <!-- Renderizado dinamicamente pelo JavaScript com fotos reais -->
       </div>
 
       <!-- Aviso se nenhum item encontrado na busca -->
@@ -490,7 +495,7 @@
             </p>
             <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
               <div>
-                <span class="text-[10px] text-slate-400">A partir de</span>
+                <span class="text-[10px] text-slate-400">Diária a partir de</span>
                 <div class="text-lg font-extrabold text-brand-gold">Sob Consulta</div>
               </div>
               <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20valores%20para%20o%20Chal%C3%A9%20Familiar." target="_blank" class="rounded-xl bg-brand-gold px-4 py-2 text-xs font-bold text-brand-tealDark hover:brightness-105 transition">
@@ -515,7 +520,7 @@
             </p>
             <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
               <div>
-                <span class="text-[10px] text-slate-400">A partir de</span>
+                <span class="text-[10px] text-slate-400">Diária a partir de</span>
                 <div class="text-lg font-extrabold text-brand-gold">Sob Consulta</div>
               </div>
               <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20valores%20para%20a%20Su%C3%ADte%20Casal." target="_blank" class="rounded-xl bg-brand-gold px-4 py-2 text-xs font-bold text-brand-tealDark hover:brightness-105 transition">
@@ -540,7 +545,7 @@
             </p>
             <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
               <div>
-                <span class="text-[10px] text-slate-400">A partir de</span>
+                <span class="text-[10px] text-slate-400">Diária a partir de</span>
                 <div class="text-lg font-extrabold text-brand-gold">Sob Consulta</div>
               </div>
               <a href="https://wa.me/5521967581148?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20valores%20para%20o%20Hostel." target="_blank" class="rounded-xl bg-brand-gold px-4 py-2 text-xs font-bold text-brand-tealDark hover:brightness-105 transition">
@@ -643,6 +648,68 @@
     </div>
   </footer>
 
+  <!-- ==================== MODAL DE DETALHES DO PRODUTO (OBSERVAÇÕES E QUANTIDADE) ==================== -->
+  <div id="product-modal" class="hidden fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-lg rounded-3xl border border-white/20 bg-[#071f25] text-white shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      
+      <!-- Topo Modal com Imagem do Prato -->
+      <div class="relative h-48 w-full bg-[#05181c] overflow-hidden shrink-0">
+        <img id="modal-product-img" src="" alt="Prato" class="h-full w-full object-cover">
+        <button type="button" onclick="closeProductModal()" class="absolute top-3 right-3 grid size-9 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md hover:bg-black/90">
+          <i data-lucide="x" class="size-5"></i>
+        </button>
+        <span id="modal-product-badge" class="absolute bottom-3 left-4 rounded-full bg-brand-gold px-3 py-1 text-[10px] font-extrabold uppercase text-brand-tealDark"></span>
+      </div>
+
+      <!-- Conteúdo do Modal com Scroll -->
+      <div class="p-6 overflow-y-auto space-y-4 flex-1">
+        <div>
+          <h3 id="modal-product-title" class="text-xl font-extrabold text-white"></h3>
+          <p id="modal-product-desc" class="mt-2 text-xs text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div class="border-t border-white/10 pt-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-400">Preço Unitário:</span>
+            <span id="modal-product-unit-price" class="text-base font-extrabold text-brand-gold"></span>
+          </div>
+        </div>
+
+        <!-- Campo Observações do Item -->
+        <div>
+          <label class="block text-xs font-bold text-slate-200 mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="message-square" class="size-3.5 text-brand-gold"></i>
+            <span>Alguma observação para a cozinha?</span>
+          </label>
+          <textarea id="modal-item-notes" rows="2" placeholder="Ex.: Sem cebola, salada à parte, ponto da carne, etc..." class="w-full rounded-xl border border-white/15 bg-white/10 p-3 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-gold resize-none"></textarea>
+        </div>
+
+        <!-- Seletor de Quantidade -->
+        <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-3">
+          <span class="text-xs font-bold text-slate-200">Quantidade:</span>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="adjustModalQty(-1)" class="grid size-8 place-items-center rounded-lg border border-white/20 bg-white/10 text-white hover:bg-white/20">
+              <i data-lucide="minus" class="size-4"></i>
+            </button>
+            <span id="modal-qty" class="w-6 text-center text-sm font-extrabold text-white">1</span>
+            <button type="button" onclick="adjustModalQty(1)" class="grid size-8 place-items-center rounded-lg border border-white/20 bg-white/10 text-white hover:bg-white/20">
+              <i data-lucide="plus" class="size-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rodapé do Modal com Botão Confirmar -->
+      <div class="border-t border-white/10 bg-[#05181c] p-4 shrink-0">
+        <button type="button" onclick="confirmModalAddToCart()" class="w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-brand-gold to-brand-goldLight px-5 py-3.5 text-sm font-extrabold text-brand-tealDark shadow-xl shadow-brand-gold/20 hover:brightness-105 transition active:scale-95">
+          <span>Adicionar ao Pedido</span>
+          <span id="modal-total-btn" class="font-extrabold">R$ 0,00</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ==================== CARRINHO / DRAWER LATERAL ==================== -->
   <div id="cart-drawer-overlay" class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
   <aside id="cart-drawer" class="fixed inset-y-0 right-0 z-[70] w-full max-w-md translate-x-full bg-[#071f25] text-white shadow-2xl transition-transform duration-300 flex flex-col justify-between border-l border-white/15">
@@ -664,12 +731,12 @@
     </div>
 
     <!-- Lista de Itens no Carrinho -->
-    <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-container">
+    <div class="flex-1 overflow-y-auto p-6 space-y-3.5" id="cart-items-container">
       <!-- Inserido dinamicamente via JS -->
     </div>
 
     <!-- Rodapé Checkout do Carrinho -->
-    <div class="border-t border-white/10 bg-[#05181c] p-6 space-y-4">
+    <div class="border-t border-white/10 bg-[#05181c] p-6 space-y-3.5 overflow-y-auto max-h-[50vh]">
       
       <!-- Modalidade: Local ou Entrega -->
       <div>
@@ -686,34 +753,40 @@
 
       <!-- Nome do Cliente -->
       <div>
-        <label class="block text-xs font-bold text-slate-300 mb-1">Seu Nome</label>
+        <label class="block text-xs font-bold text-slate-300 mb-1">Seu Nome *</label>
         <input type="text" id="cart-customer-name" placeholder="Ex.: Lucas Mendes" class="w-full rounded-xl border border-white/15 bg-white/10 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-brand-gold">
       </div>
 
       <!-- Mesa, Chalé ou Endereço -->
       <div id="cart-location-field">
-        <label class="block text-xs font-bold text-slate-300 mb-1" id="lbl-location">Mesa, Espreguiçadeira ou Chalé</label>
+        <label class="block text-xs font-bold text-slate-300 mb-1" id="lbl-location">Mesa, Espreguiçadeira ou Chalé *</label>
         <input type="text" id="cart-customer-location" placeholder="Ex.: Mesa 4 perto da piscina / Chalé 2" class="w-full rounded-xl border border-white/15 bg-white/10 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-brand-gold">
       </div>
 
       <!-- Forma de Pagamento -->
       <div>
-        <label class="block text-xs font-bold text-slate-300 mb-1">Pagamento</label>
-        <select id="cart-payment-method" class="w-full rounded-xl border border-white/15 bg-[#0a2e36] px-3.5 py-2.5 text-xs text-white outline-none focus:border-brand-gold">
-          <option value="Pix">Pix (Mais Rápido)</option>
-          <option value="Cartão de Crédito">Cartão de Crédito</option>
-          <option value="Cartão de Débito">Cartão de Débito</option>
+        <label class="block text-xs font-bold text-slate-300 mb-1">Forma de Pagamento</label>
+        <select id="cart-payment-method" onchange="toggleTrocoField(this.value)" class="w-full rounded-xl border border-white/15 bg-[#0a2e36] px-3.5 py-2.5 text-xs text-white outline-none focus:border-brand-gold">
+          <option value="Pix">Pix (Chave oficial rápida)</option>
+          <option value="Cartão de Crédito">Cartão de Crédito na Maquininha</option>
+          <option value="Cartão de Débito">Cartão de Débito na Maquininha</option>
           <option value="Dinheiro">Dinheiro</option>
         </select>
       </div>
 
-      <!-- Observações -->
-      <div>
-        <label class="block text-xs font-bold text-slate-300 mb-1">Observações do Pedido</label>
-        <input type="text" id="cart-notes" placeholder="Ex.: Sem cebola, enviar copos com gelo..." class="w-full rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-brand-gold">
+      <!-- Troco para quanto? (aparece apenas se dinheiro) -->
+      <div id="troco-wrapper" class="hidden">
+        <label class="block text-xs font-bold text-slate-300 mb-1">Precisa de troco para quanto?</label>
+        <input type="text" id="cart-troco" placeholder="Ex.: Troco para R$ 50,00 ou Não preciso" class="w-full rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-brand-gold">
       </div>
 
-      <!-- Subtotal e Total -->
+      <!-- Observações Gerais -->
+      <div>
+        <label class="block text-xs font-bold text-slate-300 mb-1">Observações Gerais</label>
+        <input type="text" id="cart-notes" placeholder="Ex.: Enviar copos descartáveis com gelo..." class="w-full rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-brand-gold">
+      </div>
+
+      <!-- Total -->
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
         <span class="text-sm font-bold text-slate-300">Total a Pagar:</span>
         <span id="cart-total-price" class="text-xl font-extrabold text-brand-gold">R$ 0,00</span>
@@ -730,7 +803,7 @@
 
   <!-- ==================== JAVASCRIPT LÓGICO E INTERATIVO ==================== -->
   <script>
-    // Catálogo completo de 43 produtos reais do CardapioWeb
+    // Catálogo completo de 43 produtos reais do CardapioWeb com fotos reais
     const MENU_DATA = [
   {
     "id": 531394,
@@ -742,6 +815,7 @@
         "description": "Marmita Especial com arroz soltinho, farofa saborosa e filé de frango empanado crocante, acompanhada de deliciosos complementos. Uma combinação perfeita, crocante e repleta de sabor!",
         "price": 26.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308453/f10c54bfChatGPT_Image_3_de_jun._de_2026__13_23_33.png",
         "category": "Mais Pedidos do Natureza"
       },
       {
@@ -750,6 +824,7 @@
         "description": "Arroz, strogonoff e batata frita: um prato delicioso e equilibrado. O strogonoff é cremoso e bem temperado, servido com arroz soltinho e batata frita crocante. Uma marmita completa, ideal para o seu almoço!",
         "price": 25.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308458/5fd36d29ChatGPT_Image_3_de_jun._de_2026__12_39_42.png",
         "category": "Mais Pedidos do Natureza"
       },
       {
@@ -758,6 +833,7 @@
         "description": "Marmita Peixe Empanado Especial com arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante e dourado. Uma refeição leve, caseira e repleta de sabor.",
         "price": 31.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308463/dbf333ccChatGPT_Image_3_de_jun._de_2026__13_31_09.png",
         "category": "Mais Pedidos do Natureza"
       },
       {
@@ -766,6 +842,7 @@
         "description": "Prato Completo da Casa: arroz soltinho, farofa saborosa e alcatra suculento, com deliciosos acompanhamentos. Uma refeição caseira, ideal para saciar a fome de forma satisfatória.",
         "price": 34.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308457/446891b0ChatGPT_Image_3_de_jun._de_2026__13_25_49.png",
         "category": "Mais Pedidos do Natureza"
       }
     ]
@@ -780,6 +857,7 @@
         "description": "Acompanhado de arroz soltinho, feijão temperado, batata frita dourada e farofa especial. Uma combinação irresistível para matar a fome com muito sabor!",
         "price": 26.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4469478/8eaf17a834b42cc6-427b-495c-865c-49ef0b9c3522.jpg",
         "category": "Pratos Executivos"
       },
       {
@@ -788,6 +866,7 @@
         "description": "Marmita de Frango Grelhado da Casa com arroz soltinho, farofa saborosa e suculento filé de frango grelhado, acompanhada de deliciosos complementos. Uma refeição leve, completa e repleta de sabor!",
         "price": 26.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308460/enhanced-image-4308460-2026-06-03T16-11-58-713Z.jpg",
         "category": "Pratos Executivos"
       },
       {
@@ -796,6 +875,7 @@
         "description": "Marmita de Frango à Parmegiana com arroz soltinho, coberto por molho de tomate e queijo derretido, gratinado na medida. Inclui acompanhamentos. Uma refeição completa, deliciosa e cheia de sabor!",
         "price": 31.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308464/2f3ab8caChatGPT_Image_3_de_jun._de_2026__13_35_24.png",
         "category": "Pratos Executivos"
       },
       {
@@ -804,6 +884,7 @@
         "description": "Marmita Peixe Frito Especial com arroz soltinho, pirão saboroso, salada fresca e tilápia frita, crocante e dourada. Uma refeição caseira, generosa e repleta de sabor.",
         "price": 31.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308466/c0536813ChatGPT_Image_3_de_jun._de_2026__13_37_25.png",
         "category": "Pratos Executivos"
       },
       {
@@ -812,6 +893,7 @@
         "description": "Filé de peixe empanado, crocante por fora e macio por dentro, acompanhado de um molho de camarão cremoso e temperado, que realça o sabor do mar. Serve com arroz soltinho e salada fresca, proporcionando uma refeição equilibrada, saborosa e sofisticada.",
         "price": 37.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308462/1f2ee98ba6cb6423-a8f0-426b-9ece-d1f3d6b7b27b.png",
         "category": "Pratos Executivos"
       },
       {
@@ -820,6 +902,7 @@
         "description": "Carne macia com molho de tomate e queijo gratinado, servida com arroz branco soltinho e um acompanhamento à sua escolha. Um clássico cheio de sabor que promete agradar a todos os paladares!",
         "price": 38.9,
         "badge": "new_item",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/5280957/e96d0bea11b98800-7e7c-47f7-a1fa-7779e4c46561.jpg",
         "category": "Pratos Executivos"
       }
     ]
@@ -834,6 +917,7 @@
         "description": "Delicie-se com nossa marmita completa: strogonoff cremoso e bem temperado, servido com arroz soltinho e batata frita crocante. Uma refeição saborosa e prática para o seu almoço!",
         "price": 34.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423438/458a215d202606031306_EFYG_i.jpg",
         "category": "Executivo + Suco 300ml"
       },
       {
@@ -842,6 +926,7 @@
         "description": "Marmita Especial com um  Arroz soltinho, Farofa saborosa e Filé de Frango Empanado Crocante, acompanhado de deliciosos complementos. Uma combinação perfeita, crocante e cheia de sabor!",
         "price": 35.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423435/d04f553e202606031327_38J7_i.jpg",
         "category": "Executivo + Suco 300ml"
       },
       {
@@ -850,6 +935,7 @@
         "description": "🍛 Marmita Peixe Empanado Especial Arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante, dourado no ponto certo. Uma refeição leve, caseira e cheia de sabor!",
         "price": 39.9,
         "badge": "offer",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415021/ca02d5cdISCA_PE.jpeg",
         "category": "Executivo + Suco 300ml"
       },
       {
@@ -858,6 +944,7 @@
         "description": "Prato Completo da Casa: arroz solto, farofa saborosa e alcatra suculento, tudo acompanhado de deliciosos complementos. Uma refeição caseira, ideal para satisfazer sua fome com sabor e qualidade.",
         "price": 41.8,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423442/789f5bbb202606031326_C4I8_i.jpg",
         "category": "Executivo + Suco 300ml"
       }
     ]
@@ -872,6 +959,7 @@
         "description": "Arroz, strogonoff e batata frita: um prato delicioso e equilibrado. O strogonoff é cremoso e bem temperado, servido com arroz soltinho e batata frita crocante. Uma marmita completa, ideal para o seu almoço!",
         "price": 32.9,
         "badge": "offer",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423443/a6850483202606031306_EFYG_i.jpg",
         "category": "Executivo + Coca Lata"
       },
       {
@@ -880,6 +968,7 @@
         "description": "Marmita Especial com arroz soltinho, farofa saborosa e filé de frango empanado crocante, acompanhada de deliciosos complementos. Uma combinação perfeita, crocante e repleta de sabor!",
         "price": 32.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423445/3ca92b82202606031327_38J7_i.jpg",
         "category": "Executivo + Coca Lata"
       },
       {
@@ -888,6 +977,7 @@
         "description": "🍛 Marmita Peixe Empanado Especial Arroz soltinho, pirão saboroso, salada fresca e filé de peixe empanado crocante, dourado no ponto certo. Uma refeição leve, caseira e cheia de sabor!",
         "price": 36.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4415010/c7500cfcISCA_PE.jpeg",
         "category": "Executivo + Coca Lata"
       },
       {
@@ -896,6 +986,7 @@
         "description": "Prato Completo da Casa: arroz soltinho, farofa saborosa e alcatra suculento, com deliciosos acompanhamentos. Uma refeição caseira, ideal para saciar a fome de forma satisfatória.",
         "price": 39.9,
         "badge": "best_seller",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4423449/eb94a7db202606031326_C4I8_i.jpg",
         "category": "Executivo + Coca Lata"
       }
     ]
@@ -910,6 +1001,7 @@
         "description": "Porção de Aipim Frito (800g) Douradinho por fora e macio por dentro, nosso aipim é frito no ponto perfeito, garantindo sabor e crocância irresistíveis. Acompanhamento ideal para deixar sua refeição completa e deliciosa!",
         "price": 32,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308469/9fc52bbcPORÇÃO_AIPIM_EDITADA.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -918,6 +1010,7 @@
         "description": "Porção de Batata frita douradinha e crocante, preparada no ponto certo para garantir muito sabor. O acompanhamento perfeito para qualquer refeição!",
         "price": 32,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308471/6b7539c2PORÇÃO_DE_BATATA_EDITADA.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -926,6 +1019,7 @@
         "description": "Batata frita douradinha acompanhada de Aipim Frito crocante, formando uma combinação deliciosa e perfeita para compartilhar.",
         "price": 35,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308472/110b04dfBATATA_AIPIM_PORÇÃO_EDITADA.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -934,6 +1028,7 @@
         "description": "Batatas frita douradinha ou um Aipim crocante acompanhada de uma calabresa suculenta e bem temperada, formando uma combinação deliciosa e irresistível.",
         "price": 45,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308473/b4359a45ChatGPT_Image_16_de_jun._de_2026__23_25_26.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -942,6 +1037,7 @@
         "description": "Pedaços de Frango fritos(850 gramas), bem temperados e douradinhos, acompanhados de Batata Frita crocante ou Aipim Frito macio e saboroso. Uma combinação perfeita para quem gosta de petiscos caprichados!",
         "price": 58,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308479/9c21a3c6FRANGO_A_PASSARIN_EDITADO.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -950,6 +1046,7 @@
         "description": "Iscas de alcatra macias e aceboladas, preparadas no ponto certo, acompanhadas de Batata Frita crocante ou Aipim Frito douradinho. Uma combinação deliciosa e cheia de sabor!",
         "price": 70,
         "badge": "recommended",
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308481/d50990b3Contraporção.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -958,6 +1055,7 @@
         "description": "🍗 Iscas de Frango Empanado com Batata ou Aipim Frito - Deliciosas iscas de frango empanadas e crocantes, acompanhadas de batata frita douradinha ou aipim frito macio e saboroso. Uma combinação perfeita para quem ama um bom petisco!",
         "price": 58,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308483/9a31935eISCA_DE_FRANGO_COM_BATATA_PORÇÃO_EDITADA.png",
         "category": "Petiscos com Batata ou Aipim"
       },
       {
@@ -966,6 +1064,7 @@
         "description": "🐟 Iscas de Peixe Crocantes Douradinhas, sequinhas e cheias de sabor! Nossas iscas de peixe são empanadas na medida certa e fritas até ficarem irresistíveis. Acompanha aipim ou batata.",
         "price": 70,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308486/21151e75ChatGPT_Image_15_de_jun._de_2026__22_43_54.png",
         "category": "Petiscos com Batata ou Aipim"
       }
     ]
@@ -980,6 +1079,7 @@
         "description": "Camarões(600 gramas) salteados no alho e óleo, bem temperados e preparados no ponto certo. Uma porção deliciosa, cheia de sabor e perfeita para acompanhar sua refeição!",
         "price": 70,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308488/53252065ChatGPT_Image_3_de_jun._de_2026__13_56_20.png",
         "category": "Petiscos PUROS"
       },
       {
@@ -988,6 +1088,7 @@
         "description": "Pedaços de Frango a Passarinho(1700 gramas), bem temperados e douradinhos no ponto certo. Uma porção crocante, saborosa e perfeita para acompanhar sua refeição!",
         "price": 70,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308490/45f5de19WhatsApp_Image_2026-06-03_at_13.16.13__1_.jpeg",
         "category": "Petiscos PUROS"
       },
       {
@@ -996,6 +1097,7 @@
         "description": "Deliciosas iscas de frango empanadas, fritas até ficarem douradas e crocantes por fora, mantendo a suculência por dentro. Uma porção saborosa e irresistível!",
         "price": 70,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308491/afca0af2WhatsApp_Image_2026-06-03_at_13.53.42__2_.jpeg",
         "category": "Petiscos PUROS"
       },
       {
@@ -1004,6 +1106,7 @@
         "description": "Deliciosas iscas de peixe empanadas, fritas até ficarem douradas e crocantes por fora, mantendo a maciez por dentro. Uma porção leve, saborosa e irresistível!",
         "price": 85,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308494/ab7527c5WhatsApp_Image_2026-06-03_at_13.53.42__1_.jpeg",
         "category": "Petiscos PUROS"
       },
       {
@@ -1012,6 +1115,7 @@
         "description": "🐟 Tilápia Frita douradinha e bem temperada, preparada no ponto certo para garantir muito sabor. Uma porção deliciosa e perfeita para quem ama peixe!",
         "price": 53,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308495/febfbe00TILAPIA_PORÇÃO_EDITADA.png",
         "category": "Petiscos PUROS"
       },
       {
@@ -1020,6 +1124,7 @@
         "description": "Sardinhas(600 gramas) fritas douradinhas e bem temperadas, preparadas no ponto certo para garantir muito sabor. Uma porção simples, deliciosa e perfeita para petiscar!",
         "price": 43,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308496/04e12fd3SARDINHA_PORÇÃO_EDITADA.png",
         "category": "Petiscos PUROS"
       }
     ]
@@ -1034,6 +1139,7 @@
         "description": "",
         "price": 15,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308497/8a830e9e-7931-4a06-b0c3-3b2418884328.jpeg",
         "category": "Guarnições"
       },
       {
@@ -1042,6 +1148,7 @@
         "description": "",
         "price": 15,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308498/12b75b0d-6c2c-40ff-b12d-d9d2251d3d12.jpeg",
         "category": "Guarnições"
       },
       {
@@ -1050,6 +1157,7 @@
         "description": "",
         "price": 15,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308499/a00679c3-e69f-486b-996d-055af2b9b08c.jpeg",
         "category": "Guarnições"
       },
       {
@@ -1058,6 +1166,7 @@
         "description": "",
         "price": 5,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308500/6280bbc9-7fd9-4317-89a5-ffb44747540a.jpeg",
         "category": "Guarnições"
       },
       {
@@ -1066,6 +1175,7 @@
         "description": "",
         "price": 15,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308503/dd196ed9-d633-4b22-9a54-b2025f7ebea4.jpeg",
         "category": "Guarnições"
       },
       {
@@ -1074,6 +1184,7 @@
         "description": "",
         "price": 19,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308504/6a0e1c79-1467-452a-a2b4-15af00bb3fb2.jpeg",
         "category": "Guarnições"
       }
     ]
@@ -1088,6 +1199,7 @@
         "description": "500 ml",
         "price": 15.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308505/062c9ce1Suco_natural_em_fundo_verde_vibrante.png",
         "category": "Bebidas"
       },
       {
@@ -1096,6 +1208,7 @@
         "description": "350ml",
         "price": 8,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308507/d9a4931b-827b-4836-ab73-331814774428.jpeg",
         "category": "Bebidas"
       },
       {
@@ -1104,6 +1217,7 @@
         "description": "",
         "price": 8,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308510/099cf9b8-8a33-407b-88fe-e31b51156c64.jpeg",
         "category": "Bebidas"
       },
       {
@@ -1112,6 +1226,7 @@
         "description": "",
         "price": 3,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308512/98c97592-1ce4-48f4-92a9-671b98e31bd6.jpeg",
         "category": "Bebidas"
       },
       {
@@ -1120,6 +1235,7 @@
         "description": "300ML",
         "price": 11.9,
         "badge": null,
+        "image_url": "https://storage.googleapis.com/prod-cardapio-web/uploads/item/image/4308513/c49dccd9Suco_natural_sobre_grama_artificial.png",
         "category": "Bebidas"
       }
     ]
@@ -1129,6 +1245,8 @@
     let cart = [];
     let orderMode = 'local';
     let currentSelectedCategory = 'todos';
+    let activeModalProduct = null;
+    let modalQuantity = 1;
 
     // Inicialização ao carregar
     window.addEventListener('DOMContentLoaded', () => {
@@ -1147,7 +1265,7 @@
       if (checkoutEl) checkoutEl.value = toISO(tomorrow);
     });
 
-    // Renderiza Itens do Cardápio
+    // Renderiza Itens do Cardápio com fotos reais
     function renderMenuItems(searchTerm = '') {
       const container = document.getElementById('menu-items-grid');
       const noItems = document.getElementById('no-items-found');
@@ -1183,42 +1301,55 @@
 
       container.innerHTML = filtered.map(it => {
         const isBestSeller = it.name.includes('Crocante') || it.name.includes('Estrogonofe') || it.name.includes('Alcatra') || it.name.includes('Camarão');
+        const imgUrl = it.image_url || 'assets/hero-bg.jpg';
+
         return `
-          <article class="group rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/40 hover:bg-white/[0.08] flex flex-col justify-between">
-            <div>
-              <div class="flex items-start justify-between gap-2">
-                <span class="rounded-full bg-white/10 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wider text-brand-gold">
+          <article onclick="openProductModal(${it.id})" class="group cursor-pointer rounded-3xl border border-white/10 bg-white/5 overflow-hidden backdrop-blur-md transition hover:-translate-y-1 hover:border-brand-gold/50 hover:bg-white/[0.08] flex flex-col justify-between shadow-lg">
+            
+            <!-- Imagem do Prato -->
+            <div class="relative h-44 w-full overflow-hidden bg-[#05181c]">
+              <img src="${imgUrl}" alt="${it.name}" loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='assets/hero-bg.jpg'">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#071f25] via-transparent to-transparent"></div>
+              
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="rounded-full bg-[#06181c]/80 backdrop-blur-md border border-white/15 px-2.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-brand-gold">
                   ${it.catName}
                 </span>
                 ${isBestSeller ? `
-                  <span class="rounded-full bg-amber-500/20 border border-amber-500/30 px-2.5 py-1 text-[9px] font-bold text-amber-300">
+                  <span class="rounded-full bg-amber-500/90 backdrop-blur-md px-2 py-0.5 text-[9px] font-extrabold text-[#06181c]">
                     ★ Destaque
                   </span>
                 ` : ''}
               </div>
-
-              <h3 class="mt-3 text-base font-extrabold text-white group-hover:text-brand-gold transition leading-snug">
-                ${it.name}
-              </h3>
-              
-              <p class="mt-1.5 text-xs text-slate-300 line-clamp-2 leading-relaxed">
-                ${it.description || 'Preparo artesanal e saboroso na hora pela equipe do sítio.'}
-              </p>
             </div>
 
-            <div class="mt-5 border-t border-white/10 pt-3 flex items-center justify-between">
+            <!-- Dados do Prato -->
+            <div class="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <span class="text-[10px] text-slate-400">Valor</span>
-                <div class="text-base font-extrabold text-brand-goldLight">
-                  R$ ${it.price.toFixed(2).replace('.', ',')}
-                </div>
+                <h3 class="text-sm font-extrabold text-white group-hover:text-brand-gold transition leading-snug line-clamp-2">
+                  ${it.name}
+                </h3>
+                
+                <p class="mt-1.5 text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                  ${it.description || 'Preparo artesanal e saboroso na hora pela equipe do sítio.'}
+                </p>
               </div>
 
-              <button type="button" onclick="addToCart(${it.id})" class="inline-flex items-center gap-1.5 rounded-xl bg-brand-gold px-3.5 py-2 text-xs font-extrabold text-brand-tealDark shadow-md shadow-brand-gold/15 transition hover:brightness-105 active:scale-95">
-                <i data-lucide="plus" class="size-3.5"></i>
-                <span>Pedir</span>
-              </button>
+              <div class="mt-4 border-t border-white/10 pt-3 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] text-slate-400">Valor</span>
+                  <div class="text-base font-extrabold text-brand-goldLight">
+                    R$ ${it.price.toFixed(2).replace('.', ',')}
+                  </div>
+                </div>
+
+                <button type="button" onclick="event.stopPropagation(); openProductModal(${it.id})" class="inline-flex items-center gap-1.5 rounded-xl bg-brand-gold px-3.5 py-2 text-xs font-extrabold text-brand-tealDark shadow-md shadow-brand-gold/15 transition hover:brightness-105 active:scale-95">
+                  <i data-lucide="plus" class="size-3.5"></i>
+                  <span>Pedir</span>
+                </button>
+              </div>
             </div>
+
           </article>
         `;
       }).join('');
@@ -1250,38 +1381,82 @@
       filterCategory('todos');
     }
 
-    // ==================== LÓGICA DO CARRINHO ====================
-    function addToCart(itemId) {
+    // ==================== MODAL DE PRODUTO & OBSERVAÇÃO ====================
+    function openProductModal(itemId) {
       let product = null;
       for (const cat of MENU_DATA) {
         const found = cat.items.find(i => i.id === itemId);
-        if (found) { product = found; break; }
+        if (found) { product = { ...found, catName: cat.name }; break; }
       }
       if (!product) return;
 
-      const existing = cart.find(c => c.id === itemId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
+      activeModalProduct = product;
+      modalQuantity = 1;
 
+      document.getElementById('modal-product-img').src = product.image_url || 'assets/hero-bg.jpg';
+      document.getElementById('modal-product-title').textContent = product.name;
+      document.getElementById('modal-product-desc').textContent = product.description || 'Preparo artesanal e fresco da cozinha do sítio.';
+      document.getElementById('modal-product-badge').textContent = product.catName;
+      document.getElementById('modal-product-unit-price').textContent = 'R$ ' + product.price.toFixed(2).replace('.', ',');
+      document.getElementById('modal-item-notes').value = '';
+      document.getElementById('modal-qty').textContent = '1';
+      
+      updateModalTotal();
+      document.getElementById('product-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+      activeModalProduct = null;
+    }
+
+    function adjustModalQty(delta) {
+      modalQuantity += delta;
+      if (modalQuantity < 1) modalQuantity = 1;
+      document.getElementById('modal-qty').textContent = modalQuantity;
+      updateModalTotal();
+    }
+
+    function updateModalTotal() {
+      if (!activeModalProduct) return;
+      const total = activeModalProduct.price * modalQuantity;
+      document.getElementById('modal-total-btn').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    }
+
+    function confirmModalAddToCart() {
+      if (!activeModalProduct) return;
+      const notes = document.getElementById('modal-item-notes').value.trim();
+
+      const cartItem = {
+        cartId: Date.now() + Math.random(),
+        id: activeModalProduct.id,
+        name: activeModalProduct.name,
+        price: activeModalProduct.price,
+        image_url: activeModalProduct.image_url,
+        qty: modalQuantity,
+        notes: notes
+      };
+
+      cart.push(cartItem);
+      closeProductModal();
       updateCartUI();
       openCartDrawer();
     }
 
-    function changeQty(itemId, delta) {
-      const item = cart.find(c => c.id === itemId);
+    // ==================== LÓGICA DO CARRINHO ====================
+    function changeCartItemQty(cartId, delta) {
+      const item = cart.find(c => c.cartId === cartId);
       if (!item) return;
       item.qty += delta;
       if (item.qty <= 0) {
-        cart = cart.filter(c => c.id !== itemId);
+        cart = cart.filter(c => c.cartId !== cartId);
       }
       updateCartUI();
     }
 
-    function removeFromCart(itemId) {
-      cart = cart.filter(c => c.id !== itemId);
+    function removeCartItem(cartId) {
+      cart = cart.filter(c => c.cartId !== cartId);
       updateCartUI();
     }
 
@@ -1318,24 +1493,33 @@
       }
 
       container.innerHTML = cart.map(it => `
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-3.5 flex items-center justify-between gap-3">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-3 flex items-start justify-between gap-3">
+          <div class="size-12 rounded-xl overflow-hidden shrink-0 bg-[#05181c] border border-white/10">
+            <img src="${it.image_url || 'assets/hero-bg.jpg'}" alt="${it.name}" class="h-full w-full object-cover">
+          </div>
+
           <div class="min-w-0 flex-1">
             <h4 class="text-xs font-extrabold text-white truncate">${it.name}</h4>
             <div class="text-[11px] font-bold text-brand-gold mt-0.5">
               R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}
             </div>
+            ${it.notes ? `
+              <p class="mt-1 text-[10px] text-amber-200/90 italic bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                Obs: ${it.notes}
+              </p>
+            ` : ''}
           </div>
 
-          <div class="flex items-center gap-2 shrink-0">
-            <button type="button" onclick="changeQty(${it.id}, -1)" class="grid size-7 place-items-center rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/15">
-              <i data-lucide="minus" class="size-3.5"></i>
+          <div class="flex items-center gap-1.5 shrink-0 pt-1">
+            <button type="button" onclick="changeCartItemQty(${it.cartId}, -1)" class="grid size-6 place-items-center rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/15">
+              <i data-lucide="minus" class="size-3"></i>
             </button>
             <span class="w-5 text-center text-xs font-extrabold text-white">${it.qty}</span>
-            <button type="button" onclick="changeQty(${it.id}, 1)" class="grid size-7 place-items-center rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/15">
-              <i data-lucide="plus" class="size-3.5"></i>
+            <button type="button" onclick="changeCartItemQty(${it.cartId}, 1)" class="grid size-6 place-items-center rounded-lg border border-white/15 bg-white/5 text-white hover:bg-white/15">
+              <i data-lucide="plus" class="size-3"></i>
             </button>
-            <button type="button" onclick="removeFromCart(${it.id})" class="ml-1 text-slate-500 hover:text-rose-400 p-1">
-              <i data-lucide="trash-2" class="size-4"></i>
+            <button type="button" onclick="removeCartItem(${it.cartId})" class="ml-1 text-slate-500 hover:text-rose-400 p-1">
+              <i data-lucide="trash-2" class="size-3.5"></i>
             </button>
           </div>
         </div>
@@ -1378,17 +1562,26 @@
       if (mode === 'local') {
         btnLocal.className = "rounded-xl border border-brand-gold bg-brand-gold/20 py-2.5 text-xs font-extrabold text-brand-gold";
         btnDelivery.className = "rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-bold text-slate-400";
-        lblLocation.textContent = "Mesa, Espreguiçadeira ou Chalé";
+        lblLocation.textContent = "Mesa, Espreguiçadeira ou Chalé *";
         inputLoc.placeholder = "Ex.: Mesa 4 perto da piscina / Chalé 2";
       } else {
         btnDelivery.className = "rounded-xl border border-brand-gold bg-brand-gold/20 py-2.5 text-xs font-extrabold text-brand-gold";
         btnLocal.className = "rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-bold text-slate-400";
-        lblLocation.textContent = "Endereço Completo para Entrega";
-        inputLoc.placeholder = "Ex.: Rua, número, bairro e referência";
+        lblLocation.textContent = "Endereço Completo para Entrega *";
+        inputLoc.placeholder = "Ex.: Rua, número, bairro e ponto de referência";
       }
     }
 
-    // Checkout no WhatsApp
+    function toggleTrocoField(val) {
+      const trocoWrap = document.getElementById('troco-wrapper');
+      if (val === 'Dinheiro') {
+        trocoWrap.classList.remove('hidden');
+      } else {
+        trocoWrap.classList.add('hidden');
+      }
+    }
+
+    // Checkout no WhatsApp com formatação premium
     function checkoutOrderWhatsApp() {
       if (cart.length === 0) {
         alert("Adicione pelo menos um item ao pedido!");
@@ -1407,28 +1600,33 @@
         return;
       }
       const payment = document.getElementById('cart-payment-method').value;
+      const troco = document.getElementById('cart-troco').value.trim();
       const notes = document.getElementById('cart-notes').value.trim();
       const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
 
       let msg = `🍃 *NOVO PEDIDO — SÍTIO HOSTEL NATUREZA*\n\n`;
       msg += `👤 *Cliente:* ${name}\n`;
       msg += `📍 *${orderMode === 'local' ? 'Local no Sítio' : 'Endereço de Entrega'}:* ${location}\n`;
-      msg += `💳 *Pagamento:* ${payment}\n\n`;
-      msg += `🛒 *ITENS DO PEDIDO:*\n`;
-      cart.forEach(it => {
-        msg += `• ${it.qty}x ${it.name} — R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}\n`;
-      });
-      msg += `\n💰 *TOTAL:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+      msg += `💳 *Pagamento:* ${payment}${payment === 'Dinheiro' && troco ? ` (Troco: ${troco})` : ''}\n`;
       if (notes) {
-        msg += `📝 *Observações:* ${notes}\n`;
+        msg += `📝 *Obs. Geral:* ${notes}\n`;
       }
-      msg += `\nAguardo a confirmação da cozinha do sítio! Obrigado!`;
+      msg += `\n🛒 *ITENS DO PEDIDO:*\n`;
+      cart.forEach(it => {
+        msg += `• ${it.qty}x *${it.name}* — R$ ${(it.price * it.qty).toFixed(2).replace('.', ',')}\n`;
+        if (it.notes) {
+          msg += `   └ *Obs:* _${it.notes}_\n`;
+        }
+      });
+
+      msg += `\n💰 *TOTAL DO PEDIDO:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n\n`;
+      msg += `_Pedido gerado pelo Cardápio Oficial Online do Sítio Hostel Natureza._`;
 
       const url = `https://api.whatsapp.com/send?phone=5521967581148&text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     }
 
-    // Consultar Disponibilidade Widget
+    // Formulário de Disponibilidade
     function consultarDisponibilidade(e) {
       e.preventDefault();
       const checkin = document.getElementById('input-checkin').value;
